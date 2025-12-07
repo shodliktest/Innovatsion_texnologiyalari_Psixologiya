@@ -1,0 +1,1 @@
+# Innovatsion_texnologiyalari_Psixologiya
