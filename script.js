@@ -1,8 +1,8 @@
 // ===== PAROL TIZIMI =====
 const AUTH_KEY = 'inavatsilya_authenticated';
 const VALID_CREDENTIALS = {
-    username: 'Inavatsiya2025',
-    password: 'Odina12221'
+    username: 'Inavatsiya2026',
+    password: 'Odina1221'
 };
 
 // ===== TEST SAVOLLARI (400 TA) =====
