@@ -2,7 +2,7 @@
 const AUTH_KEY = 'inavatsilya_authenticated';
 const VALID_CREDENTIALS = {
     username: 'Inavatsiya2026',
-    password: 'Odina1221'
+    password: 'qwerty1221'
 };
 
 // ===== TEST SAVOLLARI (400 TA) =====
@@ -3597,6 +3597,7 @@ function updateTimer() {
     document.getElementById('timer').textContent = formattedTime;
 
 }
+
 
 
 
