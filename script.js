@@ -1,7 +1,7 @@
 // ===== PAROL TIZIMI =====
 const AUTH_KEY = 'inavatsilya_authenticated';
 const VALID_CREDENTIALS = {
-    username: 'Inavatsiya2025',
+    username: 'Inavatsiya2026',
     password: 'test1221'
 };
 
@@ -3597,3 +3597,4 @@ function updateTimer() {
     document.getElementById('timer').textContent = formattedTime;
 
 }
+
