@@ -1,3282 +1,4425 @@
 // ===== PAROL TIZIMI =====
 const AUTH_KEY = 'inavatsilya_authenticated';
 const VALID_CREDENTIALS = {
-    username: '55555',
-    password: '55555'
+    username: 'Inavatsiya2025',
+    password: 'test1221'
 };
 
-// ===== TEST SAVOLLARI (400 TA) =====
+// ===== YANGI: SAVOLLAR TARIXINI SAQLASH KALITI =====
+const QUESTION_POOL_KEY = 'quiz_remaining_indices';
+
+// ===== TEST SAVOLLARI (BU YERGA 450 TA SAVOLINGIZNI TASHLAISZ) =====
 const questionsData = [
+{
+  question: "Innovatsion ta'lim texnologiyalarining asosiy maqsadi nima?",
+  options: [
+    "O'quv jarayonini takomillashtirish",
+    "O'quvchilarni sinovdan o'tkazish",
+    "Ta'lim sohasida yangiliklar yaratish",
+    "O'qituvchilarni ishga joylashtirish"
+  ],
+  correctAnswer: "O'quv jarayonini takomillashtirish"
+},
+{
+  question: "Haqiqiy ta'lim texnologiyalarining asosiy afzalliklardan biri nima?",
+  options: [
+    "O'quv jarayonining samaradorligini oshirish",
+    "Faoliyatni avtomatlashtirish",
+    "O'quvchilarni faqat testlardan foydalanishga o'rgatish",
+    "O'qituvchilarning ishlash vaqtini kamaytirish"
+  ],
+  correctAnswer: "O'quv jarayonining samaradorligini oshirish"
+},
+{
+  question: "Innovatsion ta'lim texnologiyalarini qo'llashda qanday asosiy metodlardan foydalaniladi?",
+  options: [
+    "Interaktiv va multimedia metodlari",
+    "Vaqtni qisqartirish metodlari",
+    "Tekshirish va tahlil metodlari",
+    "Yozma va og'zaki metodlar"
+  ],
+  correctAnswer: "Interaktiv va multimedia metodlari"
+},
+{
+  question: "Masofaviy ta'limda asosiy vosita nima?",
+  options: [
+    "Kompyuterlar va internet",
+    "Kitoblar",
+    "O'quvchilarni bir joyga to'plash",
+    "Mobil telefonlar"
+  ],
+  correctAnswer: "Kompyuterlar va internet"
+},
+{
+  question: "Innovatsion ta'lim texnologiyalarining qayta aloqa tizimi nima?",
+  options: [
+    "O'quv jarayonining natijalarini tahlil qilish",
+    "O'quvchilarning xatolarini belgilash",
+    "O'qituvchining baholash tizimi",
+    "O'quvchilarni rag'batlantirish usuli"
+  ],
+  correctAnswer: "O'quv jarayonining natijalarini tahlil qilish"
+},
+{
+  question: "Blended learning (aralash ta'lim) qanday ta'lim usulini anglatadi?",
+  options: [
+    "An'anaviy va masofaviy ta'limning birlashuvi",
+    "Faqat masofaviy ta'lim",
+    "Faqat guruh ishlari",
+    "O'qituvchidan faqat nazariy bilim olish"
+  ],
+  correctAnswer: "An'anaviy va masofaviy ta'limning birlashuvi"
+},
+{
+  question: "Ta'limda ijtimoiy media texnologiyalarining afzalliklari nimalardan iborat?",
+  options: [
+    "O'quvchilarga o'z fikrlarini erkin bildirish imkoniyati",
+    "Yagona ta'lim platformasiga to'planish",
+    "Faqat professional o'qituvchilar uchun ishlatiladi",
+    "O'quvchilarning faqat o'quv resurslarini topish"
+  ],
+  correctAnswer: "O'quvchilarga o'z fikrlarini erkin bildirish imkoniyati"
+},
+{
+  question: "Ta'limda o'yin texnologiyalarining qo'llanilishi nima uchun muhim?",
+  options: [
+    "O'quvchilarning diqqatini jamlash",
+    "O'qituvchilarni ishga jalb qilish",
+    "O'quvchilarga o'z fikrlarini erkin ifodalash imkonini berish",
+    "O'qituvchining bilimini sinovdan o'tkazish"
+  ],
+  correctAnswer: "O'quvchilarning diqqatini jamlash"
+},
+{
+  question: "Dijital ta'lim texnologiyalarini qo'llashning asosiy natijasi nima?",
+  options: [
+    "O'qituvchilarning bilim va ko'nikmalarini oshirish",
+    "O'quvchilarga vaqt tejash",
+    "O'quvchilarga texnik ko'nikmalarni berish",
+    "Ta'lim tizimini yangilash"
+  ],
+  correctAnswer: "O'quvchilarga texnik ko'nikmalarni berish"
+},
+{
+  question: "Innovatsion ta'lim texnologiyalarini joriy etishda asosiy muammo nima bo'lishi mumkin?",
+  options: [
+    "Yangi texnologiyalarni o'zlashtirish qiyinligi",
+    "O'qituvchilarning texnik salohiyati",
+    "O'quvchilarning bilim darajasi",
+    "Ta'lim resurslarining kamligi"
+  ],
+  correctAnswer: "Yangi texnologiyalarni o'zlashtirish qiyinligi"
+},
+{
+  question: "Innovatsion ta'lim texnologiyalarining asosiy xususiyatlaridan biri nima?",
+  options: [
+    "O'quvchilarni mustaqil o'rganishga rag'batlantiradi",
+    "Faqat yozma materiallarga asoslanadi",
+    "O'qituvchilarni faqat nazariy bilimlarni berish bilan cheklaydi",
+    "Tezda natijalarga erishish imkonini beradi"
+  ],
+  correctAnswer: "O'quvchilarni mustaqil o'rganishga rag'batlantiradi"
+},
+{
+  question: "O'qitish va o'rganishda 'gamifikatsiya' texnologiyasining maqsadi nima?",
+  options: [
+    "O'quvchilarga o'yin mexanikasi orqali o'rganish imkonini yaratish",
+    "O'quvchilarga faqat o'yinlar o'ynatish",
+    "O'qituvchilarni o'yin orqali baholash",
+    "O'quvchilarga faqat video materiallarni ko'rsatish"
+  ],
+  correctAnswer: "O'quvchilarga o'yin mexanikasi orqali o'rganish imkonini yaratish"
+},
+{
+  question: "Masofaviy ta'limni samarali o'tkazish uchun qanday vosita zarur?",
+  options: [
+    "Kompyuter va internet tarmog'i",
+    "Faqat telefonlar",
+    "An'anaviy darsliklar",
+    "O'quvchilarni faqat guruhlarga ajratish"
+  ],
+  correctAnswer: "Kompyuter va internet tarmog'i"
+},
+{
+  question: "'Virtual sinf' tushunchasi nima?",
+  options: [
+    "Internet orqali onlayn tarzda o'tkaziladigan darslar",
+    "Faqat o'quvchilar tomonidan tashkil etilgan darslar",
+    "O'quvchilarni faqat yozma tarzda baholash",
+    "Sinfda o'qituvchining mavjud bo'lmasi"
+  ],
+  correctAnswer: "Internet orqali onlayn tarzda o'tkaziladigan darslar"
+},
+{
+  question: "Innovatsion ta'lim texnologiyalarining eng muhim ustunligi nima?",
+  options: [
+    "Ta'limda interaktivlikni oshirish",
+    "O'qituvchining vaqtini tejash",
+    "O'quvchilarga o'z-o'zini baholash imkoniyatini yaratish",
+    "Faqat darslarni yanada murakkab qilish"
+  ],
+  correctAnswer: "Ta'limda interaktivlikni oshirish"
+},
+{
+  question: "O'qituvchilarning innovatsion ta'lim texnologiyalariga tayyorligi qanday baholanadi?",
+  options: [
+    "Yangi texnologiyalarni tez o'zlashtirishga qobiliyati",
+    "Ta'lim dasturlarini amalda qo'llash",
+    "O'qituvchilarning faqat nazariy bilimlari",
+    "Texnik asbob-uskunalarni sotib olish"
+  ],
+  correctAnswer: "Yangi texnologiyalarni tez o'zlashtirishga qobiliyati"
+},
+{
+  question: "Hamkorlikda (collaborative) o'qishning asosiy afzalligi nima?",
+  options: [
+    "O'quvchilarning bir-birlari bilan bilim almashish imkoniyati",
+    "O'quvchilarning individual o'rganishini rag'batlantirish",
+    "O'qituvchilarning darslarni faqat nazariy shaklda o'tkazishi",
+    "Faqat texnik ko'nikmalarni rivojlantirish"
+  ],
+  correctAnswer: "O'quvchilarning bir-birlari bilan bilim almashish imkoniyati"
+},
+{
+  question: "Virtual sinfda o'qitish jarayonini baholashda qanday texnologiyalar qo'llaniladi?",
+  options: [
+    "Onlayn testlar va interaktiv topshiriqlar",
+    "Faqat yozma imtihonlar",
+    "O'quvchilarni guruhlarga ajratish",
+    "O'qituvchilarning darsni matnli shaklda baholash"
+  ],
+  correctAnswer: "Onlayn testlar va interaktiv topshiriqlar"
+},
+{
+  question: "Innovatsion ta'lim texnologiyalarining eng asosiy xususiyatlaridan biri nima?",
+  options: [
+    "O'quv jarayonini avtomatlashtirish va optimallashtirish",
+    "O'qituvchilarga yangi metodlarni o'rgatish",
+    "O'quvchilarga an'anaviy o'qish usullarini qo'llash",
+    "Faqat maxsus darsliklarni qo'llash"
+  ],
+  correctAnswer: "O'quv jarayonini avtomatlashtirish va optimallashtirish"
+},
+{
+  question: "Multimedia texnologiyalarining ta'lim jarayonida qanday o'rni bor?",
+  options: [
+    "O'quvchilarga ko'proq interaktiv tajribalarni yaratish",
+    "O'quvchilarning diqqatini chalg'itish",
+    "Faqat video materiallarni ko'rsatish",
+    "O'quvchilarni faqat amaliy ishlarga jalb qilish"
+  ],
+  correctAnswer: "O'quvchilarga ko'proq interaktiv tajribalarni yaratish"
+},
+{
+  question: "Ta'limda ko'p foydalanuvchili (collaborative) texnologiyalarni qo'llashning afzalligi nima?",
+  options: [
+    "O'quvchilarning guruh ishlari orqali fikr almashishi",
+    "O'quvchilarni faqat o'z-o'zini o'rganishga o'rgatish",
+    "Faqat sinfda ishlash",
+    "O'qituvchilarga faqat nazariy ma'lumotlar berish"
+  ],
+  correctAnswer: "O'quvchilarning guruh ishlari orqali fikr almashishi"
+},
+{
+  question: "Ta'limda sun'iy intellekt texnologiyalaridan foydalanishning asosiy maqsadi nima?",
+  options: [
+    "O'qituvchilarga bilimlarni avtomatik ravishda baholash",
+    "O'quvchilarga faqat matematikani o'rgatish",
+    "O'quvchilarga faqat darsdan oldin tayyorgarlik ko'rish",
+    "O'quvchilarning diqqatini chalg'itish"
+  ],
+  correctAnswer: "O'qituvchilarga bilimlarni avtomatik ravishda baholash"
+},
+{
+  question: "Mobil o'qish (mobile learning) texnologiyasining afzalliklari nimalardan iborat?",
+  options: [
+    "O'qish va o'rganish jarayonini istalgan joyda davom ettirish imkoniyati",
+    "O'quvchilarga faqat o'yin o'ynash imkonini berish",
+    "Faqat nazariy bilimlarni olish",
+    "O'quvchilarga faqat sinfda ishlash imkonini berish"
+  ],
+  correctAnswer: "O'qish va o'rganish jarayonini istalgan joyda davom ettirish imkoniyati"
+},
+{
+  question: "O'qituvchining innovatsion ta'lim texnologiyalariga moslashuvchanligi nimani anglatadi?",
+  options: [
+    "O'qituvchining yangi texnologiyalarni darslarga samarali integratsiya qilish qobiliyati",
+    "O'qituvchining faqat yozma materiallar bilan ishlashi",
+    "O'qituvchining darsni faqat an'anaviy usullar bilan o'tkazishi",
+    "O'qituvchining barcha yangi texnologiyalarni bekor qilishi"
+  ],
+  correctAnswer: "O'qituvchining yangi texnologiyalarni darslarga samarali integratsiya qilish qobiliyati"
+},
+{
+  question: "'Ko'pgina maktablarda orqadagi partalda xuddi xurlanganlardek, mayus, serjahl, hanuz narsaga beparvo qaraydigan, ulg'urmaydigan bolalar o'tirishini o'ylasam yuragim orqaga tortib ketadi.' Bu g'oya kimning qaysi asarida keltrilgan?",
+  options: [
+    "A. Suxomlinskiy 'Tarbiya haqida'",
+    "A. Avloniy 'Birinchi muallim'",
+    "K.D. Ushinskiy 'Inson tarbiya predmeti haqida'",
+    "A.S. Makarenko 'Pedagogik adabiyotning foydasi haqida'"
+  ],
+  correctAnswer: "A. Suxomlinskiy 'Tarbiya haqida'"
+},
+{
+  question: "Intellektni mashq qildirish va mantiqiy fikrlashga o'rgatish darsning qaysi qismida amalga oshiriladi?",
+  options: [
+    "Mustahkamlash",
+    "Kirish",
+    "Asosiy",
+    "Yakuniy"
+  ],
+  correctAnswer: "Asosiy"
+},
+{
+  question: "Og'zaki nutq qanday vosita turi hisoblanadi?",
+  options: [
+    "Verbal",
+    "Shaxsiy",
+    "Axborot",
+    "Faktik"
+  ],
+  correctAnswer: "Verbal"
+},
+{
+  question: "Interfaol metodlarda 'Aqliy hujum metodi'dan foydalanish qanday samara beradi?",
+  options: [
+    "Ijodiy tafakkurni rivojlantiradi",
+    "Fanga qiziqtiradi",
+    "Aqliy faoliyatni o'stiradi",
+    "Mutaxassislikka yo'llaydi"
+  ],
+  correctAnswer: "Ijodiy tafakkurni rivojlantiradi"
+},
+{
+  question: "Pedagogning kommunikativ madaniyati...?",
+  options: [
+    "Pedagogning dunyoga, pedagog voqelikka va pedagogik jarayonga bo'lgan intelektual va hissiy munosabati",
+    "Pedagogning kishilar bilan qisqa muddatda muloqot o'rnata olishi, ular bilan muloqot o'rnatishga bo'lgan doimiy intilishi",
+    "O'qituvchining ob'yektivlik mezoni, uning ma'naviy tayyorgarlik darajasi",
+    "Pedagogik jarayonning asosiy birligi, o'ziga xos tizimidir"
+  ],
+  correctAnswer: "Pedagogning kishilar bilan qisqa muddatda muloqot o'rnata olishi, ular bilan muloqot o'rnatishga bo'lgan doimiy intilishi"
+},
+{
+  question: "Pedagogik texnologiya monitoringida birinchi bosqich bu...?",
+  options: [
+    "O'rganish",
+    "Natija",
+    "Tahlil eta bilish",
+    "Sintez"
+  ],
+  correctAnswer: "O'rganish"
+},
+{
+  question: "Ta'lim oluvchilarning nutq madaniyati va mantiqiy tafakkurini taraqqiy ettirish, ularning bilish imkoniyatlari bilan bog'liq usul qanday usul deyiladi?",
+  options: [
+    "O'yin mashqi",
+    "Og'zaki mashq",
+    "Yozma mashq",
+    "Individual mashq"
+  ],
+  correctAnswer: "Og'zaki mashq"
+},
+{
+  question: "... jarayon yoki natija sifatida ijodkorlikni namoyon etuvchi, masalalarni yechishga nostandart usullar bilan yondasha olishga moyil, o'ziga xos harakatlarni tashkil etish, yangiliklarni ilgari surishga, ijodiy mahsulotlarni yaratishga layoqatli va tayyor shaxs.",
+  options: [
+    "Ijodkorlik",
+    "Bunyodkor shaxs",
+    "Kreativ shaxs",
+    "Ijodiy topshiriqlar"
+  ],
+  correctAnswer: "Kreativ shaxs"
+},
+{
+  question: "Ta'lim jarayonida o'qituvchining pedagogik mahoratini namoyon etuvchi asosiy vositalar?",
+  options: [
+    "O'quvchining nazariy hamda amaliy faoliyatida erishadigan yutuqlari va ijobiy natijalari",
+    "Ta'lim beruvchi va ta'lim oluvchining o'zaro faoliyati",
+    "Standart va nostandart mashg'ulotlarni o'tkazish",
+    "O'quv materiallarini nazariy va amaliy jihatdan puxta o'zlashtirishi"
+  ],
+  correctAnswer: "O'quvchining nazariy hamda amaliy faoliyatida erishadigan yutuqlari va ijobiy natijalari"
+},
+{
+  question: "Pedagogika qanday fan?",
+  options: [
+    "Pedagogika tarbiya jarayonining qonuniyatlari, prinsiplari, shakl va metodlari haqidagi gumanitar fan",
+    "Pedagogika tarbiyaning nazariy asoslarini tadqiq etuvchi ijtimoiy-gumanitar fan",
+    "Ta'lim-tarbiya jarayonining mohiyati, mazmuni, qonuniyatlari, metodlarini o'rganuvchi ijtimoiy fan",
+    "Pedagogika tarbiyaning mazmuni, qonuniyatlari, metodlarini o'rganuvchi, ijtimoiy, umumlashgan fan"
+  ],
+  correctAnswer: "Pedagogika tarbiyaning mazmuni, qonuniyatlari, metodlarini o'rganuvchi, ijtimoiy, umumlashgan fan"
+},
+{
+  question: "Bolani 6 yoshdan jamoada o'qitishning afzalliklari haqida qaysi mutafakkir gapirgan?",
+  options: [
+    "Arastu",
+    "Demokrit",
+    "Abu Ali ibn Sino",
+    "Kaykovus"
+  ],
+  correctAnswer: "Arastu"
+},
+{
+  question: "Didaktika so'zi qanday ma'noni bildiradi?",
+  options: [
+    "Didaktika grekcha so'z bo'lib pand-nasihat ma'nolarini bildiradi",
+    "Didaktika lotin tilidan olingan bo'lib 'didayko' ya'ni tarbiyalayapman degan ma'noni beradi",
+    "Didaktika grekcha so'z bo'lib didayko so'zi tarbiyalovchi ta'lim degan ma'noni bildiradi",
+    "Didaktika grekcha so'z bo'lib didayko ya'ni o'qitish, o'rganish ma'nolarini beradi"
+  ],
+  correctAnswer: "Didaktika grekcha so'z bo'lib didayko ya'ni o'qitish, o'rganish ma'nolarini beradi"
+},
+{
+  question: "Didaktikaning asosiy tushunchalari qaysilar?",
+  options: [
+    "Ta'lim jarayon mohiyati, qonuniyatlari, prinsiplari, metodlari",
+    "Dars, darsdan tashqari ishlar bilim, ko'nikma, malaka",
+    "Dars, o'quvchilarning mustaqil ishlari, ekskursiya bayon",
+    "Dars, suhbat, ma'ruza, hikoya ko'rish"
+  ],
+  correctAnswer: "Ta'lim jarayon mohiyati, qonuniyatlari, prinsiplari, metodlari"
+},
+{
+  question: "An'anaviy ta'limida eng ko'p qo'llaniladigan metod bu:",
+  options: [
+    "Tushuntirish-namoyish",
+    "Keys stadi",
+    "Loyiha",
+    "Klaster"
+  ],
+  correctAnswer: "Tushuntirish-namoyish"
+},
+{
+  question: "An'anaviy ta'limida pedagogik munosabatning ... turiga asoslanadi.",
+  options: [
+    "Avtoritar",
+    "Insonparvar",
+    "Demokratik",
+    "Liberal"
+  ],
+  correctAnswer: "Avtoritar"
+},
+{
+  question: "Interfaol metodi 'Labirint' ... maqsadlarda qo'llaniladi?",
+  options: [
+    "Nostandart vaziyatlarda yo'l topish, ijodiy tadqiqotchilik",
+    "O'quvchilarni faollashtirish, jadallashtirish",
+    "Ijodiy mustaqil fikrlashni rivojlantirish",
+    "Shaxsiy va kasbiy fazilatlarni shakllantirish"
+  ],
+  correctAnswer: "Nostandart vaziyatlarda yo'l topish, ijodiy tadqiqotchilik"
+},
+{
+  question: "... pedagogik texnologiyalar: umumpedagogik, xususiy metodik, lokal turlariga bo'linadi.",
+  options: [
+    "Qo'llanish darajasiga ko'ra",
+    "Ilmiy konsepsiyaga ko'ra",
+    "Falsafiy asosga ko'ra",
+    "Yetakchi olimlarga ko'ra"
+  ],
+  correctAnswer: "Qo'llanish darajasiga ko'ra"
+},
+{
+  question: "... turida pedagog faqat birgina o'quvchi bilan o'zaro munosabatda bo'ladi.",
+  options: [
+    "Individual o'qitish texnologiyasi",
+    "Jadallashtirish o'qitish texnologiyasi",
+    "Erkin o'qitish texnologiyasi",
+    "Muammoli o'qitish texnologiyasi"
+  ],
+  correctAnswer: "Individual o'qitish texnologiyasi"
+},
+{
+  question: "Ma'lum bir mahsulotni ishlab chiqish ketma-ketligini bayon qiluvchi hujjat bu:",
+  options: [
+    "Texnologik xarita",
+    "O'quv dasturi",
+    "Taqvimiy-mavzular rejasi",
+    "Amaliy mashg'ulot reja"
+  ],
+  correctAnswer: "Texnologik xarita"
+},
+{
+  question: "Pedagogik texnologiya qaysi ta'lim turlarida qo'llaniladi?",
+  options: [
+    "Uzluksiz ta'lim tizimining barcha turlarida",
+    "Faqat umumiy o'rta ta'lim, o'rta maxsus, kasb-hunar ta'limi, oliy ta'lim",
+    "Umumiy o'rta ta'lim, Oliy ta'lim",
+    "O'rta maxsus kasb-hunar ta'limi, oliy ta'lim"
+  ],
+  correctAnswer: "Uzluksiz ta'lim tizimining barcha turlarida"
+},
+{
+  question: "Pedagogik texnologiyadan ko'zlangan maqsad ... dan iborat.",
+  options: [
+    "Yuqori sifat va samaradorlikka erishish",
+    "Ta'limni tabaqalashtirish va individuallashtirish",
+    "O'qituvchining vazifalarini yengillashtirish",
+    "Ta'limni individuallashtirish"
+  ],
+  correctAnswer: "Yuqori sifat va samaradorlikka erishish"
+},
+{
+  question: "Ta'lim jarayonini 'texnologiyalashtirish' qanday ma'noni anglatadi?",
+  options: [
+    "Ta'lim maqsadlarga erishishda ta'lim jarayonini o'qituvchining shaxsiy mahoratiga bog'liq bo'lmagan holda universal tarzda loyihalashini",
+    "Ta'limni o'qitish vositalari asosida tashkil etishni",
+    "Ta'limni ishlab chiqarish bilan bog'lab, uni yuqori darajada texnologiyalangan ishlab chiqarish korxonalarida tashkil etishni",
+    "Ta'limda ishlab chiqarishni tashkil etishni"
+  ],
+  correctAnswer: "Ta'lim maqsadlarga erishishda ta'lim jarayonini o'qituvchining shaxsiy mahoratiga bog'liq bo'lmagan holda universal tarzda loyihalashini"
+},
+{
+  question: "Ta'limda maqsadga erishish masalaharini hal etish yo'llari umumiy holda ... deb ataladi.",
+  options: [
+    "Metod",
+    "Texnologiya",
+    "Prinsip",
+    "Uslubiyot"
+  ],
+  correctAnswer: "Metod"
+},
+{
+  question: "Monologik metod bu-...",
+  options: [
+    "Ma'ruza, hikoya qilish",
+    "Suhbat",
+    "Individual, guruh, frontal",
+    "Munozara"
+  ],
+  correctAnswer: "Ma'ruza, hikoya qilish"
+},
+{
+  question: "'Pinbord' metodining ma'nosi - bu ...",
+  options: [
+    "Inglizcha doskada mustahkamlash",
+    "Fransuz so'zdan olingan bo'lib, besh qator degan ma'noni anglatadi",
+    "Ingliz so'zdan olingan bo'lib, tarmoglash, g'uncha degan ma'noni anglatadi",
+    "Grekcha so'zdan olingan bo'lib, bilish yo'llari degan ma'noni anglatadi"
+  ],
+  correctAnswer: "Ingliz so'zdan olingan bo'lib, tarmoglash, g'uncha degan ma'noni anglatadi"
+},
+{
+  question: "'Issiq kartoshka' metodining mohiyati nimadan iborat?",
+  options: [
+    "Talaba oluvchilarning tezkor javob berishga o'rgatishdan iborat",
+    "O'quvchilarning berilgan savol bo'yicha boshlang'ich bilimlarni aniqlab olinishi",
+    "O'quvchilarning kichik guruhlarda ijodiy ishlashi",
+    "O'quvchilarning hamkorlikda berilgan savollarga tezkor javob berishi"
+  ],
+  correctAnswer: "O'quvchilarning hamkorlikda berilgan savollarga tezkor javob berishi"
+},
+{
+  question: "'Muzyorar' metodi ... maqsadda amalga oshiriladi.",
+  options: [
+    "Guruhda iliq psixologik muhtini yaratish",
+    "O'quvchilarning mavzu bo'yicha boshlang'ich bilimlarini aniqlash",
+    "O'quvchilar bilan o'yin tarzida mavzu bo'yicha yangi axborotni o'zlashtirish",
+    "O'quvchilar tomonidan mavzu yuzasidan uchraydigan hayotiy vaziyatlarning har xil shart-sharoitlarni sahnalashtirish"
+  ],
+  correctAnswer: "Guruhda iliq psixologik muhtini yaratish"
+},
+{
+  question: "O'yinchi so'z va iboralarni yozish, ular o'rtasidagi bog'lanishlarni o'rnatish va tahlil etish - bu...",
+  options: [
+    "Klaster metodi",
+    "To'plash jadvali",
+    "Baliq skeleti",
+    "'Nilufar gull' sxemasi"
+  ],
+  correctAnswer: "Klaster metodi"
+},
+{
+  question: "'Zakovat o'yin!' didaktik o'yinning qaysi turiga tegishli?",
+  options: [
+    "Ijodiy o'yin",
+    "O'yin mashqi",
+    "Rolli o'yin",
+    "Ishbilarmonlik o'yin"
+  ],
+  correctAnswer: "Ijodiy o'yin"
+},
+{
+  question: "'Ariz-triz' metodi kim tomonidan ishlab chiqilgan?",
+  options: [
+    "G.S. Altshuller",
+    "Yu.M. Sobolev",
+    "L. Mayez",
+    "Ye.A. Aleksandrov"
+  ],
+  correctAnswer: "G.S. Altshuller"
+},
+{
+  question: "'Induksiya' qanday ma'noga ega?",
+  options: [
+    "Keltirib chiqarish",
+    "Ma'nolar tizimi",
+    "Bosqichli o'qitish",
+    "Bosqichli o'rganish"
+  ],
+  correctAnswer: "Keltirib chiqarish"
+},
+{
+  question: "'Konsepsiya' atamasi nimanı anglatadi?",
+  options: [
+    "Dorak etish, tizim",
+    "O'zlashtirish, anglab yetish",
+    "Bilish, ko'rish, o'rganish",
+    "Bilish, baholash, tushunib yetish"
+  ],
+  correctAnswer: "Dorak etish, tizim"
+},
+{
+  question: "'Motivatsiya' qanday ma'noga ega?",
+  options: [
+    "Harakatlantirish",
+    "O'rgatish",
+    "Tushuntirish",
+    "Anglab yetish"
+  ],
+  correctAnswer: "Harakatlantirish"
+},
+{
+  question: "'Taksonomiya' qanday ma'noga ega?",
+  options: [
+    "Tartib bilan joylashtirish",
+    "Reklama qilish",
+    "Loyihalashtirish",
+    "Ketma-ketlikka amal qilish"
+  ],
+  correctAnswer: "Tartib bilan joylashtirish"
+},
+{
+  question: "'Ajurli arra' texnologiyasining nomi qaysi tildan olingan?",
+  options: [
+    "Fransuz",
+    "Nemis",
+    "Rus",
+    "Ingliz"
+  ],
+  correctAnswer: "Fransuz"
+},
+{
+  question: "'Ajurli arra' texnologiyasining lug'aviy ma'nosi qanday?",
+  options: [
+    "Fransuzcha 'ajour' – bir yogdan ikkinchi yoqqa o'tgan, ikki tomoni ochiq degan ma'nolarni bildiradi",
+    "Inglizcha bir tomoni ochiq degan ma'nolarni bildiradi",
+    "Ruscha – bir yogdan ikkinchi yoqqa o'tgan degan ma'nolarni bildiradi",
+    "Nemischa ikki tomoni yopiq degan ma'nolarni bildiradi"
+  ],
+  correctAnswer: "Fransuzcha 'ajour' – bir yogdan ikkinchi yoqqa o'tgan, ikki tomoni ochiq degan ma'nolarni bildiradi"
+},
+{
+  question: "'Ajurli arra' metodining mazmun-mohiyati nimadan iborat?",
+  options: [
+    "Bu metod talabalarga yaxlit muayyan mavzuni bir nechta qismlarga ajratish orqali mohiyatini yoritish imkoniyatini yaratadi",
+    "Bu metod talabalarga yaxlit muayyan mavzuni mohiyatini yoritish imkoniyatini yaratadi",
+    "Bu metod talabalarga yaxlit muayyan mavzuni bir nechta qismlarga ajratmasdan yoritish imkoniyatini yaratadi",
+    "Bu metod talabalarga yaxlit muayyan mavzuni bir nechta qismlarga ajratish imkoniyatini yaratadi"
+  ],
+  correctAnswer: "Bu metod talabalarga yaxlit muayyan mavzuni bir nechta qismlarga ajratish orqali mohiyatini yoritish imkoniyatini yaratadi"
+},
+{
+  question: "'Ajurli arra' metodida talabalar nima asosida ishlaydilar?",
+  options: [
+    "Tayyor matnlar asosida",
+    "Chizmalar asosida",
+    "Rasmlar asosida",
+    "Diagrammalar asosida"
+  ],
+  correctAnswer: "Tayyor matnlar asosida"
+},
+{
+  question: "'Ajurli arra' metodni qo'llashda muhim omil nima?",
+  options: [
+    "Talabalarning o'zlari ega bo'lgan bilimlarni boshqalarga yetkazib berish layoqatiga ega bo'lishlari",
+    "Talabalarning mavzuni bilishlari",
+    "Talabalarning layoqati",
+    "Talabalarning odobi muhim sanaladi"
+  ],
+  correctAnswer: "Talabalarning o'zlari ega bo'lgan bilimlarni boshqalarga yetkazib berish layoqatiga ega bo'lishlari"
+},
+{
+  question: "'Akvarium' texnologiyasi qanday maqsadda qo'llaniladi?",
+  options: [
+    "Talabani ma'lum muammo bo'yicha fikrlash, o'z fikrini bayon etish, muammoni sherik (suhbatdosh) bilan birgalikda muhokama qilishga o'rgatishdan iborat",
+    "Talabani ma'lum muammoni muhokama qilishga o'rgatishdan iborat",
+    "Talabani o'z fikrini bayon etishga o'rgatishdan iborat",
+    "Talabani muammoni sherik (suhbatdosh) bilan birgalikda muhokama qilishga o'rgatishdan iborat"
+  ],
+  correctAnswer: "Talabani ma'lum muammo bo'yicha fikrlash, o'z fikrini bayon etish, muammoni sherik (suhbatdosh) bilan birgalikda muhokama qilishga o'rgatishdan iborat"
+},
+{
+  question: "'AJIL' ('AMALIY JAMOAVIY IJODIY LOYIHALAR') texnologiyasining mazmun – mohiyati nimadan iborat?",
+  options: [
+    "Talabalarda ijodiy faoliyat malakalarini shakllantirishga xizmat qiladi",
+    "Talabalarda muloqot madaniyatini shakllantirishga xizmat qiladi",
+    "Talabalarda odob-axloq madaniyatini shakllantirishga xizmat qiladi",
+    "Talabalarda fuqarolik madaniyatini shakllantirishga xizmat qiladi"
+  ],
+  correctAnswer: "Talabalarda ijodiy faoliyat malakalarini shakllantirishga xizmat qiladi"
+},
+{
+  question: "'AJIL'ning ma'nosi nima?",
+  options: [
+    "'AJIL' - 'Amaliy Jamoaviy Ijodiy Loyihalar'",
+    "'AJIL' - 'Amaliy Jismoniy Ijodiy Loyihalar'",
+    "'AJIL' - 'Amaliy Tarbiyaviy Ijodiy Loyihalar'",
+    "'AJIL' - 'Amaliy Jamoaviy Iqtisodiy Loyihalar'"
+  ],
+  correctAnswer: "'AJIL' - 'Amaliy Jamoaviy Ijodiy Loyihalar'"
+},
+{
+  question: "Kichik guruhlarda ishlash metodi nechta bosqichdan iborat?",
+  options: [
+    "7",
+    "8",
+    "10",
+    "3"
+  ],
+  correctAnswer: "3"
+},
+{
+  question: "Kichik guruhlar nechta a'zodan iborat bo'ladi?",
+  options: [
+    "3-6",
+    "7-8",
+    "3-4",
+    "4-5"
+  ],
+  correctAnswer: "3-6"
+},
+{
+  question: "'Davra suhbat!' metodi qo'llanilganda stol-stullarni qanday shakilda joylashtirish kerak?",
+  options: [
+    "Doira shaklida",
+    "Kvadrat shaklida",
+    "Uchburchak shaklida",
+    "To'rtburchak shaklida"
+  ],
+  correctAnswer: "Doira shaklida"
+},
+{
+  question: "Rezyume metodi qanday ma'noni bildiradi?",
+  options: [
+    "Xulosalash",
+    "Ta'kidlash",
+    "Bayon etish",
+    "Suhbatlashish"
+  ],
+  correctAnswer: "Xulosalash"
+},
+{
+  question: "SWOT (CBOT) analiz metodining asoschisi kim?",
+  options: [
+    "Albert Xempriy",
+    "V.B. Bespalko",
+    "Sh.A. Amonashvili",
+    "B.F. Shatalov"
+  ],
+  correctAnswer: "Albert Xempriy"
+},
+{
+  question: "SWOT (CBOT) analiz metodi qanday ko'rinishda?",
+  options: [
+    "Jadval",
+    "Diagramma",
+    "Sxema",
+    "Rasm"
+  ],
+  correctAnswer: "Jadval"
+},
+{
+  question: "Shaxsga maqsadli pedagogik ta'sir ko'rsatish uchun zarur bo'lgan metodlar, vositalar va jarayonlar yig'indisi nima deb ataladi?",
+  options: [
+    "Pedagogik tizim",
+    "Pedagogik amaliyot",
+    "Pedagogik tajriba",
+    "Pedagogik usullar"
+  ],
+  correctAnswer: "Pedagogik tizim"
+},
+{
+  question: "Vosita nima?",
+  options: [
+    "Muayyan o'qitish metodi yoki usullardan muvaffaqiyatli foydalanish uchun zarur bo'lgan yordamchi o'quv materiali",
+    "Muayyan o'qitish metodi",
+    "Darsda foydalanish uchun zarur bo'lgan yordamchi metodlar yig'indisi",
+    "Muayyan o'qitish materiali"
+  ],
+  correctAnswer: "Muayyan o'qitish metodi yoki usullardan muvaffaqiyatli foydalanish uchun zarur bo'lgan yordamchi o'quv materiali"
+},
+{
+  question: "Ta'lim vositalariga nimalar kiradi?",
+  options: [
+    "Asbob-uskunalar, laboratoriya jihozlari, axborot va texnik vositalar, ko'rgazmali qurollar, darslik, o'quv qo'llanmalari, radio, televidenie, kompyuter va hokazo",
+    "Texnik vositalar",
+    "Ko'rgazmali qurollar",
+    "Darslik"
+  ],
+  correctAnswer: "Asbob-uskunalar, laboratoriya jihozlari, axborot va texnik vositalar, ko'rgazmali qurollar, darslik, o'quv qo'llanmalari, radio, televidenie, kompyuter va hokazo"
+},
+{
+  question: "Mahorat nima?",
+  options: [
+    "Shaxsning tajriba orqali orttirgan xususiyati",
+    "Malaka",
+    "Tajriba",
+    "Ijodkorlik"
+  ],
+  correctAnswer: "Shaxsning tajriba orqali orttirgan xususiyati"
+},
+{
+  question: "Qobiliyat nima?",
+  options: [
+    "Qobiliyat – hamma insonlarda mavjud bo'lib, bir tekisda bo'lmay, biri yuqori, biri o'rta, quyi darajadan iborat",
+    "Qobiliyat – hamma insonlarda mavjud bo'lib, bir tekisda bo'ladi",
+    "Qobiliyat – hamma insonlarda mavjud bo'lib, bir tekisda bo'lmay o'rta darajadan iborat",
+    "Qobiliyat – hamma insonlarda mavjud bo'lib quyi darajadan iborat"
+  ],
+  correctAnswer: "Qobiliyat – hamma insonlarda mavjud bo'lib, bir tekisda bo'lmay, biri yuqori, biri o'rta, quyi darajadan iborat"
+},
+{
+  question: "Pedagogik mahorat egasi qanday bo'ladi?",
+  options: [
+    "Pedagogik mahorat egasi oz mehnat sarf qilib, katta natijaga erishadi",
+    "Pedagogik mahorat egasi qobiliyatli bo'ladi",
+    "Pedagogik mahorat egasi intizomli bo'ladi",
+    "Pedagogik mahorat egasi tajribali bo'ladi"
+  ],
+  correctAnswer: "Pedagogik mahorat egasi oz mehnat sarf qilib, katta natijaga erishadi"
+},
+{
+  question: "Mahorat...",
+  options: [
+    "Mahorat – san'at, izlanish, pedtexnologiyalarni qo'llay bilish va o'z-o'zini tarbiyalash",
+    "Mahorat – san'at, izlanish",
+    "Mahorat – o'z-o'zini tarbiyalash",
+    "Mahorat – pedagogik texnologiyalarni qo'llay bilish va o'z-o'zini tarbiyalash"
+  ],
+  correctAnswer: "Mahorat – san'at, izlanish, pedtexnologiyalarni qo'llay bilish va o'z-o'zini tarbiyalash"
+},
+{
+  question: "Pedagogik texnologiya 1940-1950 - yillarda qanday nomlangan?",
+  options: [
+    "1940-50 yillar o'rtalarida 'Ta'lim texnologiyasi' deb nomlangan",
+    "Innovatsion texnologiya deb nomlangan",
+    "AKT deb nomlangan",
+    "Audiovizual texnologiya deb nomlangan"
+  ],
+  correctAnswer: "1940-50 yillar o'rtalarida 'Ta'lim texnologiyasi' deb nomlangan"
+},
+{
+  question: "Pedagogik texnologiya 1940-1950 - yillarda qanday mazmun – mohiyatga ega bo'lgan?",
+  options: [
+    "Audiovizual texnika vositalaridan foydalanishni ifoda etgan",
+    "AKT dan foydalanishni ifoda etgan",
+    "Kompyuterdan foydalanishni ifoda etgan",
+    "Slaydlardan foydalanishni ifoda etgan"
+  ],
+  correctAnswer: "Audiovizual texnika vositalaridan foydalanishni ifoda etgan"
+},
+{
+  question: "XX asr o'rtasida AQSHda 'Pedagogik texnologiya' va 'Ta'lim texnologiyasi' atamalari qanday vositalar yordamida o'qitishga qo'llangan?",
+  options: [
+    "Faqat texnika vositalari yordamida o'qitishga qo'llangan",
+    "Faqat slaydlar yordamida o'qitishga qo'llangan",
+    "Faqat doska yordamida o'qitishga qo'llangan",
+    "Faqat elektron doska yordamida o'qitishga qo'llangan"
+  ],
+  correctAnswer: "Faqat texnika vositalari yordamida o'qitishga qo'llangan"
+},
+{
+  question: "1979 yilda AQSH Pedagogik kommunikatsiya texnologiyalari assotsiatsiyasi pedagogik texnologiyani qanday jarayon deb ta'riflagan?",
+  options: [
+    "1979 yilda AQSH Pedagogik kommunikatsiya texnologiyalari assotsiatsiyasi pedagogik texnologiya - kompleks interaktiv jarayondan iborat degan fikrga keladi",
+    "1979 yilda AQSH Pedagogik kommunikatsiya texnologiyalari assotsiatsiyasi pedagogik texnologiya – klasterli jarayondan iborat degan fikrga keladi",
+    "1979 yilda AQSH Pedagogik kommunikatsiya texnologiyalari assotsiatsiyasi pedagogik texnologiya – murakkab jarayondan iborat degan fikrga keladi",
+    "1979 yilda AQSH Pedagogik kommunikatsiya texnologiyalari assotsiatsiyasi pedagogik texnologiya – kommunikativ jarayondan iborat degan fikrga keladi"
+  ],
+  correctAnswer: "1979 yilda AQSH Pedagogik kommunikatsiya texnologiyalari assotsiatsiyasi pedagogik texnologiya - kompleks interaktiv jarayondan iborat degan fikrga keladi"
+},
+{
+  question: "1980 yillardan boshlab pedagogik texnologiya deb ta'limning ... va axborot texnologiyalarini yaratishga aylangan?",
+  options: [
+    "Kompyuterli",
+    "Texnologiyali",
+    "An'anaviy",
+    "Nostandart"
+  ],
+  correctAnswer: "Kompyuterli"
+},
+{
+  question: "Ta'lim modeli nechta ko'rinishda bo'ladi?",
+  options: [
+    "3 ta",
+    "5 ta",
+    "4 ta",
+    "2 ta"
+  ],
+  correctAnswer: "3 ta"
+},
+{
+  question: "Ta'lim modeli qanday ko'rinishda bo'ladi?",
+  options: [
+    "Passiv, aktiv, interaktiv",
+    "Passiv",
+    "Aktiv",
+    "Interaktiv"
+  ],
+  correctAnswer: "Passiv, aktiv, interaktiv"
+},
+{
+  question: "Pedagogik texnologiya – o'quv jarayoniga texnologik yondashgan holda, oldindan belgilab olingan maqsad ko'rsatkichlaridan kelib chiqib, o'quv jarayonini loyihalashdir. Yuqoridagi ta'rif qaysi olim tomonidan berilgan?",
+  options: [
+    "M.V. Klarin",
+    "T. Sakomoto",
+    "V.M. Shepel",
+    "M. Ochilov"
+  ],
+  correctAnswer: "M.V. Klarin"
+},
+{
+  question: "Pedagogik texnologiyaning metodikadan farqini belgilab bering:",
+  options: [
+    "Oldindan belgilangan maqsad bo'yicha ta'lim-tarbiyaviy ta'sir o'tkazuvchi, barcha ta'lim-tarbiya jarayonida qo'llaniladi",
+    "Ma'lum o'quv fanini o'qitish hamda tarbiyaviy ishlar qonuniyatlarini tadqiq qiladi",
+    "Alohida o'quv fanlarini o'qitish hamda tarbiyaviy ishlarning sifatli bo'lishini ta'minlaydi",
+    "Ta'lim-tarbiyaning turli xususiy masalaharini hal qilish zarurati natijasida yuzaga kelgan"
+  ],
+  correctAnswer: "Oldindan belgilangan maqsad bo'yicha ta'lim-tarbiyaviy ta'sir o'tkazuvchi, barcha ta'lim-tarbiya jarayonida qo'llaniladi"
+},
+{
+  question: "Metodikaning pedagogik texnologiyadan farqini ko'rsating",
+  options: [
+    "Alohida o'quv fanlarini o'qitish hamda tarbiyaviy ishlarning sifatli bo'lishini ta'minlaydi",
+    "Oldindan belgilangan maqsad bo'yicha qo'llaniladi",
+    "Ma'lum o'quv fanini o'qitish qonuniyatlarini tadqiq qiladi",
+    "Ta'lim-tarbiyaning turli xususiy masalaharini hal qilish zarurati natijasida yuzaga kelgan"
+  ],
+  correctAnswer: "Alohida o'quv fanlarini o'qitish hamda tarbiyaviy ishlarning sifatli bo'lishini ta'minlaydi"
+},
+{
+  question: "Pedagogik texnologiya tushunchasi qayerda paydo bo'lgan?",
+  options: [
+    "Pedagogik texnologiya tushunchasi XX asrda AQSHda paydo bo'lgan",
+    "Pedagogik texnologiya tushunchasi XIX asrda Germaniyada paydo bo'lgan",
+    "Pedagogik texnologiya tushunchasi XVIII asrda Frantsiyada paydo bo'lgan",
+    "Pedagogik texnologiya tushunchasi XVIII asrda Italiyada paydo bo'lgan"
+  ],
+  correctAnswer: "Pedagogik texnologiya tushunchasi XX asrda AQSHda paydo bo'lgan"
+},
+{
+  question: "Pedagogik texnologiyaning asosiy mezonlarini belgilang",
+  options: [
+    "O'quv tarbiya jarayoni va tarkibiy qismlarining o'zaro bog'liligi",
+    "DTSga erishishni kafolatlashi",
+    "Pedagogik texnologiya bilan metodika orasidagi farqning yo'qligi",
+    "Metodlar, metodikalar va texnologiyalar bitta tushuncha sifatida idrok qilinishi"
+  ],
+  correctAnswer: "O'quv tarbiya jarayoni va tarkibiy qismlarining o'zaro bog'liligi"
+},
+{
+  question: "Modullashtirish nima?",
+  options: [
+    "Zamonaviy pedagogik texnologiyalarni modullarga ajratish jarayoni",
+    "Ilgari tayyorlangan materialni modullashtirish",
+    "Ta'lim jarayonida qo'llanadigan usullarni hamda o'qituvchi va o'quvchi faoliyatini modullashtirish",
+    "Modulning darajasini belgilash modullashtirish deb ataladi"
+  ],
+  correctAnswer: "Zamonaviy pedagogik texnologiyalarni modullarga ajratish jarayoni"
+},
+{
+  question: "Pedagogik texnologiya tarkibidagi kichik modulga berilgan izoh qatorini belgilang",
+  options: [
+    "Pedagogik texnologiya tarkibidagi eng kichik birlikni ifodalaydi",
+    "Pedagogik texnologiyani tashkil qiluvchi tarkibiy bo'laklarni ifodalovchi tushuncha",
+    "O'z tarkibiga bitta yoki bir necha kichik modullarni oladigan modul to'plam",
+    "Bitta modul sifatida hisoblangan bir necha modullar yig'indisi"
+  ],
+  correctAnswer: "Pedagogik texnologiya tarkibidagi eng kichik birlikni ifodalaydi"
+},
+{
+  question: "Texnolog kim?",
+  options: [
+    "Texnologik jarayon ishtirokchisi",
+    "Ta'lim oluvchilar",
+    "Nazariy ma'lumotlar bilan tanishtiruvchi",
+    "Ta'lim-tarbiya metodlari bo'yicha mutaxassis"
+  ],
+  correctAnswer: "Ta'lim-tarbiya metodlari bo'yicha mutaxassis"
+},
+{
+  question: "Trener kim?",
+  options: [
+    "O'quvchilarning ko'nikmalarini rivojlantiruvchi mashqlar o'tkazuvchi maxsus tayyorgarlikdan o'tgan mutaxassis",
+    "O'zaro muloqotlarning sifat va samaradorligini oshirish, takomillashtirish",
+    "Tashkiliy- pedagogik va iqtisodiy masalalarni hal etish",
+    "Nazariy ma'lumotlar bilan tanishtiruvchi"
+  ],
+  correctAnswer: "O'quvchilarning ko'nikmalarini rivojlantiruvchi mashqlar o'tkazuvchi maxsus tayyorgarlikdan o'tgan mutaxassis"
+},
+{
+  question: "Klaster metodi mazmuni…",
+  options: [
+    "Tarmoqlash usuli",
+    "Savol javob",
+    "Guruh bilan ishlash",
+    "Musobaqa"
+  ],
+  correctAnswer: "Tarmoqlash usuli"
+},
+{
+  question: "'5-si ortiqcha' metodi mazmuni…",
+  options: [
+    "Mavzudan tashqari ma'lumotni topish",
+    "Juft-juft bo'lib ishlash",
+    "Guruh bo'lib ishlash",
+    "Mavzuga doir ma'lumotni topish"
+  ],
+  correctAnswer: "Mavzudan tashqari ma'lumotni topish"
+},
+{
+  question: "'Kim oshdi savdosi' darsi mazmuni…",
+  options: [
+    "Darslikdagi bo'limlar yuzasidan bilimlarni har bir o'quvchi qanchalik ko'p bilishini namoyish etish darsi",
+    "Bir nechta fanlarga doir tuzilgan dars",
+    "Dars mavzusiga mos o'yin orqali tashkil etilgan dars",
+    "Dars mavzusi bilan bog'liq sahna ko'rinishlari tashkil etish orqali tuziladigan dars"
+  ],
+  correctAnswer: "Darslikdagi bo'limlar yuzasidan bilimlarni har bir o'quvchi qanchalik ko'p bilishini namoyish etish darsi"
+},
+{
+  question: "Rolli o'yin darsi mazmuni…",
+  options: [
+    "Dars mavzusi bo'yicha masalaharni hal etishda o'quvchilarga oldindan ma'lum rollarni taqsimlash va shu rollarni bajarishlarini tashkil etish darsi",
+    "Dars mavzusi bilan bog'liq sahna ko'rinishlari tashkil etish orqali tuziladigan dars",
+    "Darslikdagi bo'limlar yuzasidan bilimlarni har bir o'quvchi qanchalik ko'p bilishini namoyish etish darsi",
+    "Dars mavzusiga mos o'yin orqali tashkil etilgan dars"
+  ],
+  correctAnswer: "Dars mavzusi bo'yicha masalaharni hal etishda o'quvchilarga oldindan ma'lum rollarni taqsimlash va shu rollarni bajarishlarini tashkil etish darsi"
+},
+{
+  question: "Integral dars mazmuni…",
+  options: [
+    "Bir nechta fanlarga doir tuzilgan dars",
+    "Bitta fanga doir tuzilgan dars",
+    "Dars mavzusiga mos o'yin orqali tashkil etilgan dars",
+    "Darslikdagi bo'limlar yuzasidan bilimlarni har bir o'quvchi qanchalik ko'p bilishini namoyish etish darsi"
+  ],
+  correctAnswer: "Bir nechta fanlarga doir tuzilgan dars"
+},
+{
+  question: "Guruhlarda ishlash darsi mazmuni…",
+  options: [
+    "O'quvchilarni bir nechta guruhlarga bo'lib vazifalar bajarishini tashkil etish orqali bilimlarni mustahkamlash darsi",
+    "Dars mavzusini savol-javoblar orqali o'zlashtirish darsi",
+    "Bir nechta fanlarga doir tuzilgan dars",
+    "Sinfdagi o'quvchilarning bir yoki bir nechta mavzu bo'yicha oldindan tayyorgarlik ko'rgan holdagi tanlovini tashkil etish darsi"
+  ],
+  correctAnswer: "O'quvchilarni bir nechta guruhlarga bo'lib vazifalar bajarishini tashkil etish orqali bilimlarni mustahkamlash darsi"
+},
+{
+  question: "Muammoli o'qitishning 'An'anaviy' o'qitishdan farqini ko'rsating",
+  options: [
+    "O'quvchilarda aqliy qo'zg'alishlarni vujudga keltirish",
+    "Tayyor holda BKMLarni o'zlashtirish",
+    "DTS talabi asosida bilimlarni o'zlashtirish",
+    "O'zlashtirilgan bilimlar asosida ongli tajribani tashkil etish"
+  ],
+  correctAnswer: "O'quvchilarda aqliy qo'zg'alishlarni vujudga keltirish"
+},
+{
+  question: "Muammoli ta'lim texnologiyasining asosi nima?",
+  options: [
+    "Insonning fikrlashi muammolarni aniqlash, tadqiq etish va yechish qobiliyatiga ega ekanligidan kelib chiqadi",
+    "Bilimlarni o'quvchilarga tayyor holda berish",
+    "Bir nechta fanlarga doir va integratsiyalash uchun qulay bo'lgan mavzular bo'yicha tashkil qilingan dars",
+    "O'quvchilar bilan o'tkaziladigan qiziqarli o'yin"
+  ],
+  correctAnswer: "Insonning fikrlashi muammolarni aniqlash, tadqiq etish va yechish qobiliyatiga ega ekanligidan kelib chiqadi"
+},
+{
+  question: "...texnologiyalarida o'quvchilarda aqliy faoliyat usullarini shakllantirish funktsiyasi yetakchi o'rinni egallaydi",
+  options: [
+    "Muammoli ta'lim",
+    "Modulli ta'lim",
+    "Hamkorlikda o'qitish",
+    "Didaktik o'yin"
+  ],
+  correctAnswer: "Muammoli ta'lim"
+},
+{
+  question: "Muammoni hal etish bosqichlari qaysi javobda to'g'ri?",
+  options: [
+    "Isbotlash, tekshirish, tushuntirish",
+    "Isbotlash, tahlil qilish, tekshirish",
+    "Tahlil qilish, tekshirish, tushuntirish",
+    "Kuzatish, tahlil qilish, isbotlash"
+  ],
+  correctAnswer: "Tahlil qilish, tekshirish, tushuntirish"
+},
+{
+  question: "Muammoli ta'limning maqsadi nima?",
+  options: [
+    "O'quvchilarning muammoli topshiriqlarni yechish malaka va ko'nikmasini shakllantirish",
+    "O'quvchilarning fikrlashini faollashtirishdir",
+    "O'quvchilarning muammoning faol yechimi jarayoniga jalb etib, rag'batlantirish",
+    "Bilimlar tizimi natijalarga erishishni yo'lini o'zlashtirishdir"
+  ],
+  correctAnswer: "O'quvchilarning muammoli topshiriqlarni yechish malaka va ko'nikmasini shakllantirish"
+},
+{
+  question: "Muammoli vaziyat deganda nimani tushunasiz?",
+  options: [
+    "O'quvchining ma'lum psixik holatidir",
+    "O'quv materialini o'quvchi ongida vujudga keltiradigan yo'sindagi faoliyatdir",
+    "Mantiqiy va to'g'ri xulosa chiqarish",
+    "O'quvchi hamkorligida ongli, ma'lum maqsadga yo'naltirilgan faoliyatdir"
+  ],
+  correctAnswer: "O'quvchining ma'lum psixik holatidir"
+},
+{
+  question: "Muammoli ta'lim texnologiyasining o'ziga xos xususiyatini belgilang:",
+  options: [
+    "O'quvchilarning fikr yuritish qobiliyatlarini rivojlantiriladi",
+    "Mustaqil ta'lim olishga odatlantiriladi",
+    "Erkin fikrlashga sharotilar yaratiladi",
+    "Kichik guruhlarda ishlaydilar"
+  ],
+  correctAnswer: "O'quvchilarning fikr yuritish qobiliyatlarini rivojlantiriladi"
+},
+{
+  question: "Pedagogik texnologiyalarning turli ta'riflari bo'lib, ulardan qaysi biri YUNESKO tomonidan tan olindi?",
+  options: [
+    "Pedagogik texnologiya - texnika resurslari, odamlar va ularning o'zaro ta'sirini hisobga olgan holda ta'lim shakllarini optimallashtirish vazifasini qo'yuvchi o'qitish va bilimlarni o'zlashtirishning hamma jarayonlarini yaratish, qo'llash va aniqlashning tizimli metodi",
+    "Pedagogik texnologiya - ta'limning rejalashtirilgan natijalariga erishish jarayoni",
+    "Pedagogik texnologiya - didaktik tizimning tarkibiy jarayonli qismi",
+    "Pedagogik texnologiya o'qitishning ta'lim shakllari, uslublari, usullari, yo'llari"
+  ],
+  correctAnswer: "Pedagogik texnologiya - texnika resurslari, odamlar va ularning o'zaro ta'sirini hisobga olgan holda ta'lim shakllarini optimallashtirish vazifasini qo'yuvchi o'qitish va bilimlarni o'zlashtirishning hamma jarayonlarini yaratish, qo'llash va aniqlashning tizimli metodi"
+},
+{
+  question: "Pedagogik texnologiyalardagi asosiy tarkibiy elementlar qaysilar?",
+  options: [
+    "So'zlash, ko'rsatish, mashq",
+    "Tushuntirish, tushunish, o'rgatish",
+    "O'rganish, o'zlashtirish, idrok etish",
+    "Bilim, ko'nikma, malaka"
+  ],
+  correctAnswer: "So'zlash, ko'rsatish, mashq"
+},
+{
+  question: "Bolaga do'stona munosabatdagi maktab dasturi qachon va qayerda joriy qilingan?",
+  options: [
+    "1997 yil Tailandda",
+    "1982 yil Chikagoda",
+    "1980 yil Kaliforniyada",
+    "1990 yil Rossiyada"
+  ],
+  correctAnswer: "1997 yil Tailandda"
+},
+{
+  question: "Bilish faoliyatini boshqarish bo'yicha pedagogik texnologiyalarning turlarini ko'rsating",
+  options: [
+    "Darslik bo'yicha o'qitish, texnik vositalar yordamida o'qitish, repetitorlik tizimi",
+    "Didaktik yo'naltirilgan, insonparvarlikka va shaxsga yo'naltirilgan",
+    "Tushuntirish, ko'rgazmali, muammoli, izlanishli, dasturlashtirilgan ta'lim metodi, dialogli metod",
+    "O'quv jarayonini boshqarish"
+  ],
+  correctAnswer: "Didaktik yo'naltirilgan, insonparvarlikka va shaxsga yo'naltirilgan"
+},
+{
+  question: "Ta'lim oluvchiga yondashuv turi bo'yicha pedagogik texnologiyalar turlarini ko'rsating",
+  options: [
+    "Didaktik yo'naltirilgan, insonparvarlikka va shaxsga yo'naltirilgan",
+    "Darslik bo'yicha o'qitish, texnik vositalar yordamida o'qitish, repetitorlik tizimi",
+    "O'quv jarayonini tashkil etish asosidagi pedagogik texnologiyalar",
+    "Tushuntirish, ko'rgazmali, dialogli metod"
+  ],
+  correctAnswer: "Didaktik yo'naltirilgan, insonparvarlikka va shaxsga yo'naltirilgan"
+},
+{
+  question: "Qo'llaniladigan metod bo'yicha pedagogik texnologiyalar turlarini ko'rsating",
+  options: [
+    "Tushuntirish, ko'rgazmali, muammoli, izlanishli, dasturlashtirilgan ta'lim metodi, dialogli metod",
+    "Didaktik yo'naltirilgan",
+    "Darslik bo'yicha o'qitish, texnik vositalar yordamida o'qitish, repetitorlik tizimi",
+    "O'quv jarayonini boshqarish va tashkil etish bo'yicha texnologiyalar"
+  ],
+  correctAnswer: "Tushuntirish, ko'rgazmali, muammoli, izlanishli, dasturlashtirilgan ta'lim metodi, dialogli metod"
+},
+{
+  question: "Tashkiliy shakliga ko'ra pedagogik texnologiyalar turlarini ko'rsating",
+  options: [
+    "O'quv jarayonini boshqarish va tashkil etish bo'yicha, hamda shaxsga yo'naltirilgan ta'lim asosidagi pedagogik texnologiyalar",
+    "Insonparvarlikka va shaxsga yo'naltirilgan texnologiyalar",
+    "Dasturlashtirilgan ta'lim metodi",
+    "Repetitorlik tizimi"
+  ],
+  correctAnswer: "O'quv jarayonini boshqarish va tashkil etish bo'yicha, hamda shaxsga yo'naltirilgan ta'lim asosidagi pedagogik texnologiyalar"
+},
+{
+  question: "Pedagogik texnologiya jarayoni ishtirokchisi bo'lgan o'quvchining faoliyatini tashkil qiluvchi asosiy elementini belgilang:",
+  options: [
+    "Tinglash, ko'rish, mashq bajarish",
+    "Faollik, ongillik, mustaqillik",
+    "Mustaqil ta'lim olish",
+    "Muammolarni hal etish"
+  ],
+  correctAnswer: "Faollik, ongillik, mustaqillik"
+},
+{
+  question: "Pedagogik texnologiya jarayoni ishtirokchisi bo'lgan o'qituvchining faoliyatini tashkil qiluvchi asosiy elementini belgilang:",
+  options: [
+    "So'zlash, ko'rsatish, vazifa topshirish, rahbarlik, nazorat",
+    "Tushuntiradi, o'qitadi, rag'batlantiradi, baholaydi",
+    "Rag'batlantiradi, jazolaydi",
+    "Tashkil etadi, boshqaradi, tahlil etadi"
+  ],
+  correctAnswer: "So'zlash, ko'rsatish, vazifa topshirish, rahbarlik, nazorat"
+},
+{
+  question: "Interfaol ta'lim jarayoni ishtirokchilari ko'rsatilgan qatorni belgilang:",
+  options: [
+    "Trener, konsultant, ekspert, o'qituvchi",
+    "Maktab direktori, direktor o'rinbosarlari",
+    "XTB mudiri, inspektor, metodist",
+    "Bolalar yetakchisi, psixolog, kutubxonachi"
+  ],
+  correctAnswer: "Trener, konsultant, ekspert, o'qituvchi"
+},
+{
+  question: "'Aqliy hujum' metodini birinchi marta kim va qachon qo'llagan?",
+  options: [
+    "1939 yilda A.F. Osborn",
+    "1892 yilda Dj. D'yui",
+    "1939 yilda Bespalko",
+    "1940 yilda Selevko"
+  ],
+  correctAnswer: "1939 yilda A.F. Osborn"
+},
+{
+  question: "Muammoni hal etish necha bosqichdan iborat?",
+  options: [
+    "3 bosqich",
+    "4 bosqich",
+    "6 bosqich",
+    "5 bosqich"
+  ],
+  correctAnswer: "3 bosqich"
+},
+{
+  question: "Muammoli ta'limni yaratish usullari",
+  options: [
+    "Ziddiyatli holatni tushuntiradi va yechish yo'lini taklif qiladi",
+    "O'qituvchi muammoni qo'yadi va o'zi yechadi",
+    "Solishtirish va umumlashtirish",
+    "Faktlarni aniqlash va qiyoslash"
+  ],
+  correctAnswer: "Ziddiyatli holatni tushuntiradi va yechish yo'lini taklif qiladi"
+},
+{
+  question: "Pedagogik texnologiya asosida tuzilgan darsning an'anaviy darsdan farqi?",
+  options: [
+    "Dars markazida o'quvchi shaxsi turadi",
+    "Dars bosqichlari o'zgaradi",
+    "Hech qanday farqi yo'q",
+    "Ta'lim mazmunida o'zgarishlar bo'ladi"
+  ],
+  correctAnswer: "Dars markazida o'quvchi shaxsi turadi"
+},
+{
+  question: "Pedagogik texnologiya asosida tuzilgan darsning o'quvchi shaxsiga ta'siri",
+  options: [
+    "Bola shaxsini komillik sari rivojlantiradi",
+    "Hech qanday ta'siri yo'q",
+    "O'quvchi vazifani o'qituvchi yordamiga tayanib bajaradi",
+    "O'quvchi faqat yakka tartibda ishlaydi"
+  ],
+  correctAnswer: "Bola shaxsini komillik sari rivojlantiradi"
+},
+{
+  question: "Pedagogik texnologiyalar asosida tuzilgan darslarni kuzatishdan maqsad",
+  options: [
+    "O'qituvchilarni zamonaviy pedagogik texnologiyalarni amalda qo'llash yuzasidan ilg'or tajribalar bilan tanishish va o'rganish",
+    "Metod almashtirish",
+    "Ta'lim jarayonidagi kamchiliklarni bartaraf etish",
+    "O'qituvchi pedagogik faoliyatini ommalashtirish"
+  ],
+  correctAnswer: "O'qituvchilarni zamonaviy pedagogik texnologiyalarni amalda qo'llash yuzasidan ilg'or tajribalar bilan tanishish va o'rganish"
+},
+{
+  question: "Qaysi olim 'insonning bilish faoliyati bilmaslikdan bilishga qarab boradi' deb aytgan?",
+  options: [
+    "Abu Rayhon Beruniy",
+    "Yan Amos Kamenskiy",
+    "Abu Ali Ibn Sino",
+    "Burhoniddin Zarnujiy"
+  ],
+  correctAnswer: "Abu Rayhon Beruniy"
+},
+{
+  question: "Har bir dars nimalar asosida tuziladi?",
+  options: [
+    "Ta'lim-tarbiya funktsiyalari va ta'lim prinsiplari",
+    "Ta'lim prinsiplari asosida",
+    "Reja asosida",
+    "Ta'limiy funktsiyalar asosida"
+  ],
+  correctAnswer: "Ta'lim-tarbiya funktsiyalari va ta'lim prinsiplari"
+},
+{
+  question: "O'quvchilar faoliyatiga ko'ra didaktik-ta'limiy o'yin turlari:",
+  options: [
+    "O'quvchi faoliyatini o'zlashtirishni talab etadigan o'yinlar, bilimlar mustaqil qo'llaniladigan o'yinlar, zakovatni rivojlantiruvchi o'yinlar",
+    "O'quvchi faoliyatini o'zlashtirishni talab etadigan o'yinlar, bilimlar mustaqil qo'llaniladigan o'yinlar",
+    "Bilimlar mustaqil qo'llaniladigan o'yinlar, zakovatni rivojlantiruvchi o'yinlar",
+    "Ishbilarmonlik o'yini"
+  ],
+  correctAnswer: "O'quvchi faoliyatini o'zlashtirishni talab etadigan o'yinlar, bilimlar mustaqil qo'llaniladigan o'yinlar, zakovatni rivojlantiruvchi o'yinlar"
+},
+{
+  question: "Didaktik maqsadiga ko'ra didaktik-ta'limiy o'yin turlari to'g'ri ko'rsatilgan qatorni toping...",
+  options: [
+    "Ta'lim-tarbiya beruvchi o'yinlar, bilimlarni mustahkamlovchi o'yinlar, o'quv materialini takrorlovchi o'yinlar, bilimlarni nazorat qiluvchi o'yinlar",
+    "Ta'lim-tarbiya beruvchi o'yinlar, bilimlarni mustahkamlovchi o'yinlar",
+    "O'quv materialini takrorlovchi o'yinlar, bilimlarni nazorat qiluvchi o'yinlar",
+    "Ta'lim-tarbiya beruvchi o'yinlar, bilimlarni nazorat qiluvchi o'yinlar"
+  ],
+  correctAnswer: "Ta'lim-tarbiya beruvchi o'yinlar, bilimlarni mustahkamlovchi o'yinlar, o'quv materialini takrorlovchi o'yinlar, bilimlarni nazorat qiluvchi o'yinlar"
+},
+{
+  question: "Didaktik o'yin texnologiyalari nimaga asoslangan?",
+  options: [
+    "O'quvchi faoliyatini faollashtirish va jadallashtirishga",
+    "Mavzuni takrorlashga",
+    "O'quvchini o'rganishga",
+    "O'tilganlarni mustahkamlashga"
+  ],
+  correctAnswer: "O'quvchi faoliyatini faollashtirish va jadallashtirishga"
+},
+{
+  question: "Ishtirokchilar tarkibi bo'yicha didaktik o'yin turlarini tanlash mezonlari:",
+  options: [
+    "Ishtirokchilar tarkibi bo'yicha - o'g'il bolalar, qiz bolalar, o'smirlar, katta yoshdagilar uchun o'yinlar",
+    "Qiz bolalar, o'smirlar, katta yoshdagilar uchun o'yinlar",
+    "O'smirlar, katta yoshdagilar uchun o'yinlar",
+    "O'g'il bolalar, qiz bolalar uchun o'yinlar"
+  ],
+  correctAnswer: "Ishtirokchilar tarkibi bo'yicha - o'g'il bolalar, qiz bolalar, o'smirlar, katta yoshdagilar uchun o'yinlar"
+},
+{
+  question: "Didaktik o'yin jarayonida qo'llaniladigan vositalar to'g'ri ko'rsatilgan qatorni toping",
+  options: [
+    "Kanselyariya tovarlari - turli o'lchamlardagi oq va rangli qog'ozlar, skotch, flomasterlar, ruchka, qalam, chizg'ichlar, qaychi, yelim va boshqalar",
+    "Yumshoq o'yinchoqlar, flomasterlar",
+    "Flomasterlar, kitoblar, qalam, chizg'ichlar",
+    "Kanselyariya tovarlari"
+  ],
+  correctAnswer: "Kanselyariya tovarlari - turli o'lchamlardagi oq va rangli qog'ozlar, skotch, flomasterlar, ruchka, qalam, chizg'ichlar, qaychi, yelim va boshqalar"
+},
+{
+  question: "Didaktik o'yin jarayonida qo'llaniladigan texnika vositalari to'g'ri ko'rsatilgan qatorni toping",
+  options: [
+    "Proyektor, mikrofon, kompyuter, video kamera, videomagnitofon, televizor va boshqalar",
+    "Flomasterlar, ruchka, qalam, chizg'ichlar, qaychi, yelim",
+    "Video kamera, kompyuter",
+    "Texnika vositalari"
+  ],
+  correctAnswer: "Proyektor, mikrofon, kompyuter, video kamera, videomagnitofon, televizor va boshqalar"
+},
+{
+  question: "'Tushunchalar tahlili' metodi qanday ko'rinishda?",
+  options: [
+    "Jadval ko'rinishida",
+    "Ustun ko'rinishida",
+    "Chizma ko'rinishida",
+    "Sxema ko'rinishida"
+  ],
+  correctAnswer: "Jadval ko'rinishida"
+},
+{
+  question: "Sinkveyn so'zining ma'nosi",
+  options: [
+    "Fransuzcha - 'besh qator'",
+    "Inglizcha 'baholash'",
+    "Lotincha - 'tarmoqlash'",
+    "Ruscha 'bir nechta'"
+  ],
+  correctAnswer: "Fransuzcha - 'besh qator'"
+},
+{
+  question: "Innovatsiya so'zining lug'aviy ma'nosi nima?",
+  options: [
+    "Yangilik kiritish",
+    "Yangilik yaratish",
+    "Yangilik joriy qilish",
+    "Tushuntirish"
+  ],
+  correctAnswer: "Yangilik kiritish"
+},
+{
+  question: "'Innovatsiya' tushunchasi qaysi tildan olingan?",
+  options: [
+    "Ingliz",
+    "Lotin",
+    "Grek",
+    "Fransuz"
+  ],
+  correctAnswer: "Lotin"
+},
+{
+  question: "Innovator kim?",
+  options: [
+    "Innovatsion jarayonni olib boruvchi shaxs",
+    "Ta'lim jarayonini olib boruvchi shaxs",
+    "Trener",
+    "Lektor"
+  ],
+  correctAnswer: "Innovatsion jarayonni olib boruvchi shaxs"
+},
+{
+  question: "Ijodkor shaxsning shakllanishiga ta'sir etuvchi shunday bilimlar, ko'nikma, malaka yig'indisi, uzluksiz izchil maqsadga ko'ra shaxsning ehtiyoj imkoniyatlarini hisobga olib, turli uslub, aniq dasturlar, metodikalar bilan yetkazish jarayonidir. Tushunchaning ta'rifini toping",
+  options: [
+    "Iqtisodiy ta'lim",
+    "Mehnat tarbiyasi",
+    "Estetik",
+    "O'yin ta'limi"
+  ],
+  correctAnswer: "Mehnat tarbiyasi"
+},
+{
+  question: "'Baliq skeleti', 'BBB', 'Konseptual jadval', 'Venn diagrammasi', 'Insert', 'Klaster', 'Nima uchun?', 'Qanday?'. Bular ...",
+  options: [
+    "Grafik organizatorlar",
+    "Axborot texnologiyalari",
+    "Bilishga oid",
+    "Tahlil etishga oid texnologiyalar"
+  ],
+  correctAnswer: "Grafik organizatorlar"
+},
+{
+  question: "'Bilim — kuch, kuch esa bilimdadir'. Mazkur hikmatli so'z kimga tegishli?",
+  options: [
+    "F. Bekon",
+    "J. Dark",
+    "J. Lamark",
+    "K.D. Ushinskiy"
+  ],
+  correctAnswer: "F. Bekon"
+},
+{
+  question: "Dunyodagi eng katta boylik - yoshlikda olgan bilim va egallagan kasb-hunardir. Ushbu fikr kimga tegishli?",
+  options: [
+    "Sh.M. Mirziyoyev",
+    "A.K. Markova",
+    "K.D. Ushinskiy",
+    "N. Tolipova"
+  ],
+  correctAnswer: "Sh.M. Mirziyoyev"
+},
+{
+  question: "A.K. Markova bo'yicha maxsus yoki kasbiy kompetentlik bu - ... ?",
+  options: [
+    "Kasbiy faoliyatni yuqori darajada tashkil etish",
+    "Ishtiyoq muhiti",
+    "Tabiiy ehtiyojlarni qondirish",
+    "O'z fani va tegishli fanlar doirasida bilimga egalik"
+  ],
+  correctAnswer: "O'z fani va tegishli fanlar doirasida bilimga egalik"
+},
+{
+  question: "A.K. Markova bo'yicha individual kompetentlik bu: ... ?",
+  options: [
+    "O'z-o'zini boshqarish, kasbiy rivojlanish va yangiliklar yaratish",
+    "Analiz va sintez faoliyati",
+    "Muayyan tafakkur orqali fikr yuritish",
+    "Tajriba sinov ishlarini olib borish"
+  ],
+  correctAnswer: "O'z-o'zini boshqarish, kasbiy rivojlanish va yangiliklar yaratish"
+},
+{
+  question: "Aralash darslar, yangi ma'lumotlarni berish darslari, bilimlarni mustahkamlash va takrorlash darslari va o'rganilganlarni umumlashtirish va tizimlashtirish darslari bu...",
+  options: [
+    "An'anaviy dars turlari",
+    "Aralash",
+    "Innovatsion",
+    "Noan'anaviy"
+  ],
+  correctAnswer: "An'anaviy dars turlari"
+},
+{
+  question: "Pedagogik texnologiya - ...",
+  options: [
+    "Bu ta'limni standartlashtirish",
+    "Bu o'qitishga o'ziga xos yondashuv",
+    "Bu ta'lim shakllarini optimizatsiya qilish",
+    "Bu bilimni texnika va inson resurslari va uning o'zaro ta'sirini hisobga olgan holda egallashni ta'minlovchi butun o'quv jarayonini yaratish, qo'llash va aniqlashning tizimli usuli bo'lib, o'z oldiga ta'lim shakllarini optimizatsiya qilishni qo'yadi"
+  ],
+  correctAnswer: "Bu bilimni texnika va inson resurslari va uning o'zaro ta'sirini hisobga olgan holda egallashni ta'minlovchi butun o'quv jarayonini yaratish, qo'llash va aniqlashning tizimli usuli bo'lib, o'z oldiga ta'lim shakllarini optimizatsiya qilishni qo'yadi"
+},
+{
+  question: "Pedagogik texnologiyaning asosiy maqsadi",
+  options: [
+    "Qo'yilgan o'quv maqsadlariga erishish",
+    "Yuqori malakali mutaxassislarni tayyorlash",
+    "Ta'lim jarayonini etarli samaradorligini ta'minlash, talabalar tomonidan o'qitishning ko'zlangan natijalariga erishish",
+    "Nazariy bilimlarni amaliyotda qo'llash"
+  ],
+  correctAnswer: "Ta'lim jarayonini etarli samaradorligini ta'minlash, talabalar tomonidan o'qitishning ko'zlangan natijalariga erishish"
+},
+{
+  question: "Aqliy hujum qanday metod?",
+  options: [
+    "So'zlovchiga nisbatan baholovchi komponent",
+    "Talabaning o'quv jarayonida faol ishtirok etishi",
+    "Guruhlararo ishlarda qo'llaniladigan, ko'plab g'oyalarni ishlab chiqish mumkin bo'lgan",
+    "Guruh ishlarida qo'llaniladigan"
+  ],
+  correctAnswer: "Guruhlararo ishlarda qo'llaniladigan, ko'plab g'oyalarni ishlab chiqish mumkin bo'lgan"
+},
+{
+  question: "O'quv materialini ko'rgazmallik metodi qaysi qatorda to'g'ri ko'rsatilgan?",
+  options: [
+    "Tasvirlash, namoyish etish, ekskursiya",
+    "Suhbat, tasvirlash, namoyish etish",
+    "Mashq bajarish, tasvirlash, namoyish etish, hikoya qilish",
+    "Mashq bajarish, tasvirlash, ekskursiya, hikoya qilish"
+  ],
+  correctAnswer: "Tasvirlash, namoyish etish, ekskursiya"
+},
+{
+  question: "Muayyan (ishlab chiqarish, ijtimoiy, iqtisodiy va b.) jarayonlarning yuqori mahorat, san'at darajasida tashkil etilishi?",
+  options: [
+    "Novatsiya",
+    "Innovatsiya",
+    "Texnologiya",
+    "Modernizatsiya"
+  ],
+  correctAnswer: "Texnologiya"
+},
+{
+  question: "Test so'zining lug'aviy ma'nosi?",
+  options: [
+    "Test - inglizcha 'test' - sinash, tekshirish, o'rganish",
+    "Test - yunoncha 'test' - o'rganish",
+    "Test - fransuzcha 'test' - tekshiraman",
+    "Test - italyancha 'test' - nazorat qilish"
+  ],
+  correctAnswer: "Test - inglizcha 'test' - sinash, tekshirish, o'rganish"
+},
+{
+  question: "Pedagog tomonidan kasbiy maqsadga muvofiq tashkil etiladigan tizimli harakatlarning muayyan shakli - bu...",
+  options: [
+    "Pedagogik faoliyatidir",
+    "Ta'lim-tarbiyaviy faoliyatidir",
+    "Ijodiy qobiliyatini rivojlantirish faoliyatidir",
+    "Pedagogik mahoratdir"
+  ],
+  correctAnswer: "Pedagogik faoliyatidir"
+},
+{
+  question: "Pedagogning kasbiy jarayonni samarali tashkil etishga yo'naltirilgan yaratuvchanlik faoliyati bu...",
+  options: [
+    "Pedagogik ijodkorligi",
+    "Pedagogik mahorati",
+    "Pedagogik faoliyati",
+    "Pedagogik tadqiqoti"
+  ],
+  correctAnswer: "Pedagogik ijodkorligi"
+},
+{
+  question: "Pedagogning o'quvchilar, ularning ota-onalari, pedagogik jamoa, jamiyat tomonidan e'tirof etilgan axloqiy maqomi bu...",
+  options: [
+    "Pedagogik obro'yi",
+    "Pedagogik faoliyati",
+    "Pedagogik uddaburonligi",
+    "Axloqiy yetukligi"
+  ],
+  correctAnswer: "Pedagogik obro'yi"
+},
+{
+  question: "Doimiy ravishda o'z-o'zini jismoniy, ma'naviy, ruhiy, intellektual va kreativ rivojlantirish, kamolotga intilish, hayot davomida mustaqil o'qib-o'rganish, o'z xatti-harakatini muqobil baholash ... Bu qaysi kompetensiyadir?",
+  options: [
+    "Kommunikativ kompetensiya",
+    "Axborotlar bilan ishlash kompetensiyasi",
+    "O'zini-o'zi rivojlantirish kompetensiyasi",
+    "Ijtimoiy faol fuqarolik kompetensiyasi"
+  ],
+  correctAnswer: "O'zini-o'zi rivojlantirish kompetensiyasi"
+},
+{
+  question: "Jamiyatda bo'layotgan voqea, hodisa va jarayonlarga daxldorlikni his etish va ularda faol ishtirok etish, o'zining fuqarolik burch va huquqlarini bilish, unga rioya qilish, ... Bu qaysi kompetensiyadir?",
+  options: [
+    "Kommunikativ kompetensiya",
+    "Axborotlar bilan ishlash kompetensiyasi",
+    "O'zini-o'zi rivojlantirish kompetensiyasi",
+    "Ijtimoiy faol fuqarolik kompetensiyasi"
+  ],
+  correctAnswer: "Ijtimoiy faol fuqarolik kompetensiyasi"
+},
+{
+  question: "Aniq hisob-kitoblarga asoslangan holda shaxsiy, oilaviy, kasbiy va iqtisodiy rejalarni tuza olish, kundalik faoliyatda turli diagramma, chizma va modellarni o'qiy olish, inson mehnatini yengillashtiradigan, mehnat unumdorligini oshiradigan, ... Bu qaysi kompetensiyadir?",
+  options: [
+    "Milliy va umumdunyo madaniy kompetensiya",
+    "Matematik savodxonlik, fan va texnika yangiliklardan xabardor bo'lish hamda foydalanish kompetensiyasi",
+    "O'zini-o'zi rivojlantirish kompetensiyasi",
+    "Ijtimoiy faol fuqarolik kompetensiyasi"
+  ],
+  correctAnswer: "Matematik savodxonlik, fan va texnika yangiliklardan xabardor bo'lish hamda foydalanish kompetensiyasi"
+},
+{
+  question: "'Innovatsiya' termini 1900 yilda qo'llagan iqtisodchi olim kim?",
+  options: [
+    "Y. Shumpeter",
+    "V. Rudnev",
+    "S.L. Rubinshteyn",
+    "R. Yakobson"
+  ],
+  correctAnswer: "Y. Shumpeter"
+},
+{
+  question: "Texnologiya so'zining ma'nosi",
+  options: [
+    "Mahorat, san'at",
+    "Raqs harakat",
+    "Harakat qilmoq",
+    "Ijtimoiy munosabat"
+  ],
+  correctAnswer: "Mahorat, san'at"
+},
+{
+  question: "Innovatsiya tushunchasi qachon paydo bo'lgan?",
+  options: [
+    "18 asr",
+    "17 asr",
+    "16 asr",
+    "19 asr"
+  ],
+  correctAnswer: "19 asr"
+},
+{
+  question: "AQSHda innovatsion pedagogik termin qachon paydo bo'lgan?",
+  options: [
+    "20-asr 60-yillarida",
+    "19 asr 60-yillarida",
+    "18 asr 40-yillarida",
+    "19 asr 40-yillarida"
+  ],
+  correctAnswer: "20-asr 60-yillarida"
+},
+{
+  question: "Muayyan muddatga mo'ljallangan, ta'lim jarayoni ko'proq o'qituvchi shaxsiga qaratilgan, mavzuga kirish, yoritish, mustahkamlash va yakunlash bosqichlaridan iborat ta'lim modeli qanday dars shakli?",
+  options: [
+    "An'anaviy",
+    "Noan'anaviy",
+    "Aralash",
+    "Takrorlash"
+  ],
+  correctAnswer: "An'anaviy"
+},
+{
+  question: "Dars o'tish modelida ko'proq ma'ruza, savol-javob, amaliy mashq kabi metodlardan foydalaniladi. Ushbu dars usuli",
+  options: [
+    "An'anaviy",
+    "Noan'anaviy",
+    "Yangi bilim beruvchi",
+    "Takrorlash"
+  ],
+  correctAnswer: "An'anaviy"
+},
+{
+  question: "O'quvchilar passiv ishtirokchi bo'lib qoladilar, O'qituvchining to'la nazorati barcha o'quvchilar uchun motivatsiyani vujudga keltirmaydi. O'quvchilar o'qituvchi bilan bevosita muloqotga kirisha olmaydilar. Ushbu kamchiliklar qaysi dars usuliga tegishli?",
+  options: [
+    "An'anaviy",
+    "Noan'anaviy",
+    "Yangi bilim beruvchi",
+    "Mustahkamlash"
+  ],
+  correctAnswer: "An'anaviy"
+},
+{
+  question: "Bu usullardan foydalanishdan maqsad shuki, darslarni qiziqarli, sermazmun, eng muhimi samarali qilib o'tkazishdir. Bunda talabaning bilimi ortadi, shaxsiyati rivojlanadi",
+  options: [
+    "Interfaol metod",
+    "Amaliy metod",
+    "Suhbat",
+    "Ko'rgazmali"
+  ],
+  correctAnswer: "Interfaol metod"
+},
+{
+  question: "Qatnashchilarga o'z g'oyalari va fikrlari bilan ko'proq o'rtoqlashishi, ularning bir-birdan o'rganishi uchun imkon beradi. Kichik guruhlarda qatnashchilar katta guruhda aytishlari mumkin bo'lgan fikrlardan boshqacha fikrlarni aytishlari mumkin",
+  options: [
+    "Interaktiv usul",
+    "Etak guruhlash",
+    "Edu-model stol",
+    "So'rov"
+  ],
+  correctAnswer: "Interaktiv usul"
+},
+{
+  question: "Masalan: Talabalarga pedagogika tarmoqlarini sanab berish topshiriladi. Javob berilayotganda - javoblar izohlanmaydi yoki o'rinsiz deb rad etilmaydi. Javoblar tugagach talabalar o'qituvchi bilan birgalikda javoblarni muhokama qilishadi. Ushbu tushunchalar qaysi texnologiyaga tegishli?",
+  options: [
+    "Miya hujumi",
+    "Interaktiv usulga",
+    "Venn",
+    "Issiq kartoshka"
+  ],
+  correctAnswer: "Miya hujumi"
+},
+{
+  question: "O'quvchi, ta'limning maqsadi, ta'limning mazmuni, o'quv jarayoni, pedagog yoki texnik vositalar, ta'limning tashkiliy shakllari. Pedagogik tizimning mazkur tarkibiy elementlardan tashkil topishi kim tomonidan qayd qilingan?",
+  options: [
+    "V.P. Bespalko",
+    "Y. Shumpeter",
+    "V. Rudnev",
+    "S.I. Rubinshteyn"
+  ],
+  correctAnswer: "V.P. Bespalko"
+},
+{
+  question: "'Innovatsion ta'lim' tushunchasi birinchi bo'lib qaysi davlatda ishlatilgan?",
+  options: [
+    "1979 yilda Rimda",
+    "1980 yilda Finlandiyada",
+    "1897 yilda Angliyada",
+    "1993 yilda Germaniyada"
+  ],
+  correctAnswer: "1979 yilda Rimda"
+},
+{
+  question: "Ta'lim innovatsiyalari necha turga bo'linadi?",
+  options: [
+    "4 turga",
+    "6 turga",
+    "8 turga",
+    "2 turga"
+  ],
+  correctAnswer: "4 turga"
+},
+{
+  question: "Faoliyat qisqa muddatli, yaxlit tizim xususiyatiga ega bo'lib, faqatgina tizimdagi ayrim elementlarni o'zgartirishga xizmat qilsa u nima deb yuritiladi?",
+  options: [
+    "Novatsiya",
+    "Innovatsiya",
+    "Interaktiv",
+    "Kompetensiya"
+  ],
+  correctAnswer: "Novatsiya"
+},
+{
+  question: "Ijodiy faollik, yangilikni kiritishga texnologik va metodologik tayyorgarlik, yangicha fikrlash, yuqori muomala madaniyati. Innovatsion faoliyatning ushbu tarkibiy elementlari kim tomonidan ko'rsatilgan?",
+  options: [
+    "V. Slastenin",
+    "A. Makarenko",
+    "J. Russo",
+    "M. Shumpeter"
+  ],
+  correctAnswer: "V. Slastenin"
+},
+{
+  question: "Pedagogda ta'lim jarayoniga innovatsion yondashuvni qaror toptirish necha bosqichda kechadi?",
+  options: [
+    "4",
+    "2",
+    "5",
+    "6"
+  ],
+  correctAnswer: "4"
+},
+{
+  question: "O'zbekiston Respublikasining 'Ta'lim to'g'risida'gi qonuniga muvofiq kimlar pedagogik faoliyat bilan shug'ullanish huquqiga egalar?",
+  options: [
+    "Tegishli ma'lumoti, kasbiy tayyorgarligi bor va yuqori axloqiy fazilatlarga ega bo'lgan shaxslar",
+    "Kasbiy bilim, ko'nikma va malaka, shuningdek, ta'lim muassasalarida ishlash tajribasiga ega shaxslar",
+    "Oliy pedagogik ma'lumot hamda 5 yillik pedagogik stajga ega shaxslar",
+    "Faoliyat jarayonida ta'lim oluvchilarning yosh va psixologik xususiyatlarini inobatga olgan holda ular bilan muloqot qilish malakasini o'zlashtirgan shaxslar"
+  ],
+  correctAnswer: "Tegishli ma'lumoti, kasbiy tayyorgarligi bor va yuqori axloqiy fazilatlarga ega bo'lgan shaxslar"
+},
+{
+  question: "Boshlang'ich sinflarda texnologiya nimani o'rgatadi?",
+  options: [
+    "Ijodkorlik va ilk kasb haqida tasavvurlarni",
+    "Mahorat darslarini",
+    "Mehnatga o'rgatish",
+    "Qobiliyatlarini ochib berish"
+  ],
+  correctAnswer: "Ijodkorlik va ilk kasb haqida tasavvurlarni"
+},
+{
+  question: "'Tasavvur — bilimdan muhim' bu kimning pedagogik qarashi?",
+  options: [
+    "Albert Enshteyn",
+    "Pol Torrens",
+    "Ken Robinson",
+    "Kamenskiy"
+  ],
+  correctAnswer: "Albert Enshteyn"
+},
+{
+  question: "'Aqliy hujum' metodini kim tomonidan fanga kiritilgan?",
+  options: [
+    "Aleks Osborn tomonidan 1953-yilda 'Amaliy tasavvur' kitobida ommalashgan",
+    "Komenskiy tomonidan 1968-yil 'Venn diagrammasi' ommalashgan",
+    "Pol Torrens 'Insert' usuli ommalashgan",
+    "Tomson tomonidan Grafik organizatorlar ommalashgan"
+  ],
+  correctAnswer: "Aleks Osborn tomonidan 1953-yilda 'Amaliy tasavvur' kitobida ommalashgan"
+},
+{
+  question: "'BBB', 'Konseptual jadval', 'Venn diagrammasi', 'Insert', 'Klaster', 'Nima uchun?', 'Qanday?' bular …",
+  options: [
+    "Grafik organizatorlar",
+    "Metodlar",
+    "Usullar",
+    "Uslublar"
+  ],
+  correctAnswer: "Grafik organizatorlar"
+},
+{
+  question: "Ma'lumotlarni tahlil qilish, solishtirish va taqqoslash usul va vositalari",
+  options: [
+    "T-jadvali, Venn diagrammasi (grafik organizatorlar)",
+    "Metodlar",
+    "Usullar",
+    "Sxemalar"
+  ],
+  correctAnswer: "T-jadvali, Venn diagrammasi (grafik organizatorlar)"
+},
+{
+  question: "Qaysi yillardan boshlab 'Aqliy hujum' metodi O'zbekistonda ishlatila boshlandi?",
+  options: [
+    "90-yillardan",
+    "50-yillardan",
+    "70-yillardan",
+    "30-yillardan"
+  ],
+  correctAnswer: "90-yillardan"
+},
+{
+  question: "'Fikriy hujum' metodidan foydalanish chog'ida o'quvchilarning soni qancha nafardan oshmasligi maqsadga muvofiqdir?",
+  options: [
+    "10-15 tadan",
+    "8-10 tadan",
+    "5-6 tadan",
+    "7-8 tadan"
+  ],
+  correctAnswer: "10-15 tadan"
+},
+{
+  question: "'Kreativlik' tushunchasining lug'aviy ma'nosi bu",
+  options: [
+    "Ing. create - yaratuvchi, ijodkor",
+    "Tahlil qiluvchi",
+    "Amaliy yordam beruvchi",
+    "Yo'l ko'rsatuvchi"
+  ],
+  correctAnswer: "Ing. create - yaratuvchi, ijodkor"
+},
+{
+  question: "Ken Robinsonning fikriga ko'ra, kreativlik bu...",
+  options: [
+    "O'z qadriyatiga ega, original g'oyalar majmuidir",
+    "Muayyan soha bo'yicha o'zlashtirilgan puxta bilimlar bilan birga yuqori darajada noodatiy ko'nikmalarga ham ega bo'lish",
+    "Eng avvalo muayyan masala yuzasidan har tomonlama fikrlash sanaladi",
+    "Faollik, tezkor fikrlash, o'ziga xoslik va takomillashganlik"
+  ],
+  correctAnswer: "O'z qadriyatiga ega, original g'oyalar majmuidir"
+},
+{
+  question: "Shaxsning kreativligi ...da namoyon bo'ladi",
+  options: [
+    "Uning tafakkurida, muloqotida, his-tuyg'ularida, muayyan faoliyat turlarida namoyon bo'ladi",
+    "Faollik, tezkor fikrlash, o'ziga xoslik va takomillashganlik",
+    "O'z qadriyatiga ega, original g'oyalar majmuidir",
+    "Muayyan soha bo'yicha o'zlashtirilgan puxta bilimlar bilan birga yuqori darajada noodatiy ko'nikmalarga ham ega bo'lish"
+  ],
+  correctAnswer: "Uning tafakkurida, muloqotida, his-tuyg'ularida, muayyan faoliyat turlarida namoyon bo'ladi"
+},
+{
+  question: "Kreativ sifatlarni rivojlantirishning 1-yo'li bu",
+  options: [
+    "Kreativ fikrlash ko'nikmasini shakllantirish",
+    "Kreativ mahsulot (ishlanma)lardan foydalanish",
+    "Amaliy kreativ fikrlash ko'nikmasini rivojlantirish",
+    "Malaka talablari, o'lchov mezonlari"
+  ],
+  correctAnswer: "Kreativ fikrlash ko'nikmasini shakllantirish"
+},
+{
+  question: "Keys stadi metodi orqali talabalar qanday ko'nikmaga ega bo'lishadi?",
+  options: [
+    "Ing. case-metod, muammoli vaziyat, ta'lim oluvchilarni aniq yoki sun'iy yaratilgan muammoli vaziyatlarni tahlil qilish orqali eng maqulini topish ko'nikmalari",
+    "Ing. create - yaratuvchi, ijodkor",
+    "Tahlil qiluvchi",
+    "Amaliy yordam beruvchi"
+  ],
+  correctAnswer: "Ing. case-metod, muammoli vaziyat, ta'lim oluvchilarni aniq yoki sun'iy yaratilgan muammoli vaziyatlarni tahlil qilish orqali eng maqulini topish ko'nikmalari"
+},
+{
+  question: "Qaysi kompetensiya mediamanbalardan zarur ma'lumotlarni izlab topa olishni, saralashni, qayta ishlashni, saqlashni, ulardan samarali foydalana olishni, ularning xavfsizligini ta'minlashni, media madaniyatga ega bo'lish layoqatlarini shakllantirishni nazarda tutadi?",
+  options: [
+    "Axborotlar bilan ishlash kompetensiyasi",
+    "Matematik savodxonlik, fan va texnika yangiliklardan xabardor bo'lish kompetensiyasi",
+    "Ijtimoiy faol fuqarolik kompetensiyasi",
+    "Milliy va umumbashariy kompetensiya"
+  ],
+  correctAnswer: "Axborotlar bilan ishlash kompetensiyasi"
+},
+{
+  question: "Qaysi kompetensiya aniq hisob-kitoblarga asoslangan holda shaxsiy, oilaviy, kasbiy va iqtisodiy rejalarni tuza olish, kundalik faoliyatda turli diagramma, chizma va modellarni o'qiy olish, inson mehnatini yengillashtiradigan, mehnat unumdorligini oshiradigan, qulay sharoit-sharoitga olib keladigan fan va texnika yangiliklardan foydalana olish layoqatlarini shakllantirishni nazarda tutadi?",
+  options: [
+    "Matematik savodxonlik, fan va texnika yangiliklardan xabardor bo'lish kompetensiyasi",
+    "Ijtimoiy faol fuqarolik kompetensiyasi",
+    "Milliy va umumbashariy kompetensiya",
+    "Axborotlar bilan ishlash kompetensiyasi"
+  ],
+  correctAnswer: "Matematik savodxonlik, fan va texnika yangiliklardan xabardor bo'lish kompetensiyasi"
+},
+{
+  question: "Qaysi kompetensiya doimiy ravishda o'z-o'zini jismoniy, ma'naviy, ruhiy, intellektual va kreativ rivojlantirish, kamolotga intilish, hayot davomida mustaqil o'qib-o'rganish, kognitivlik ko'nikmalarini va hayotiy tajribani mustaqil ravishda muntazam oshirib borish, o'z xatti-harakatini muqobil baholash va mustaqil qaror qabul qila olish ko'nikmalarini egallashni nazarda tutadi?",
+  options: [
+    "O'z-o'zini rivojlantirish kompetensiyasi",
+    "Ijtimoiy faol fuqarolik kompetensiyasi",
+    "Milliy va umumbashariy kompetensiya",
+    "Axborotlar bilan ishlash kompetensiyasi"
+  ],
+  correctAnswer: "O'z-o'zini rivojlantirish kompetensiyasi"
+},
+{
+  question: "'Olim bo'l (ilm beruvchi bo'l) yoki ilm o'rganuvchi bo'l, yoki tinglovchi bo'l, yoki ilimga va ilm ahliga muhabbatli bo'l. Beshinchisi bo'lma, halok bo'lasan', shu g'oyalar qaysi manbaga tegishli?",
+  options: [
+    "Xadisi sharifdan",
+    "Hikmatli so'zlardan",
+    "Maqollardan",
+    "Ertaklardan"
+  ],
+  correctAnswer: "Xadisi sharifdan"
+},
+{
+  question: "Kreativ qobiliyat nima?",
+  options: [
+    "O'z-o'zini boshqara olish qobiliyati, kreativ ijodga ishga qobiliyatilik",
+    "Ijodiy jarayonni muvaffaqiyatli amalga oshiradigan hamda aniq ijodiy natijaga ega shaxs",
+    "Shaxsni ijodiy faoliyatda o'z imkoniyatlarni to'laqonli namoyon qilish va rivojlantirish",
+    "Ijodiy faoliyatni muvaffaqiyatli amalga oshirish va uni natijalanganligi"
+  ],
+  correctAnswer: "O'z-o'zini boshqara olish qobiliyati, kreativ ijodga ishga qobiliyatilik"
+},
+{
+  question: "Qaysi keys turda yaqqol ifodalangan syujetga ega bo'lmaydi, vaziyat materiallar, hisob-kitoblar, ishlanmalar majmuidan iborat bo'ladi?",
+  options: [
+    "Syujetsiz keys",
+    "Syujetli keys",
+    "Dramalashgan keys",
+    "Muloqot keysi"
+  ],
+  correctAnswer: "Syujetsiz keys"
+},
+{
+  question: "'O'qish nafaqat xotirani yaxshilaydi, balki so'z boyligini kengaytiradi va diqqatni oshiradi, shu bilan birgalikda, ijodkorlikni ham shakllantiradi'. Bu bolaning ijodkorligini rivojlantirishning qaysi yo'li?",
+  options: [
+    "Mutolaa",
+    "Testlar orqali",
+    "Bolalarni oddiy tanlov qilishga undash",
+    "Ochiq savollar orqali"
+  ],
+  correctAnswer: "Mutolaa"
+},
+{
+  question: "Tarbiya jarayoni qancha davom etadi?",
+  options: [
+    "Butun umr mobaynida",
+    "Maktab ta'limi yakunigacha",
+    "Oliy ta'lim diplomini qo'lga kirttguncha",
+    "Bolalarning hoxishiga binoan"
+  ],
+  correctAnswer: "Butun umr mobaynida"
+},
+{
+  question: "Ta'lim oluvchilarning qobiliyatlarini va ta'limga nisbatan talab-ehtiyojlarini hisobga olgan holda ta'limni tashkil etishga metodologik yondashuv nima deb ataladi?",
+  options: [
+    "Shaxsga yo'naltirilgan ta'lim",
+    "An'anaviy ta'lim",
+    "Masofaviy",
+    "Muammoli"
+  ],
+  correctAnswer: "Shaxsga yo'naltirilgan ta'lim"
+},
+{
+  question: "Tarbiya jarayonidan ko'zlangan asosiy maqsad...",
+  options: [
+    "Barkamol shaxsni tarbiyalash",
+    "G'oyalarni shakllantirish",
+    "Hayotga tayyorlash",
+    "Mustaqillikni shakllantirish"
+  ],
+  correctAnswer: "Barkamol shaxsni tarbiyalash"
+},
+{
+  question: "Bolalarda umum insoniy axloq va odob qoidalarini, jamiyat hayotida faol munosabatni, tolerantlikni shakllantirish tarbiya jarayonining qaysi jihatini aks ettiradi?",
+  options: [
+    "Tarbiya jarayonining vazifasi",
+    "Maqsadini",
+    "Sub'yektini",
+    "Predmetini"
+  ],
+  correctAnswer: "Tarbiya jarayonining vazifasi"
+},
+{
+  question: "Tarbiyaning asosiy metodi - bu:",
+  options: [
+    "Ishontirish",
+    "Jazolash",
+    "Rag'bat",
+    "Tanbeh"
+  ],
+  correctAnswer: "Ishontirish"
+},
+{
+  question: "O'quvchi tomondan o'qituvchi tajribasini ongli yoki ongsiz takrorlanishi nima deb nomlanadi?",
+  options: [
+    "Taqlid qilish",
+    "Havas",
+    "Ishonch",
+    "Muhokama qilish"
+  ],
+  correctAnswer: "Taqlid qilish"
+},
+{
+  question: "O'qituvchi va o'quvchining ob'ektiv va sub'ektiv sharoitlarda, ma'lum muddat mobaynida pedagogik ta'sir ko'rsatish jarayoni qanday ataladi?",
+  options: [
+    "Tarbiyaviy vaziyat",
+    "Kritik vaziyat",
+    "Munozara",
+    "Uqtirish"
+  ],
+  correctAnswer: "Tarbiyaviy vaziyat"
+},
+{
+  question: "O'quvchilar qarashlari, hulq-atvor me'yorlari, xarakter chizgilarini shakllantirish uchun maqsadga yo'naltirilgan tashkiliy faoliyat nima deb ataladi?",
+  options: [
+    "Tarbiya",
+    "Ta'lim",
+    "Ekskursiya",
+    "O'yin"
+  ],
+  correctAnswer: "Tarbiya"
+},
+{
+  question: "1-sinf tarbiya darsligida necha bob nechta mavzudan iborat?",
+  options: [
+    "3 ta bob 29 ta mavzu",
+    "5 bob 21 mavzu",
+    "2 bob 19 mavzu",
+    "3 bob 12 mavzu"
+  ],
+  correctAnswer: "3 ta bob 29 ta mavzu"
+},
+{
+  question: "'Mening sevimli erkak qahramonlarim' mavzusi qaysi darslikda berilgan?",
+  options: [
+    "1-sinf tarbiya darsligida",
+    "3-sinf tarbiya darsligida",
+    "2-sinf",
+    "4-sinf"
+  ],
+  correctAnswer: "1-sinf tarbiya darsligida"
+},
+{
+  question: "O'qituvchining innovatsion faoliyati qaysi masalaharni yechishga qaratilgan?",
+  options: [
+    "Voqelikni o'zgartirishga, uning muammolari va usullarini yechishni aniqlashga qaratilgan",
+    "Shaxsiy ijodiy-motivatsion yo'nalganligini aniqlashga qaratilgan",
+    "Kasbiy faoliyatni baholashga qaratilgan",
+    "Innovatsion faoliyatga bo'lgan zaruriyatni anglashga qaratilgan"
+  ],
+  correctAnswer: "Voqelikni o'zgartirishga, uning muammolari va usullarini yechishni aniqlashga qaratilgan"
+},
+{
+  question: "Pedagogik texnologiyani bugungi kundagi ahamiyati qanday?",
+  options: [
+    "Sohadagi nazariy va amaliy izlanishlarni birlashtirish doirasidagi faoliyatni aks ettiradi",
+    "Pedagogikada monitoringda",
+    "Ta'limning baholash shkalasida",
+    "O'quv jarayonini uzluksizligida"
+  ],
+  correctAnswer: "Sohadagi nazariy va amaliy izlanishlarni birlashtirish doirasidagi faoliyatni aks ettiradi"
+},
+{
+  question: "Ishontirishning qanday usuli mavjud?",
+  options: [
+    "Bevosita va bilvosita",
+    "Dalli-isbot",
+    "Qo'llab-quvvatlash",
+    "Sazovor bo'lish"
+  ],
+  correctAnswer: "Bevosita va bilvosita"
+},
+{
+  question: "'Tarbiyachi tashkil etishni, yurishni, hazillashishni, quvnoq yoki jahli bor bo'lishni bilishi lozim, u o'zini shunday tutishi kerakki, uning har bir harakati, yurish-turishi, kiyinishi bolalarni tarbiyalasin'. Ushbu fikr kimga tegishli?",
+  options: [
+    "Deb yorgan edi mashhur pedagog A.S. Makarenko",
+    "Deb yorgan edi mashhur pedagog O. Musurmonova",
+    "Deb yorgan edi mashhur pedagog K.D. Ushinskiy",
+    "Deb yorgan edi mashhur pedagog V.A. Suxomlinskiy"
+  ],
+  correctAnswer: "Deb yorgan edi mashhur pedagog A.S. Makarenko"
+},
+{
+  question: "'Pedagog darsda ma'lum bir o'ziga xos rolni o'ynamasligi mumkin emas. Sinf sahnasida rol o'ynashni bilmaydigan o'qituvchi kasbiy faoliyat olib bora olmaydi.' Ushbu fikrlar muallifini belgilang",
+  options: [
+    "A.S. Makarenko",
+    "L.N. Tolstoy",
+    "Ya.A. Komenskiy",
+    "V.A. Suxomlinskiy"
+  ],
+  correctAnswer: "A.S. Makarenko"
+},
+{
+  question: "'Ustoz shogirdlariga qattiq zulm ham, haddan tashqari ko'ngilchanlik ham qilmasligi lozim'. Ushbu fikr qaysi allomaga tegishli?",
+  options: [
+    "Abu Nasr Forobiy",
+    "Abu Rayhon Beruniy",
+    "Alisher Navoiy",
+    "Abu Ali ibn Sino"
+  ],
+  correctAnswer: "Alisher Navoiy"
+},
+{
+  question: "Dars samaradorligini oshirish omili",
+  options: [
+    "Ilg'or pedagogik texnologiyalardan foydalanish",
+    "Mustaqil ish, ijodiy ishlarni tashkil etish",
+    "Qo'shimcha materiallardan foydalanish",
+    "Vaqtdan unumli foydalanish"
+  ],
+  correctAnswer: "Ilg'or pedagogik texnologiyalardan foydalanish"
+},
+{
+  question: "O'qituvchi kompetensiyasi piramidasi nimalardan iborat?",
+  options: [
+    "Motiv, munosabat, bilim, malaka, xulq-atvor",
+    "Kasbiy mahorat va malaka",
+    "Kasbiy bilim, tushuncha, malaka",
+    "Kasbiy mahorat, tajriba, bilim, ko'nikma"
+  ],
+  correctAnswer: "Motiv, munosabat, bilim, malaka, xulq-atvor"
+},
+{
+  question: "Innovatsion yondoshuv nima?",
+  options: [
+    "Muammoni yechish uchun yangicha yondashuv yoki yangi texnologik jarayonni qo'llash",
+    "Turli maqsadlar shajarasini ishlab chiqish va vazifalarni amalga oshirish",
+    "Tartibga solish va nazorat qilish",
+    "Zamon ehtiyoj va talablaridan kelib chiqib boshqarishni yo'lga qo'yish"
+  ],
+  correctAnswer: "Muammoni yechish uchun yangicha yondashuv yoki yangi texnologik jarayonni qo'llash"
+},
+{
+  question: "O'qitishning jarayonini tashkil etishda bir muncha keng tarqalgan yondashuvlarni belgilang",
+  options: [
+    "Individual, guruhli, frontal",
+    "Izohli-tasvirli, texnologik, ijodiy",
+    "Statsionar, erkin-eksternat",
+    "Nazariy va amaliy"
+  ],
+  correctAnswer: "Individual, guruhli, frontal"
+},
+{
+  question: "Shaxsga yo'naltirilgan ta'lim texnologiyasi muallifi",
+  options: [
+    "Nazarova T.S.",
+    "Lerner I.Ya.",
+    "Bespalko V.P.",
+    "Saidaxmedov N.S."
+  ],
+  correctAnswer: "Saidaxmedov N.S."
+},
+{
+  question: "Hamkorlik texnologiyasiga asos solgan olimni ayting",
+  options: [
+    "V.F. Shatalov",
+    "S.N. Lisenkova",
+    "N.P. Guzik",
+    "Sh.A. Amonashvili"
+  ],
+  correctAnswer: "Sh.A. Amonashvili"
+},
+{
+  question: "Texnologiyalashtirish bu - ...",
+  options: [
+    "Bu ob'ektiv jarayon bo'lib, ta'lim evolyutsiyasining yangi vazifalarini sifatli hal qilish uchun tayyorgarlik davri",
+    "Ishlab chiqarish jarayonida ashyolar, materiallar va yarim tayyor ashyolarga muvofiq ishlab chiqarish qurollari",
+    "Pedagogning talablarga ta'sir qilishni tashkil etish bo'yicha kasbiy ahamiyatga molik masalahar",
+    "Innovatsion jarayonlar, ularning funktsiyalari, rivojlanish qonuniyatlari, mexanizmlari va uni amalga oshirish texnologiyalari"
+  ],
+  correctAnswer: "Bu ob'ektiv jarayon bo'lib, ta'lim evolyutsiyasining yangi vazifalarini sifatli hal qilish uchun tayyorgarlik davri"
+},
+{
+  question: "Ranglik kiritishning ijtimoiy-psixologik aspekti qaysi olim tomonidan ishlab chiqilgan?",
+  options: [
+    "R. Karlson",
+    "E. Rodjers",
+    "Xeyylox",
+    "M. Mayrs"
+  ],
+  correctAnswer: "E. Rodjers"
+},
+{
+  question: "O'qitishning jadallashtirish texnologiyasiga kim asos solgan?",
+  options: [
+    "V.F. Shatalov",
+    "S.N. Lisenkova",
+    "N.P. Guzik",
+    "Sh.A. Amonashvili"
+  ],
+  correctAnswer: "V.F. Shatalov"
+},
+{
+  question: "Pedagogik texnologiya tamoyillari to'g'ri ko'rsatilgan javobni belgilang",
+  options: [
+    "Ilmiylik, loyihalash, tizimlilik, maqsad yo'naltirilganlik, faoliyat yondashuvi, boshqaruvchanlik, qayta takrorlanish, samaradorlik tamoyili",
+    "Ilmiylik, loyihalash, tizimlilik, maqsad yo'naltirilganlik, ko'rsatmalilik, boshqaruvchanlik, qayta takrorlanish, samaradorlik tamoyili",
+    "Ilmiylik, loyihalash, tizimlilik, uchililik, faoliyat yondashuvi, boshqaruvchanlik, qayta takrorlanish, samaradorlik tamoyili",
+    "Ilmiylik, loyihalash, tizimlilik, maqsad yo'naltirilganlik, faoliyat yondashuvi, insonparvarlik, qayta takrorlanish, samaradorlik tamoyili"
+  ],
+  correctAnswer: "Ilmiylik, loyihalash, tizimlilik, maqsad yo'naltirilganlik, faoliyat yondashuvi, boshqaruvchanlik, qayta takrorlanish, samaradorlik tamoyili"
+},
+{
+  question: "O'quv-bilish faoliyatini tashkil etish va amalga oshirish metodlarini ko'rsating",
+  options: [
+    "Ifodali, ko'rgazmali, amaliy",
+    "Induktiv va deduktiv",
+    "Reproduktiv va muammoli-ijodiy",
+    "O'qituvchi rahbarligida mustaqil ish"
+  ],
+  correctAnswer: "Ifodali, ko'rgazmali, amaliy"
+},
+{
+  question: "Qaysi tushuncha ehtiyoj, intilish, qiziqish kabi ma'nolarni anglatadi?",
+  options: [
+    "Maqsad",
+    "Baholash",
+    "Mazmun",
+    "Motiv"
+  ],
+  correctAnswer: "Motiv"
+},
+{
+  question: "An'anaviy yondashuvning asosiy xususiyati nimada?",
+  options: [
+    "Ijodiy yondashuv",
+    "Nazorat turlari (joriy, oraliq, yakuniy)",
+    "Gapirib berish, tushuntirish, talaba esa bu axborotni kotirovda saqlaydi",
+    "O'zaro ta'sirlar"
+  ],
+  correctAnswer: "Gapirib berish, tushuntirish, talaba esa bu axborotni kotirovda saqlaydi"
+},
+{
+  question: "'Tizim' so'zining ma'nosi ko'rsatilgan qatorni belgilang",
+  options: [
+    "Gaplarni yozib, saqlab olish",
+    "Ijodiy yondashuv",
+    "Qismlardan tuzilgan, birikkan yaxlit narsa yoki hodisa",
+    "O'quvchilarning bilish faoliyatini rivojlantirish"
+  ],
+  correctAnswer: "Qismlardan tuzilgan, birikkan yaxlit narsa yoki hodisa"
+},
+{
+  question: "Qaysi ta'lim turida umumiy o'rta ta'lim olish uchun zarur bo'lgan savodxonlik, bilim va ko'nikma asoslarini shakllantirishga qaratiladi?",
+  options: [
+    "Boshlang'ich ta'lim",
+    "Maktabgacha",
+    "Umumiy o'rta",
+    "Professional"
+  ],
+  correctAnswer: "Boshlang'ich ta'lim"
+},
+{
+  question: "O'qituvchilarning ijodiy ishlarini o'rganish",
+  options: [
+    "Tarbiya berish metodi",
+    "Ilmiy-tadqiqot metodi",
+    "Ta'lim berish metodi",
+    "O'z-o'zini tarbiyalash metodi"
+  ],
+  correctAnswer: "Ilmiy-tadqiqot metodi"
+},
+{
+  question: "Zamonaviy ta'limning qanday turlari mavjud?",
+  options: [
+    "Kunduzgi, sirtqi ta'lim",
+    "Kunduzgi, sirtqi, kechki sirtqi, masofaviy ta'lim",
+    "Kechki ta'lim",
+    "Masofaviy ta'lim, sirtqi ta'lim"
+  ],
+  correctAnswer: "Kunduzgi, sirtqi, kechki sirtqi, masofaviy ta'lim"
+},
+{
+  question: "Pedagogik texnologiyalar sohasidagi tadqiqotlarning rivojlanishiga hissa qo'shgan olim bu",
+  options: [
+    "V.P. Bespalko",
+    "Tony Byuzen",
+    "M. Jumaniyozova",
+    "A. Avloniy"
+  ],
+  correctAnswer: "V.P. Bespalko"
+},
+{
+  question: "Didaktikada texnologiyalar necha turga bo'linadi?",
+  options: [
+    "3",
+    "2",
+    "5",
+    "7"
+  ],
+  correctAnswer: "3"
+},
+{
+  question: "Integratsiya so'zining ma'nosi",
+  options: [
+    "To'ldirish",
+    "Tahlil qilish",
+    "Faollashtirish",
+    "Muhokama"
+  ],
+  correctAnswer: "To'ldirish"
+},
+{
+  question: "Olimlar yangiliklarni kiritish va tekshirishni necha bosqichga ajratadi?",
+  options: [
+    "3",
+    "4",
+    "6",
+    "2"
+  ],
+  correctAnswer: "3"
+},
+{
+  question: "Ta'lim tizimini tubdan isloh qilishning oliy maqsadi",
+  options: [
+    "Raqobatbardosh kadrlar tayyorlash",
+    "Yetuk shaxsni tarbiyalash",
+    "Barkamol avlodni tarbiyalash",
+    "Sog'lom avlodni tarbiyalash"
+  ],
+  correctAnswer: "Raqobatbardosh kadrlar tayyorlash"
+},
+{
+  question: "'Innovatsion ta'lim' tushunchasi dastlab qayerda asoslangan?",
+  options: [
+    "1979-yilda Rimda",
+    "1998-yilda Rimda",
+    "1900-yilda Parijda",
+    "1879-yilda AQSHda"
+  ],
+  correctAnswer: "1979-yilda Rimda"
+},
+{
+  question: "Malaka bu....",
+  options: [
+    "Bilimlarni amalda bir necha bor qo'llanilishi orqali sodir bo'ladi",
+    "Mehnat qilish jarayonida hasil bo'lgan ko'nikmalar natijasi hisoblanadi",
+    "Insonni uzoq yillar davomida o'zlashtira olgan bilimlar majmuidir",
+    "Ongli xatti-harakatning avtomatlashgan, bexato bajariladigan harakatidir"
+  ],
+  correctAnswer: "Ongli xatti-harakatning avtomatlashgan, bexato bajariladigan harakatidir"
+},
+{
+  question: "Metodologiya nima?",
+  options: [
+    "Fanda ilmiy tadqiqotlar olib borishning metodlari yig'indisi",
+    "Ta'lim-tarbiyaning metodlari",
+    "Fan uchun ilmiy-nazariy asos bo'ladigan ta'limot",
+    "Bajarilishi majbur bo'lgan davlat hujjati"
+  ],
+  correctAnswer: "Fanda ilmiy tadqiqotlar olib borishning metodlari yig'indisi"
+},
+{
+  question: "Bilimdon, o'qimishli, keng dunyoqarashga ega bo'lishlikka nima deyiladi?",
+  options: [
+    "Zamon talabiga javob beruvchi shaxs",
+    "Axloqiy komillik",
+    "Aqliy uyg'unlik",
+    "Ruhiy kamolotga erishganlik"
+  ],
+  correctAnswer: "Zamon talabiga javob beruvchi shaxs"
+},
+{
+  question: "Jasur, vatanparvar fuqaroni tarbiyalash maqsadi qaysi davrga xos bo'lgan jihat hisoblanadi?",
+  options: [
+    "Mustaqil O'zbekiston",
+    "Qadimgi Yunoniston",
+    "Feodalizm",
+    "Burjuaziya"
+  ],
+  correctAnswer: "Mustaqil O'zbekiston"
+},
+{
+  question: "Metod bu... nima?",
+  options: [
+    "Vazifalar yig'indisi metod bo'ladi",
+    "Metod - bu qonun-qoidalar yig'indisidir",
+    "Biror faoliyatni bajarishning yo'l va usullari",
+    "Bajariladigan ish mazmun-mohiyati"
+  ],
+  correctAnswer: "Biror faoliyatni bajarishning yo'l va usullari"
+},
+{
+  question: "Pedagogik faoliyat deganda qanday jarayonni tushunish mumkin?",
+  options: [
+    "Yosh avlodni hayotga, mehnatga tayyorlash, ta'lim-tarbiya berish uchun maxsus tayyorlangan odamlarning mehnat faoliyati",
+    "Pedagogik jarayon - kompyuter texnologiyasiga asoslangan o'quv uslubini qo'llash, ta'lim berishga hamda fanga oid o'quv materiallari to'g'risidagi ma'lumotlarni samarador o'zlashtirilishiga qaratilgan ta'lim-tarbiya jarayoni",
+    "Pedagogik jarayon - inson shaxsini shakllantirishga qaratilgan jarayon",
+    "Bolalarga ta'lim-tarbiya berishga maxsus tayyorgarlik kasb egasi"
+  ],
+  correctAnswer: "Yosh avlodni hayotga, mehnatga tayyorlash, ta'lim-tarbiya berish uchun maxsus tayyorlangan odamlarning mehnat faoliyati"
+},
+{
+  question: "O'zbekiston Respublikasida ta'lim sohasidagi islohotlarning asosiy maqsadi nimaga qaratilgan?",
+  options: [
+    "Insonni har tomonlama rivojlantirish va kamol topishi",
+    "Ilm, fan va madaniyatni yanada rivojlantirish",
+    "Dunyoviy aloqalarni bir-biri bilan bog'lash",
+    "Ekologiyani yaxshilash"
+  ],
+  correctAnswer: "Insonni har tomonlama rivojlantirish va kamol topishi"
+},
+{
+  question: "Ta'lim tizimini tubdan isloh qilishning oliy maqsadi nima deb o'ylaysiz?",
+  options: [
+    "Raqobatbardosh kadrlar tayyorlash",
+    "Yetuk shaxsni tarbiyalash",
+    "Barkamol avlodni tarbiyalash",
+    "Sog'lom avlodni tarbiyalash"
+  ],
+  correctAnswer: "Raqobatbardosh kadrlar tayyorlash"
+},
+{
+  question: "Kreativlik tushunchasining asosiy mohiyatini belgilang",
+  options: [
+    "Ijodkorlik yondashuvlarini qaror toptirishga bo'lgan ehtiyoj",
+    "Yangilikka bo'lgan ehtiyoj",
+    "O'zgarishga intilish",
+    "Ta'lim samaradorligini oshirish"
+  ],
+  correctAnswer: "Ijodkorlik yondashuvlarini qaror toptirishga bo'lgan ehtiyoj"
+},
+{
+  question: "'Innovatsiya' termini 1900 yilda qo'llagan iqtisodchi olimni toping",
+  options: [
+    "Y. Shumpeter",
+    "V. Rudnev",
+    "S.L. Rubinshteyn",
+    "R. Yakobson"
+  ],
+  correctAnswer: "Y. Shumpeter"
+},
+{
+  question: "'Texnologiya' so'zi fanga qachon kirib kelganligini aniqlang",
+  options: [
+    "1872 yil",
+    "1991 yil",
+    "2000 yil",
+    "1801 yil"
+  ],
+  correctAnswer: "1872 yil"
+},
+{
+  question: "Quyidagilardan qaysi biri ta'lim sohasidagi davlat siyosatining asosiy prinsiplari bu…",
+  options: [
+    "Ta'lim-tarbiyaning insonparvarligi va demokratiyaviyliği",
+    "Ta'lim tizimini takomillashtirish",
+    "Ta'limda jamiyat boshqaruvini va shakllarini rivojlantirish",
+    "Ilimli bo'lishni va iste'dodni rag'batlantirish"
+  ],
+  correctAnswer: "Ta'lim-tarbiyaning insonparvarligi va demokratiyaviyliği"
+},
+{
+  question: "Aniq reja, maqsad asosida uning natijalanishini kafolatlagan holda pedagogik faoliyat mazmunini ishlab chiqish mahsuli – bu",
+  options: [
+    "Loyiha",
+    "Strategiya",
+    "Tizim",
+    "Qo'lda"
+  ],
+  correctAnswer: "Loyiha"
+},
+{
+  question: "Ta'lim innovatsiyalari nechta turga ajratiladi",
+  options: [
+    "4 turga",
+    "5 turga",
+    "3 turga",
+    "6 turga"
+  ],
+  correctAnswer: "4 turga"
+},
+{
+  question: "Bilish, loyihalash, kommunikativ nutq va tashkilotchilik mahoratini rivojlantirishni talab etuvchi faoliyat bu…",
+  options: [
+    "Innovatsion faoliyat",
+    "Innovatsion jarayon",
+    "Innovatsion muhit",
+    "Innovatsion taraqqiyot"
+  ],
+  correctAnswer: "Innovatsion faoliyat"
+},
+{
+  question: "'Innovatsion ta'lim' tushunchasi birinchi bor nechanchi yilda qo'llanilgan",
+  options: [
+    "1979-yilda",
+    "1877",
+    "1987",
+    "1999"
+  ],
+  correctAnswer: "1979-yilda"
+},
+{
+  question: "An'anaviy dars yana qanday nomlanadi",
+  options: [
+    "Markazda o'qituvchi turgan o'qitish modeli",
+    "Markazda o'quvchi faol bo'lishi",
+    "Hamkorlik va texnologiyalashtirilgan model",
+    "Kichik guruhlar faoliyatini boshqarishda o'qituvchi dirijorlik qilish modeli"
+  ],
+  correctAnswer: "Markazda o'qituvchi turgan o'qitish modeli"
+},
+{
+  question: "Faoliyat qisqa muddatli, yaxlit tizim xususiyatiga ega bo'lib, faqatgina tizimdagi ayrim elementlarni o'zgartirishga xizmat qilsa, bu qanday ataladi",
+  options: [
+    "Novatsiya",
+    "Innovatsiya",
+    "Integratsiya",
+    "Adaptatsiya"
+  ],
+  correctAnswer: "Novatsiya"
+},
+{
+  question: "Boshlang'ich ma'lumotlarga asoslanib, kutiladigan natijani taxmin qilish, bashoratlash, rejalashtirish orqali faoliyat yoki jarayon mazmunini ishlab chiqish – bu ...",
+  options: [
+    "Loyihalash",
+    "Taqsimlash",
+    "Tashkilashtirish",
+    "Chamalab ko'rish"
+  ],
+  correctAnswer: "Loyihalash"
+},
+{
+  question: "Fikrlash jarayonining mustaqilligini yuqori darajada talab etuvchi vaziyat turi",
+  options: [
+    "Muammoli vaziyat",
+    "Tafakkur",
+    "Umumlashtirish",
+    "Analiz"
+  ],
+  correctAnswer: "Muammoli vaziyat"
+},
+{
+  question: "Innovatsion faoliyatning asosiy tamoyillariga nimalar kiradi",
+  options: [
+    "Strategik va taktik",
+    "Taxminga suyanish",
+    "Loyihalash va chamalash",
+    "Fikrlash va oldinga intilish"
+  ],
+  correctAnswer: "Strategik va taktik"
+},
+{
+  question: "Ta'limda yangilik kiritish va qo'llash bu nima",
+  options: [
+    "Innovatsion uslub",
+    "Innovatsion tashxis",
+    "Innovatsion faoliyat",
+    "Innovatsion loyiha"
+  ],
+  correctAnswer: "Innovatsion faoliyat"
+},
+{
+  question: "Integratsiya so'zi qaysi so'zdan olingan",
+  options: [
+    "Grekcha",
+    "Lotincha",
+    "Inglizcha",
+    "O'zbekcha"
+  ],
+  correctAnswer: "Lotincha"
+},
+{
+  question: "Metod so'zi qaysi tildan olingan",
+  options: [
+    "Yunoncha",
+    "Lotincha",
+    "Inglizcha",
+    "O'zbekcha"
+  ],
+  correctAnswer: "Yunoncha"
+},
+{
+  question: "Pedagogik yangilikning vujudga kelishi, ularning jadal o'zlashtirilishi va amaliyotga tatbiq etilishiga nima deyiladi",
+  options: [
+    "Innovatsion muhit",
+    "Innovatsion ta'lim",
+    "Innovatsion ta'lim muassasasi",
+    "Ta'lim jarayoni"
+  ],
+  correctAnswer: "Innovatsion muhit"
+},
+{
+  question: "Yangi tipdagi ta'lim muassasalari deb qanday muassasani aytish mumkin",
+  options: [
+    "Innovatsion ta'lim muassasasi",
+    "Innovatsion ta'lim",
+    "Tadbirkorlar maktabi",
+    "Xususiy maktabgacha ta'lim muassasasi"
+  ],
+  correctAnswer: "Innovatsion ta'lim muassasasi"
+},
+{
+  question: "Yangi ijtimoiy talablarning an'anaviy me'yorlarga mos kelmasligi yoki yangi shakllanayotgan g'oyalarning mavjud g'oyalarni inkor etishi natijasida vujudga keladigan majmuaviy muammolarni yechishga qaratilgan faoliyat",
+  options: [
+    "Innovatsion faoliyat",
+    "Mehnat",
+    "Maqsad",
+    "Ijodiy faoliyat"
+  ],
+  correctAnswer: "Innovatsion faoliyat"
+},
+{
+  question: "... fikrlashning original usulining sinonimi yani odatdagi, qabul qilingan chegaralarni buzish qobiliyatidir",
+  options: [
+    "Ijod",
+    "Malaka",
+    "Ko'nikma",
+    "Maqsad"
+  ],
+  correctAnswer: "Ijod"
+},
+{
+  question: "O'qituvchining axloqiy madaniyatining ko'rsatkichi:",
+  options: [
+    "Pedagogik taktika",
+    "Pedagogik adolat",
+    "Pedagogik burch",
+    "Pedagogik javobgarlik"
+  ],
+  correctAnswer: "Pedagogik taktika"
+},
+{
+  question: "O'qituvchining eng muhim kasbiy sifatini belgilang",
+  options: [
+    "Bolalarga muhabbat",
+    "Fanlarga muhabbat",
+    "Umumiy bilim",
+    "Notiqlik"
+  ],
+  correctAnswer: "Bolalarga muhabbat"
+},
+{
+  question: "Ta'lim tizimidagi innovatsiyalarni pedagogik jarayonlarga kiritish necha bosqichda amalga oshiriladi",
+  options: [
+    "4",
+    "2",
+    "5",
+    "8"
+  ],
+  correctAnswer: "4"
+},
+{
+  question: "Pedagogik taktikani ota-onalarga o'qituvchilar singari o'rgatish kerak, deb hisoblagan A.S. Makarenko va unga kiritilgan",
+  options: [
+    "Bolalarga nisbatan talabchanlik",
+    "Shaxsiy misol",
+    "Sevgi va qat'iylikda muvozanatni saqlash",
+    "Ta'lim usullari va texnikasini rejalashtirish"
+  ],
+  correctAnswer: "Sevgi va qat'iylikda muvozanatni saqlash"
+},
+{
+  question: "O'zgarish va yangiliklarni rejalashtirish - Ta'lim tizimidagi innovatsiyalarni pedagogik jarayonlarga kiritish nechanchi bosqichini tashkil etadi",
+  options: [
+    "3-chi",
+    "2-chi",
+    "1-chi",
+    "4-chi"
+  ],
+  correctAnswer: "1-chi"
+},
+{
+  question: "Mo'ljallanayotgan ta'lim tizimini loyihalash - Ta'lim tizimidagi innovatsiyalarni pedagogik jarayonlarga kiritish nechanchi bosqichini tashkil etadi",
+  options: [
+    "2-chi",
+    "3-chi",
+    "1-chi",
+    "4-chi"
+  ],
+  correctAnswer: "2-chi"
+},
+{
+  question: "Ilmiy va innovatsion faoliyatni boshqarish tizimini tashkil etish chora-tadbirlari to'g'risida vazirlar mahkamasining qarori qachon qabul qilingan",
+  options: [
+    "2021-yil 27-avgust, 545-son",
+    "2022-yil 27-avgust, 543-son",
+    "2020-yil 27-aprel, 610-son",
+    "2023-yil 11-avgust, 312-son"
+  ],
+  correctAnswer: "2021-yil 27-avgust, 545-son"
+},
+{
+  question: "Pedagogik jamoa a'zolarini beshta guruhga ajratishni taklif etgan olimlar kim",
+  options: [
+    "K. Rodjers va K. Angelovskiy",
+    "B.V. Sazonov, V.S. Tolstoy",
+    "Patti Drepeau, L.S. Vigotskiy",
+    "M. Jumaniyozova"
+  ],
+  correctAnswer: "K. Rodjers va K. Angelovskiy"
+},
+{
+  question: "'Yangilik', 'yangilik' tushunchasi nafaqat muayyan g'oyani, balki hali amaliyotda foydalanilmagan yondashuv, metod hamda texnologiyalarni ifodalaydi. Ushbu fikrlar kimga tegishli",
+  options: [
+    "V.I. Zagvyazinskiy",
+    "Y.A. Komenskiy",
+    "J. Piaje",
+    "A.I. Prigojin"
+  ],
+  correctAnswer: "V.I. Zagvyazinskiy"
+},
+{
+  question: "Rivojlangan xorijiy mamlakatlarda pedagog faoliyatining innovatsion xarakter kashf etishiga erishish masalasi qaysi davrdan boshlab o'rganila boshlangan",
+  options: [
+    "XX asrning 60-yillaridan",
+    "XX asrning 90-yillaridan",
+    "XX asrning 50-yillaridan",
+    "XX asrning 80-yillaridan"
+  ],
+  correctAnswer: "XX asrning 60-yillaridan"
+},
+{
+  question: "Tarbiya doimo qanday xarakterga ega bo'lib kelgan?",
+  options: [
+    "Milliy",
+    "Tarixiy",
+    "An'anaviy",
+    "Zamonaviy"
+  ],
+  correctAnswer: "Milliy"
+},
+{
+  question: "Innovatsiyalarning asosiy ko'rinishlari qaysi javobda to'g'ri ko'rsatilgan",
+  options: [
+    "Yangi g'oyalar, odatiy bo'lmagan tashabbuslar",
+    "An'anaviy yondashuvlar",
+    "Qadriyatli g'oyalar",
+    "Ajdodlarimiz an'analariga tayanish"
+  ],
+  correctAnswer: "Yangi g'oyalar, odatiy bo'lmagan tashabbuslar"
+},
+{
+  question: "Agar faoliyat qisqa muddatli, yaxlit tizim xususiyatiga ega bo'lib, faqatgina tizimdagi ayrim elementlarni o'zgartirishga xizmat qilsa u nima deb yuritiladi",
+  options: [
+    "Novatsiya",
+    "Innovatsiya",
+    "Tizimlashtirish",
+    "Muvofiqlashtirish"
+  ],
+  correctAnswer: "Novatsiya"
+},
+{
+  question: "Bu olim kreativlikni tavsiflaydigan qator individual qobiliyatlarni ko'rsatadi: fikrning ravonligi; fikrni maqsadga muvofiq o'y hayoli; o'ziga xoslik (originallik); qiziquvchanlik",
+  options: [
+    "J. Gilford",
+    "M. Jumaniyozova",
+    "K. Angelovskiy",
+    "D. Gamilton"
+  ],
+  correctAnswer: "J. Gilford"
+},
+{
+  question: "Kreativlikning tizimli kontseptsiyasi mualliflari ... innovatsion jarayonlarning ikki muhim shaklini farqlagan olimlar kimlar",
+  options: [
+    "A.I. Prigojin, B.V. Sazonov, V.S. Tolstoy",
+    "A.S. Makarenko, L.S. Vigotskiy",
+    "A. Leontyev, V.S. Tolstoy",
+    "K.D. Ushinskiy, B.V. Sazonov"
+  ],
+  correctAnswer: "A.I. Prigojin, B.V. Sazonov, V.S. Tolstoy"
+},
+{
+  question: "O'qituvchi pedagogik muloqoti har xil ko'rinishda namoyon bo'ladi, bu... ?",
+  options: [
+    "Kommunikativ, interaktiv, perseptiv",
+    "Psixologik, agressiv, xushmuomalalik",
+    "Pedagogik mahorat, muosharat, kommunikativ",
+    "Ishontirish, ongga ta'sir etish, taqlid qilish"
+  ],
+  correctAnswer: "Kommunikativ, interaktiv, perseptiv"
+},
+{
+  question: "Yangilik kiritishning tizimli kontseptsiyasi mualliflari ... innovatsion jarayonlarning ikki muhim shaklini farqlaydilar. Ular qaysi olimlar",
+  options: [
+    "A.I. Prigojin, B.V. Sazonov, V.S. Tolstoy",
+    "A.S. Makarenko, L.S. Vigotskiy",
+    "A. Leontyev, V.S. Tolstoy",
+    "K.D. Ushinskiy, B.V. Sazonov"
+  ],
+  correctAnswer: "A.I. Prigojin, B.V. Sazonov, V.S. Tolstoy"
+},
+{
+  question: "'Assessment' so'zi qaysi tildan olingan va qanday ma'noni anglatadi",
+  options: [
+    "Inglizcha, 'baho', 'baholash'",
+    "Fransuzcha 'imzo', 'imzolash'",
+    "Ruscha 'yordamlashish'",
+    "Arabcha 'ko'maklashish'"
+  ],
+  correctAnswer: "Inglizcha, 'baho', 'baholash'"
+},
+{
+  question: "Qanday holat o'quv jarayonining ta'lim maqsadi (yoki maqsadlariga) erishishni kafolatlovchi usul va vositalar bilan ta'minlanganligini yoritadi?",
+  options: [
+    "Ta'lim jarayonini texnologiyalashtirish",
+    "Yangilik kiritish",
+    "Rivojlantirish",
+    "O'rgatish"
+  ],
+  correctAnswer: "Ta'lim jarayonini texnologiyalashtirish"
+},
+{
+  question: "Ta'lim sohası yoki o'quv jarayonida mavjud muammoni yangicha yondashuv asosida yechish maqsadida qo'llanilib, avvalgidan ancha samarali natijani kafolatlay oladigan shakl, metod va texnologiyalar qanday nomlanadi?",
+  options: [
+    "Ta'lim innovatsiyalari",
+    "Ta'lim jarayonini texnologiyalashtirish",
+    "Ta'lim-tarbiya berishga maxsus tayyorgarlik",
+    "Kompyuter texnologiyasiga asoslangan o'quv uslubini qo'llash"
+  ],
+  correctAnswer: "Ta'lim innovatsiyalari"
+},
+{
+  question: "Pedagogik texnologiya nima?",
+  options: [
+    "Ta'lim texnologiyasi",
+    "Muammoli texnologiya",
+    "Masofali texnologiyasi",
+    "Hamkorlik texnologiyasi"
+  ],
+  correctAnswer: "Ta'lim texnologiyasi"
+},
+{
+  question: "Ta'lim jarayoni 'O'quvchi – o'quvchi (juftlikda ishlash)', 'O'quvchi – o'quvchilar guruhi (guruh yoki kichik guruhda ishlash)', 'O'quvchi – o'quvchilar jamoasi (guruh jamoasida ishlash)', 'O'quvchi – axborot-kommunikatsion texnologiyalar' kabi tizimlarga muvofiq tashkil etiladigan ta'lim qanday nomlanadi",
+  options: [
+    "Interfaol ta'lim",
+    "Loyihali ta'lim",
+    "Masofaviy ta'lim",
+    "Evristik ta'lim"
+  ],
+  correctAnswer: "Interfaol ta'lim"
+},
+{
+  question: "O'quv jarayonida talabalarning jamoada, kichik guruh va juftlikda bilimlarni birgalikda o'zlashtirishlari, o'zaro rivojlanishlari, hamkorlikda tashkil etilishini ta'minlovchi ta'limiy xarakterdagi texnologiyalar qanday nomlanadi",
+  options: [
+    "Hamkorlik ta'limi texnologiyalari",
+    "Masofali ta'lim",
+    "Muammoli ta'lim",
+    "Innovatsion ta'lim"
+  ],
+  correctAnswer: "Hamkorlik ta'limi texnologiyalari"
+},
+{
+  question: "Innovatsiya tushunchasi shakllangan asmi toping",
+  options: [
+    "18 asr",
+    "17 asr",
+    "16 asr",
+    "19 asr"
+  ],
+  correctAnswer: "19 asr"
+},
+{
+  question: "Amerika Qo'shma Shtatlarida innovatsion pedagogik termin qachon paydo bo'lgan",
+  options: [
+    "20-asr 60-yillarida",
+    "19 asr 70-yillarida",
+    "18 asr 40-yillarida",
+    "19 asr 40-yillarida"
+  ],
+  correctAnswer: "20-asr 60-yillarida"
+},
+{
+  question: "Innovatsiya pedagogik termini qayerda va nechinchi asrda paydo bo'lgan",
+  options: [
+    "XX asrning 60-yillarida Garbiy Yevropa va AQSh",
+    "XX asrning 50-yillarida Yaponiyada",
+    "XX asrning 60-yillarida Germaniyada",
+    "XX asrning 80-yillarida Germaniyada"
+  ],
+  correctAnswer: "XX asrning 60-yillarida Garbiy Yevropa va AQSh"
+},
+{
+  question: "Bola tarbiyasida eng muhim omil nima?",
+  options: [
+    "Oila",
+    "Mahalla",
+    "Bolalar uyi",
+    "Maktab"
+  ],
+  correctAnswer: "Oila"
+},
+{
+  question: "Pedagogning kommunikativ madaniyati deganda nimani tushunasiz?",
+  options: [
+    "Pedagogning kishilar bilan qisqa muddatda muloqot o'rnata olishi, ular bilan muloqot o'rnatishga bo'lgan doimiy intilishi",
+    "Pedagogning dunyoga, pedagog voqelikka va pedagogik jarayonga bo'lgan intelektual va hissiy munosabati",
+    "O'qituvchining ob'yektivlik mezoni, uning ma'naviy tayyorgarlik darajasi",
+    "Pedagogik jarayonning asosiy birligi, o'ziga xos tizimidir"
+  ],
+  correctAnswer: "Pedagogning kishilar bilan qisqa muddatda muloqot o'rnata olishi, ular bilan muloqot o'rnatishga bo'lgan doimiy intilishi"
+},
+{
+  question: "Axborot texnologiyasi nima?",
+  options: [
+    "Pedagogik texnologiyaning tarkibiy qismi",
+    "Nazorat turlari (joriy, oraliq, yakuniy)",
+    "O'zaro ta'sirlar",
+    "Pedagogikada monitoring"
+  ],
+  correctAnswer: "Pedagogik texnologiyaning tarkibiy qismi"
+},
+{
+  question: "Pedagogik texnologiyaning asosiy vazifasi nima?",
+  options: [
+    "O'quv jarayonini mazmunli amalga oshirish va rivojlantirish",
+    "O'quv jarayonini rivojlantirish",
+    "O'quv jarayonini vaqt doirasida olib borish",
+    "O'quv jarayonini mazmunli amalga oshirish"
+  ],
+  correctAnswer: "O'quv jarayonini mazmunli amalga oshirish va rivojlantirish"
+},
+{
+  question: "'Innovatsiya' termini 1900 yilda qo'llagan iqtisodchi olimni belgilang",
+  options: [
+    "Y. Shumpeter",
+    "V. Rudnev",
+    "S.L. Rubinshteyn",
+    "R. Yakobson"
+  ],
+  correctAnswer: "Y. Shumpeter"
+},
+{
+  question: "Pedagogik texnologiyani bugungi kundagi ahamiyati qanday?",
+  options: [
+    "Sohadagi nazariy va amaliy izlanishlarni birlashtirish doirasidagi faoliyatni aks ettiradi",
+    "Pedagogikada monitoringda",
+    "Ta'limning baholash shkalasida",
+    "O'quv jarayonini uzluksizligida"
+  ],
+  correctAnswer: "Sohadagi nazariy va amaliy izlanishlarni birlashtirish doirasidagi faoliyatni aks ettiradi"
+},
+{
+  question: "Pedagogik texnologiyada axborot texnologiyalarini o'rni qanday?",
+  options: [
+    "Boshqarish imkoniyati tug'iladi va u o'qituvchining yaqin ko'makdoshiga aylandi hamda uning funktsiyalarini qisman o'z zimmasiga oladi",
+    "Ijodiy yondashuvda",
+    "O'zaro ta'sirlarda",
+    "Pedagogikada monitoringda"
+  ],
+  correctAnswer: "Boshqarish imkoniyati tug'iladi va u o'qituvchining yaqin ko'makdoshiga aylandi hamda uning funktsiyalarini qisman o'z zimmasiga oladi"
+},
+{
+  question: "'Texnologiya' so'zi haqida tushuncha",
+  options: [
+    "'Texne' mahorat, san'at, 'logos' tushuncha, ta'limot",
+    "'Texne' mehnat, san'at, 'logos' tushuncha, bilim",
+    "'Texne' qobiliyat, san'at, 'logos' tushuncha, ta'lim",
+    "'Texne' maqsad, 'logos' – tushuncha, o'qitish"
+  ],
+  correctAnswer: "'Texne' mahorat, san'at, 'logos' tushuncha, ta'limot"
+},
+{
+  question: "Shaxs shakllanishining asosini nimalar tashkil etadi?",
+  options: [
+    "Bilim, ko'nikma, malaka",
+    "Ko'nikma, maqsad",
+    "Malaka, tarbiya",
+    "Malaka, ko'nikma, tamoyil"
+  ],
+  correctAnswer: "Bilim, ko'nikma, malaka"
+},
+{
+  question: "Innovatsiya faoliyatidagi 'kreativlik' deganda siz nimani tushunasiz",
+  options: [
+    "Individning yangi tushuncha yaratish va yangi ko'nikmalar hasil qilish qobiliyatini bildiradi",
+    "O'qituvchining kasbiy mahorat cho'qqilariga erishuvi",
+    "Ijtimoiy vaziyatlarda o'zining o'rnini anglab olish",
+    "Shaxs o'zini namoyon qila olish va o'zining muayyan ishlarini amalga oshirish"
+  ],
+  correctAnswer: "Individning yangi tushuncha yaratish va yangi ko'nikmalar hasil qilish qobiliyatini bildiradi"
+},
+{
+  question: "Innovatsion faoliyatining samaradorligi nima bilan belgilanadi?",
+  options: [
+    "Pedagog shaxsiyati",
+    "Pedagog faoliyati",
+    "Pedagogning ish jarayoni",
+    "Pedagogning muomalasi bilan"
+  ],
+  correctAnswer: "Pedagog shaxsiyati"
+},
+{
+  question: "Texnologiyalashtirish nima?",
+  options: [
+    "Ob'ektiv jarayon bo'lib, ta'lim evolyutsiyasining yangi vazifalarini sifatli hal qilish uchun tayyorgarlik davri",
+    "Ta'lim evolyutsiyasini amalga oshirish",
+    "Ta'lim evolyutsiyasining vazifalar davri",
+    "Ob'ektiv jarayonida"
+  ],
+  correctAnswer: "Ob'ektiv jarayon bo'lib, ta'lim evolyutsiyasining yangi vazifalarini sifatli hal qilish uchun tayyorgarlik davri"
+},
+{
+  question: "Texnologiya tushunchasi nechanchi yillarda kirib kelgan?",
+  options: [
+    "60-yillarda",
+    "30-yillarda",
+    "40-yillarda",
+    "70-yillarda"
+  ],
+  correctAnswer: "60-yillarda"
+},
+{
+  question: "O'qituvchining innovatsion faoliyati qaysi masalaharni yechishga qaratilgan?",
+  options: [
+    "Voqelikni o'zgartirishga, uning muammolari va usullarini yechishni aniqlashga qaratilgan",
+    "Shaxsiy ijodiy-motivatsion yo'nalganligini aniqlashga qaratilgan",
+    "Kasbiy faoliyatni baholashga qaratilgan",
+    "Innovatsion faoliyatga bo'lgan zaruriyatni anglashga qaratilgan"
+  ],
+  correctAnswer: "Voqelikni o'zgartirishga, uning muammolari va usullarini yechishni aniqlashga qaratilgan"
+},
+{
+  question: "Pedagogik mahorat – bu:",
+  options: [
+    "Ta'lim va tarbiyaviy faoliyatda yuqori darajaga erishishni va uni doimiy takomillashtirib borish imkoniyatini ta'minlovchi faoliyat bo'lib, har bir o'qituvchi fazilatida namoyon bo'ladi",
+    "Muayyan loyiha asosida tashkil etiladigan, aniq maqsadga yo'naltirilgan hamda ushbu maqsadning natijalanishini kafolatlovchi pedagogik faoliyat jarayonining mazmunidir",
+    "O'qituvchi tomonidan pedagogik jarayonni takomillashtirish, optimallashtirishga bo'lgan ijtimoiy ehtiyojni qondirish omilidir",
+    "Didaktik hamda tarbiyaviy jarayonning o'qituvchi tomonidan samarali, mahoratli tarzda tashkil etishdir"
+  ],
+  correctAnswer: "Ta'lim va tarbiyaviy faoliyatda yuqori darajaga erishishni va uni doimiy takomillashtirib borish imkoniyatini ta'minlovchi faoliyat bo'lib, har bir o'qituvchi fazilatida namoyon bo'ladi"
+},
+{
+  question: "Xususiy didaktika nimani o'rganadi?",
+  options: [
+    "Har bir fan o'qitilishining o'ziga xos jihatlarini tahlil qiladi",
+    "Didaktikaning asosiy yo'nalishlaridan biridir",
+    "Ta'lim jarayonining umumiy qonuniyatlarini o'rganadi",
+    "O'qitish jarayonining umumiy asoslarini belgilaydi"
+  ],
+  correctAnswer: "Har bir fan o'qitilishining o'ziga xos jihatlarini tahlil qiladi"
+},
+{
+  question: "'Didaktika' atamasi dastlab qayerda va qachon paydo bo'lgan?",
+  options: [
+    "Sharqdagi Bag'dod va Basra shaharlarida miloddan avvalgi IV–V asrlarda",
+    "Qadimgi Yunonistonning Afina va Sparta shaharlarida miloddan avvalgi IV–V asrlarda",
+    "Eron va Hindistonda miloddan avvalgi IV–V asrlarda",
+    "Rim shahrida milodiy VI–VII asrlarda"
+  ],
+  correctAnswer: "Qadimgi Yunonistonning Afina va Sparta shaharlarida miloddan avvalgi IV–V asrlarda"
+},
+{
+  question: "'Dunyoda ilmdan boshqa najot yo'q' degan so'z muallifi kim?",
+  options: [
+    "Imom al-Buxoriy",
+    "Imom Moturidiy",
+    "Abdulla Avloniy",
+    "Yusuf Xos Xojib"
+  ],
+  correctAnswer: "Imom al-Buxoriy"
+},
+{
+  question: "O'qituvchi rahbarligida guruh bilan olib boriladigan ta'lim shakli bu...",
+  options: [
+    "Dars jarayoni",
+    "O'qish faoliyati",
+    "Bilim olish bosqichi",
+    "Ta'limni boshqarish jarayoni"
+  ],
+  correctAnswer: "Dars jarayoni"
+},
+{
+  question: "Psixologiya fani nimadan bahs etadi?",
+  options: [
+    "Psixik hodisalar, ularning qonuniyatlari va mexanizmlarini",
+    "Ongni o'rganadigan fan",
+    "Jon haqida ta'lim beruvchi fan",
+    "Inson xulq-atvori haqidagi fan"
+  ],
+  correctAnswer: "Psixik hodisalar, ularning qonuniyatlari va mexanizmlarini"
+},
+{
+  question: "Miya faoliyatining natijasi bo'lib, voqelikni sub'yektiv aks ettiruvchi xossa bu...",
+  options: [
+    "Faoliyat",
+    "Ong",
+    "Psixika",
+    "Xulq-atvor"
+  ],
+  correctAnswer: "Psixika"
+},
+{
+  question: "Psixologiyada dualizm yo'nalishining asoschisi kim?",
+  options: [
+    "Arastu",
+    "Gippokrat",
+    "Aflotun",
+    "Suqrot"
+  ],
+  correctAnswer: "Aflotun"
+},
+{
+  question: "Psixik hodisalarni ilmiy asosda tushuntiruvchi yo'nalish bu...",
+  options: [
+    "Ilmiy psixologiya",
+    "Ommaviy psixologiya",
+    "Mahalliy psixologiya",
+    "Amaliy psixologiya"
+  ],
+  correctAnswer: "Ilmiy psixologiya"
+},
+{
+  question: "Insonning individual psixologik xususiyatlarini aniqlash va tashxis qo'yish bilan shug'ullanuvchi yo'nalish bu...",
+  options: [
+    "Psixodiagnostika",
+    "Psixologik maslahat",
+    "Psixoprofilaktika",
+    "Psixokorreksiya"
+  ],
+  correctAnswer: "Psixodiagnostika"
+},
+{
+  question: "Mashq natijasida sezuvchanlikning oshishi qanday hodisa deyiladi?",
+  options: [
+    "Sensibilizatsiya",
+    "Sinesteziya",
+    "Retseptorlar",
+    "Reflektor yoyi"
+  ],
+  correctAnswer: "Sensibilizatsiya"
+},
+{
+  question: "Narsani tahlil qilib olingan qismlarni bir butun shakliga keltirish bu...",
+  options: [
+    "Sintez",
+    "Umumlashtirish",
+    "Ong",
+    "Taqqoslash"
+  ],
+  correctAnswer: "Sintez"
+},
+{
+  question: "Shirin orzular, bexosdan tasavvur qilish xayolning qaysi turiga kiradi?",
+  options: [
+    "Ixtiyorsiz xayol",
+    "Maqsadli xayol",
+    "Ixtiyoriy xayol",
+    "Ixtiyoriydan keyingi xayol"
+  ],
+  correctAnswer: "Ixtiyorsiz xayol"
+},
+{
+  question: "Inson ongi bilan hayvon psixikasi orasidagi asosiy farq nimada?",
+  options: [
+    "Faollikda",
+    "Ong va nutq mavjudligida",
+    "Yashash usulida",
+    "Ehtiyojni qondirishda"
+  ],
+  correctAnswer: "Ong va nutq mavjudligida"
+},
+{
+  question: "Taqqoslash qaysi psixik jarayonga tegishli?",
+  options: [
+    "Tafakkur jarayoni",
+    "Xayol jarayoni",
+    "Iroda jarayoni",
+    "Sezgi jarayoni"
+  ],
+  correctAnswer: "Tafakkur jarayoni"
+},
+{
+  question: "Qaysi fikr psixikani idealistik tarzda izohlaydi?",
+  options: [
+    "Psixika miyaning mahsulidir",
+    "Psixika voqelikning aksidir",
+    "Psixika tashqi muhtidan mustaqildir",
+    "Psixika muhit bilan birga o'zgaradi"
+  ],
+  correctAnswer: "Psixika tashqi muhtidan mustaqildir"
+},
+{
+  question: "Kuzatish, eksperiment, test, anketa kabi metodlar qaysi turga kiradi?",
+  options: [
+    "Asosiy metodlar",
+    "Yordamchi metodlar",
+    "Suhbat",
+    "So'rovnoma"
+  ],
+  correctAnswer: "Asosiy metodlar"
+},
+{
+  question: "Hozirgi zamonaviy psixologiya tamoyillari qaysi yillarda shakllangan?",
+  options: [
+    "XX asrning 40–50-yillari",
+    "XX asrning 30–40-yillari",
+    "XX asrning 50–60-yillari",
+    "XX asrning 20–30-yillari"
+  ],
+  correctAnswer: "XX asrning 50–60-yillari"
+},
+{
+  question: "Psixologiya fanining predmeti nimalardan iborat?",
+  options: [
+    "Psixik hodisalar, ularning qonuniyatlari va mexanizmlari haqidagi fan",
+    "Jon haqidagi ta'limot",
+    "Inson xulqi haqida fan",
+    "Ong haqida ta'lim beruvchi fan"
+  ],
+  correctAnswer: "Psixik hodisalar, ularning qonuniyatlari va mexanizmlari haqidagi fan"
+},
+{
+  question: "'Psixika faqat faoliyat natijasida rivojlanadi' degan g'oya qaysi tamoyilga tegishli?",
+  options: [
+    "Psixika va ongning faoliyatda rivojlanish tamoyili",
+    "Determinizm tamoyili",
+    "Ong va faoliyat birligi",
+    "Reallik tamoyili"
+  ],
+  correctAnswer: "Psixika va ongning faoliyatda rivojlanish tamoyili"
+},
+{
+  question: "Psixologiyada dualizm oqimining asoschisi kim?",
+  options: [
+    "Aristotel",
+    "Platon",
+    "Fales",
+    "Gippokrat"
+  ],
+  correctAnswer: "Platon"
+},
+{
+  question: "'Ongsizlik' tushunchasini psixologiyaga kim kiritgan?",
+  options: [
+    "Z. Freyd",
+    "V. Vundt",
+    "G. Ebbingauz",
+    "I. Kant"
+  ],
+  correctAnswer: "Z. Freyd"
+},
+{
+  question: "Qaysi soha bolalarning psixik rivojlanish qonuniyatlarini o'rganadi?",
+  options: [
+    "Mehnat psixologiyasi",
+    "Yosh psixologiyasi",
+    "Pedagogik psixologiya",
+    "Ijtimoiy psixologiya"
+  ],
+  correctAnswer: "Yosh psixologiyasi"
+},
+{
+  question: "'Jon va tana ajralmasdir' degan g'oyani birinchi bo'lib kim ilgari surgan?",
+  options: [
+    "Geraklit",
+    "Demokrit",
+    "Aristotel",
+    "Platon"
+  ],
+  correctAnswer: "Demokrit"
+},
+{
+  question: "'Aql, jasorat va istak inson tanasining turli qismlarida joylashgan' degan fikr kimga tegishli?",
+  options: [
+    "Aflotun",
+    "Demokrit",
+    "Geraklit",
+    "Arastu"
+  ],
+  correctAnswer: "Aflotun"
+},
+{
+  question: "Qaysi metod tadqiqot jarayonini boshqarish va o'zgartirish orqali natijalar olish imkonini beradi?",
+  options: [
+    "Eksperiment metodi",
+    "Kuzatish",
+    "Anketa",
+    "Test"
+  ],
+  correctAnswer: "Eksperiment metodi"
+},
+{
+  question: "Shaxsning ruhiy xususiyatlarini maxsus tuzilgan savollar majmuasi orqali o'rganish qanday usul bilan amalga oshiriladi?",
+  options: [
+    "Eksperiment",
+    "Anketa",
+    "Test",
+    "Kuzatish"
+  ],
+  correctAnswer: "Test"
+},
+{
+  question: "Insonning intellektual (aqliy) rivojlanish darajasini aniqlash uchun mo'ljallangan testlar qanday ataladi?",
+  options: [
+    "Intellekt testlari",
+    "Shaxs kuzatuv testlari",
+    "Rasmli testlar",
+    "Proyektiv testlar"
+  ],
+  correctAnswer: "Intellekt testlari"
+},
+{
+  question: "Psixologiyada test metodini kimlar asoslagan?",
+  options: [
+    "V. Shtem",
+    "A. Bine, A. Simon",
+    "A.N. Gvozdev, V. Shtem",
+    "I.A. Menchinskaya"
+  ],
+  correctAnswer: "A. Bine, A. Simon"
+},
+{
+  question: "Inson psixikasini keng ko'lamli so'rov asosida o'rganish qaysi metod orqali olib boriladi?",
+  options: [
+    "Eksperiment",
+    "Kompleks",
+    "Test",
+    "Anketa"
+  ],
+  correctAnswer: "Anketa"
+},
+{
+  question: "Pedagogik psixologiyada qo'llaniladigan metodlarni tashkiliy, tajriba, talqin va natijalarni qayta ishlash turlariga ajratib o'rgangan olim kim?",
+  options: [
+    "Ananyev B.",
+    "Toshimov R.",
+    "G'oziyev E.",
+    "Freyd Z."
+  ],
+  correctAnswer: "Ananyev B."
+},
+{
+  question: "Determinizm tamoyilining asosiy mohiyati nimani ifodalaydi?",
+  options: [
+    "Sababli bog'lilik",
+    "Psixika yashash sharotiga bog'liq bo'lib, muhit o'zgarsa, u ham o'zgaradi",
+    "Psixika ichki omillar ta'sirida shakllanadi",
+    "Psixika mexanik tarzda namoyon bo'ladi"
+  ],
+  correctAnswer: "Sababli bog'lilik"
+},
+{
+  question: "Sotsiometriya metodini kim ishlab chiqgan?",
+  options: [
+    "Z. Freyd",
+    "I. Pavlov",
+    "J. Moreno",
+    "A. Peron"
+  ],
+  correctAnswer: "J. Moreno"
+},
+{
+  question: "Psixologiyada ishlatiladigan metodlarga nimalar kiradi?",
+  options: [
+    "Kuzatish, eksperiment, sotsiometriya, test, anketa, suhbat, faoliyat mahsullarini o'rganish",
+    "Kuzatish, ma'lumotlarni statistik tahlil qilish, taxmin va izoh berish",
+    "Odam psixikasi haqida ma'lumot yig'ish",
+    "Inson va hayvon psixikasini tadqiq etish usullari"
+  ],
+  correctAnswer: "Kuzatish, eksperiment, sotsiometriya, test, anketa, suhbat, faoliyat mahsullarini o'rganish"
+},
+{
+  question: "Psixologik testlar nima?",
+  options: [
+    "Shaxsning ruhiy sifatlari, qobiliyati va rivojlanish darajasini aniqlovchi standart topshiriqlar majmuasi",
+    "Ishtirokchilarning vazifa bajarish jarayonini kuzatish",
+    "Psixik hodisalarni tahlil etuvchi usullar to'plami",
+    "Psixik faoliyatni o'rganishga mo'ljallangan topshiriqlar majmuasi"
+  ],
+  correctAnswer: "Shaxsning ruhiy sifatlari, qobiliyati va rivojlanish darajasini aniqlovchi standart topshiriqlar majmuasi"
+},
+{
+  question: "Qaysi metod yordamida sun'iy tushunchalar, nutq o'sishi, muammoli vaziyatni hal etish va shaxs hissiyotlari o'rganiladi?",
+  options: [
+    "Tajriba metodi",
+    "Suhbat metodi",
+    "Test metodi",
+    "Sotsiometriya metodi"
+  ],
+  correctAnswer: "Tajriba metodi"
+},
+{
+  question: "Psixik jarayonlarni tabiiy yoki sun'iy yaratilgan sharotida o'rganish qaysi metod orqali amalga oshiriladi?",
+  options: [
+    "Eksperiment",
+    "Test",
+    "Longityud",
+    "Anketa"
+  ],
+  correctAnswer: "Eksperiment"
+},
+{
+  question: "Refleks deganda nima tushuniladi?",
+  options: [
+    "Organizmning tashqi yoki ichki ta'sirga asab tizimi orqali javob reaksiyasi",
+    "Organizmning har qanday javob reaksiyasi",
+    "Insonga xos aks ettirish shakli",
+    "Oddiy aks ettirish"
+  ],
+  correctAnswer: "Organizmning tashqi yoki ichki ta'sirga asab tizimi orqali javob reaksiyasi"
+},
+{
+  question: "'Jon olovsimon atomlardan tarkib topgan' degan g'oya kimga tegishli?",
+  options: [
+    "Epikur",
+    "Demokrit",
+    "Galen",
+    "Geraklit"
+  ],
+  correctAnswer: "Demokrit"
+},
+{
+  question: "'Psixologiyaning predmeti xulq-atvor bo'lishi kerak' degan g'oya qaysi oqimga xos?",
+  options: [
+    "Bixeviorizm",
+    "Geshtalt psixologiya",
+    "Freydizm",
+    "Assotsiativ psixologiya"
+  ],
+  correctAnswer: "Bixeviorizm"
+},
+{
+  question: "O'quvchi shaxsini xatlar, kundaliklar, sinf jurnallari va tavsifnomalar asosida o'rganish qaysi metodga kiradi?",
+  options: [
+    "Suhbat",
+    "Kuzatish",
+    "Tajriba",
+    "Blografik metod"
+  ],
+  correctAnswer: "Blografik metod"
+},
+{
+  question: "Hayvonlarda hissiyotning qaysi shakli mavjud?",
+  options: [
+    "Emosiya",
+    "Stress",
+    "Kayfiyat",
+    "Affekt"
+  ],
+  correctAnswer: "Emosiya"
+},
+{
+  question: "Didaktika, xususiy metodika, dasturlashtirilgan o'qitish va aqliy faoliyatning psixologik asoslarini psixologiyaning qaysi sohasi o'rganadi?",
+  options: [
+    "Tarbiya psixologiyasi",
+    "Ta'lim psixologiyasi",
+    "Yosh psixologiyasi",
+    "Mehnat psixologiyasi"
+  ],
+  correctAnswer: "Ta'lim psixologiyasi"
+},
+{
+  question: "Quyidagi holatlardan qaysi biri tabiiy eksperiment metodiga xos?",
+  options: [
+    "Zarur sharoit maxsus ravishda yaratiladi",
+    "O'rganilayotgan holat tabiiy ravishda sodir bo'lishi kutib turiladi",
+    "Tekshiruv laboratoriyada olib boriladi",
+    "Tarixiy manbalarga tayangan holda tahlil qilinadi"
+  ],
+  correctAnswer: "O'rganilayotgan holat tabiiy ravishda sodir bo'lishi kutib turiladi"
+},
+{
+  question: "Asaları va chumollilarning murakkab harakatlarini qanday atash mumkin?",
+  options: [
+    "O'nikmalar",
+    "Intellektual faoliyat",
+    "Instinktlar",
+    "Mehnat"
+  ],
+  correctAnswer: "Instinktlar"
+},
+{
+  question: "O'rgimchakning pashshani faqat to'rga ilingandan keyin tutib yeyishi psixika rivojlanishing qaysi bosqichiga mos keladi?",
+  options: [
+    "Sezgi (sensor) bosqichi",
+    "Aql (intellekt) bosqichi",
+    "Idrok (perseptiv) bosqichi",
+    "Ong bosqichi"
+  ],
+  correctAnswer: "Sezgi (sensor) bosqichi"
+},
+{
+  question: "Inson bosh miyasining og'irligi necha gramm?",
+  options: [
+    "1400 gr",
+    "1000 gr",
+    "1200 gr",
+    "1100 gr"
+  ],
+  correctAnswer: "1400 gr"
+},
+{
+  question: "Bolalarning ruhiy rivojlanish qonuniyatlarini psixologiyaning qaysi tarmog'i o'rganadi?",
+  options: [
+    "Mehnat psixologiyasi",
+    "Yosh psixologiyasi",
+    "Ijtimoiy psixologiya",
+    "Pedagogik psixologiya"
+  ],
+  correctAnswer: "Yosh psixologiyasi"
+},
+{
+  question: "Shaxsning fanlar bo'yicha umumiy bilim darajasini aniqlovchi metod qaysi?",
+  options: [
+    "So'rovnoma",
+    "Test metodi",
+    "Kuzatish",
+    "Intervyu"
+  ],
+  correctAnswer: "Test metodi"
+},
+{
+  question: "Sinaps nerv hujayrasining qaysi qismini bildiradi?",
+  options: [
+    "Qo'zg'alishni uzatadigan qism",
+    "Qo'zg'alish o'tishi zarur bo'lgan to'suvchi joy",
+    "Nerv hujayrasining tuzilma elementi",
+    "Nerv hujayrasining o'sintasi"
+  ],
+  correctAnswer: "Qo'zg'alish o'tishi zarur bo'lgan to'suvchi joy"
+},
+{
+  question: "Insonda qaysi turdagi ehtiyoj uzoq vaqt qondirilmasa, u hayotdan to'xtashi yoki naslini davom ettirish imkonini yo'qotadi?",
+  options: [
+    "Tabiiy ehtiyoj",
+    "Ma'naviy ehtiyoj",
+    "Moddiy ehtiyoj",
+    "Madaniy ehtiyoj"
+  ],
+  correctAnswer: "Tabiiy ehtiyoj"
+},
+{
+  question: "Quyidagi javoblardan qaysi birida deterministik tamoyilning mazmuni ifodalangan?",
+  options: [
+    "Psixika yashash muhiti bilan belgilanadi, muhit o'zgarsa, u ham o'zgaradi",
+    "Sababiy bog'lanish",
+    "Psixika ichki omillarga asoslanadi",
+    "Psixika mexanik tarzda kechadi"
+  ],
+  correctAnswer: "Sababiy bog'lanish"
+},
+{
+  question: "Ongli va ongsiz harakatlarning manbai reflekslar ekanini kim ta'kıdlagan?",
+  options: [
+    "A. Luriya",
+    "I. Sechenov",
+    "N. Bernshteyn",
+    "I. Pavlov"
+  ],
+  correctAnswer: "I. Sechenov"
+},
+{
+  question: "Qaysi turdagi diqqat o'quv jarayonida materialni o'zlashtirishga ijobiy ta'sir ko'rsatadi?",
+  options: [
+    "Ixtiyoriydan keyingi diqqat",
+    "Ixtiyoriy diqqat",
+    "Ixtiyorsiz diqqat",
+    "Ichki diqqat"
+  ],
+  correctAnswer: "Ixtiyoriy diqqat"
+},
+{
+  question: "Ongsizlik bu?",
+  options: [
+    "Hayvonlarga xos aks ettirish shakli",
+    "Inson ruhiy faoliyatining yig'indisi",
+    "O'z xatti-harakatlarini anglay olmaslik holati",
+    "Psixikaning quyi bosqichi"
+  ],
+  correctAnswer: "Inson ruhiy faoliyatining yig'indisi"
+},
+{
+  question: "Maqsad nima?",
+  options: [
+    "Faoliyatning kutilayotgan natijasining miyadagi aksidir",
+    "Ehtiyojlarning qondirilishi",
+    "Ehtiyojlarning ro'yobga chiqishi",
+    "Faoliyat tarkibidagi bo'lak"
+  ],
+  correctAnswer: "Faoliyatning kutilayotgan natijasining miyadagi aksidir"
+},
   {
-    question: "Innovatsion ta'lim texnologiyalarining asosiy maqsadi nima?",
+    question: "Faoliyat nazariyasining asoschisi kim hisoblanadi?",
     options: [
-      "O'quv jarayonini takomillashtirish",
-      "O'quvchilarni sinovdan o'tkazish",
-      "Ta'lim sohasida yangiliklar yaratish",
-      "O'qituvchilarni ishga joylashtirish"
+      "L.S. Vigotskiy",
+      "A.N. Leontev",
+      "D.B. Elkonin",
+      "L.F. Obuxova"
     ],
-    correctAnswer: "O'quv jarayonini takomillashtirish"
+    correctAnswer: "A.N. Leontev"
   },
   {
-    question: "Haqiqiy ta'lim texnologiyalarining asosiy afzalliklaridan biri nima?",
+    question: "Faoliyat nazariyasi qaysi prinsipga tayanadi?",
     options: [
-      "O'quv jarayonining samaradorligini oshirish",
-      "Faoliyatni avtomatlashtirish",
-      "Faqat testlardan foydalanishga o'rgatish",
-      "Ishlash vaqtini kamaytirish"
+      "Ong va faoliyat birligi prinsipi",
+      "Deterministik prinsip",
+      "Tarixiylik prinsipi",
+      "Bag'rikenglik prinsipi"
     ],
-    correctAnswer: "O'quv jarayonining samaradorligini oshirish"
+    correctAnswer: "Ong va faoliyat birligi prinsipi"
   },
   {
-    question: "Innovatsion ta'lim texnologiyalarini qo'llashda qanday asosiy metodlardan foydalaniladi?",
+    question: "Faoliyat — bu...",
     options: [
-      "Interaktiv va multimedia metodlari",
-      "Vaqtni qisqartirish metodlari",
-      "Tekshirish va tahlil metodlari",
-      "Yozma va og'zaki metodlar"
+      "Ongli, maqsadga yo'naltirilgan faol jarayon",
+      "Tarixiy jarayon",
+      "Maqsadni amalga oshirish kuchi",
+      "Fiziologik hodisa"
     ],
-    correctAnswer: "Interaktiv va multimedia metodlari"
+    correctAnswer: "Ongli, maqsadga yo'naltirilgan faol jarayon"
   },
   {
-    question: "Masofaviy ta'limda asosiy vosita nima?",
+    question: "Ehtiyoj deganda nimani tushunamiz?",
     options: [
-      "Kompyuterlar va internet",
-      "Kitoblar",
-      "O'quvchilarni bir joyga to'plash",
-      "Mobil telefonlar"
+      "Shaxsning hayoti va rivojlanishi uchun zarur narsalarga ehtiyoj sezish holati",
+      "Fiziologik jarayon",
+      "Insondan tashqaridagi hodisa",
+      "Psixologik holat"
     ],
-    correctAnswer: "Kompyuterlar va internet"
+    correctAnswer: "Shaxsning hayoti va rivojlanishi uchun zarur narsalarga ehtiyoj sezish holati"
   },
   {
-    question: "Innovatsion ta'lim texnologiyalarining qayta aloqa tizimi nima?",
+    question: "Motiv nima?",
     options: [
-      "O'quv jarayonining natijalarini tahlil qilish",
-      "O'quvchilarning xatolarini belgilash",
-      "Baholash tizimi",
-      "O'quvchilarni rag'batlantirish usuli"
+      "Insonni faoliyatga undovchi ichki sabab",
+      "Psixologik holat",
+      "Sub'yektning tashqi olam bilan o'zaro ta'siri",
+      "Insondan tashqaridagi hodisa"
     ],
-    correctAnswer: "O'quv jarayonining natijalarini tahlil qilish"
+    correctAnswer: "Insonni faoliyatga undovchi ichki sabab"
   },
   {
-    question: "Blended learning (aralash ta'lim) nima?",
+    question: "Yetakchi faoliyat deganda nima tushuniladi?",
     options: [
-      "Faqat masofaviy ta'lim",
-      "An'anaviy ta'lim va masofaviy ta'limning kombinatsiyasi",
-      "Faqat amaliy mashg'ulotlar",
-      "Faqat nazariy bilimlar"
+      "Bolada asosiy psixologik o'zgarishlarni yuzaga keltiruvchi faoliyat",
+      "Bolaga xos faoliyat",
+      "Taraqqiyotning ma'lum bosqichida ustun bo'ladigan faoliyat turi",
+      "Psixologik hodisa"
     ],
-    correctAnswer: "An'anaviy ta'lim va masofaviy ta'limning kombinatsiyasi"
+    correctAnswer: "Taraqqiyotning ma'lum bosqichida ustun bo'ladigan faoliyat turi"
   },
   {
-    question: "Innovatsion ta'lim texnologiyalarini rivojlantirishda qaysi omil muhim?",
+    question: "Idrokning qaysi jihati uning tartibli tuzilishini bildiradi?",
     options: [
-      "O'qituvchilarning kasbiy tayyorgarligi",
-      "O'quvchilar soni",
-      "Maktab binosi kattaligi",
-      "O'quv dasturi doimiy o'zgarishi"
+      "Yaxlitligi",
+      "Konstantligi",
+      "Anglanganligi",
+      "Predmetilligi"
     ],
-    correctAnswer: "O'qituvchilarning kasbiy tayyorgarligi"
+    correctAnswer: "Yaxlitligi"
   },
   {
-    question: "Ta'lim jarayonida virtual reallik (VR) qanday imkoniyatlar beradi?",
+    question: "Sotsiometriya metodini kim ilgari surgan?",
     options: [
-      "Faqat yozishni o'rgatish",
-      "Amaliy tajribalarni xavfsiz muhitda amalga oshirish",
-      "O'quvchilarni uyda qoldirish",
-      "Faqat nazariy bilim berish"
+      "A. Petrovskiy",
+      "D. Moreno",
+      "I. Sechenov",
+      "G. Ayzenk"
     ],
-    correctAnswer: "Amaliy tajribalarni xavfsiz muhitda amalga oshirish"
+    correctAnswer: "D. Moreno"
   },
   {
-    question: "Innovatsion ta'limda foydalaniladigan eng muhim vositalardan biri?",
+    question: "Ikki xil signal sistemasi haqidagi ta'limotni kim yaratgan?",
     options: [
-      "Ovozli diktofonlar",
-      "Multimedia proyektorlari va interaktiv doskalar",
-      "Qalam va daftar",
-      "Faqat kitoblar"
+      "P.K. Anoxin",
+      "I.M. Sechenov",
+      "I.P. Pavlov",
+      "A. Rorshax"
     ],
-    correctAnswer: "Multimedia proyektorlari va interaktiv doskalar"
+    correctAnswer: "I.P. Pavlov"
   },
   {
-    question: "Gamifikatsiya (o'yinlashtirish) ta'limda nimani nazarda tutadi?",
+    question: "'Jon olovli atomlardan tashkil topgan' degan qarash kimga tegishli?",
     options: [
-      "O'quv jarayoniga o'yin elementlarini kiritish",
-      "Faqat kompyuter o'yinlari o'ynash",
-      "O'quvchilarni jazolash",
-      "Faqat nazorat qilish"
+      "Arastu",
+      "Geraklit",
+      "Dekart",
+      "Demokrit"
     ],
-    correctAnswer: "O'quv jarayoniga o'yin elementlarini kiritish"
+    correctAnswer: "Demokrit"
   },
   {
-    question: "Innovatsion ta'lim texnologiyalarining asosiy turlari qaysilar?",
+    question: "'Animizm' so'zining ma'nosi nima?",
     options: [
-      "Axborot-kommunikatsiya texnologiyalari (AKT), Blended learning, VR/AR, Gamifikatsiya",
-      "Faqat kitob va doska",
-      "Faqat yozma va og'zaki darslar",
-      "Faqat jismoniy mashg'ulotlar"
+      "Anima – olov",
+      "Anima – taqdir",
+      "Anima – jon, ruh",
+      "Anima – fikr"
     ],
-    correctAnswer: "Axborot-kommunikatsiya texnologiyalari (AKT), Blended learning, VR/AR, Gamifikatsiya"
+    correctAnswer: "Anima – jon, ruh"
   },
   {
-    question: "AKT (Axborot-kommunikatsiya texnologiyalari) nima?",
+    question: "Psixologiya fani taxminan nechta sohani o'z ichiga oladi?",
     options: [
-      "Faqat telefonlar",
-      "Axborotni yig'ish, qayta ishlash, saqlash va uzatish uchun ishlatiladigan vositalar va usullar",
-      "Faqat qog'oz ishlar",
-      "Faqat sport anjomlari"
+      "250",
+      "360",
+      "160",
+      "300 dan ortıq"
     ],
-    correctAnswer: "Axborotni yig'ish, qayta ishlash, saqlash va uzatish uchun ishlatiladigan vositalar va usullar"
+    correctAnswer: "300 dan ortıq"
   },
   {
-    question: "Innovatsion ta'lim texnologiyalarini rivojlantirishdagi asosiy muammo?",
+    question: "Psixologiya fanining vujudga kelganiga taxminan qancha vaqt bo'lgan?",
     options: [
-      "O'quvchilarning faolsizligi",
-      "Texnik infratuzilmaning yetishmasligi va o'qituvchilarni tayyorlashning murakkabligi",
-      "O'quv dasturining osonligi",
-      "Faqat baholash tizimi"
+      "2500 yıl atrofida",
+      "3500 yıl",
+      "1000 yıl",
+      "1500 yıl"
     ],
-    correctAnswer: "Texnik infratuzilmaning yetishmasligi va o'qituvchilarni tayyorlashning murakkabligi"
+    correctAnswer: "2500 yıl atrofida"
   },
   {
-    question: "Ta'limda o'qituvchining innovatsion roli nima?",
+    question: "Psixologiyada mukammal darsliklar yozila boshlanganiga qancha vaqt o'tgan?",
     options: [
-      "Faqat ma'ruza o'qish",
-      "O'quv jarayonini tashkil etuvchi, yo'naltiruvchi (fasilitator) va maslahatchi",
-      "Faqat jazolash",
-      "Faqat baho qo'yish"
+      "160 yıldan oshgan",
+      "120 yılcha",
+      "100 yıl",
+      "50 yıldan ortıq"
     ],
-    correctAnswer: "O'quv jarayonini tashkil etuvchi, yo'naltiruvchi (fasilitator) va maslahatchi"
+    correctAnswer: "160 yıldan oshgan"
   },
   {
-    question: "Ta'limda mobil ilovalardan foydalanishning afzalligi?",
+    question: "Psixologiya fanining asoschisi kim sanaladi?",
     options: [
-      "Faqat uyda qolish",
-      "O'rganishda erkinlik, moslashuvchanlik va istalgan joyda bilim olish imkoniyati",
-      "Faqat darslikni o'qish",
-      "Faqat yozma ishlar"
+      "Platon",
+      "Arastu",
+      "Gerodot",
+      "Geraklit"
     ],
-    correctAnswer: "O'rganishda erkinlik, moslashuvchanlik va istalgan joyda bilim olish imkoniyati"
+    correctAnswer: "Arastu"
   },
   {
-    question: "Innovatsion ta'limda 'loyihaviy usul' (project method) nima?",
+    question: "Psixik faktlar tarkibidagi bilish jarayonlari qaysi qatorda berilgan?",
     options: [
-      "Faqat yozma ish",
-      "O'quvchilarni muammoni mustaqil hal qilishga va amaliy natija olishga yo'naltiradigan metod",
-      "Faqat ma'ruza",
-      "Faqat test"
-    ],
-    correctAnswer: "O'quvchilarni muammoni mustaqil hal qilishga va amaliy natija olishga yo'naltiradigan metod"
-  },
-  {
-    question: "Web 2.0 texnologiyalari ta'limda qanday ahamiyatga ega?",
-    options: [
-      "Faqat ma'lumot olish",
-      "O'quvchilar o'rtasida hamkorlik, fikr almashish va kontent yaratish imkoniyati (bloglar, vikilar, ijtimoiy tarmoqlar)",
-      "Faqat darslik o'qish",
-      "Faqat eshitish"
-    ],
-    correctAnswer: "O'quvchilar o'rtasida hamkorlik, fikr almashish va kontent yaratish imkoniyati (bloglar, vikilar, ijtimoiy tarmoqlar)"
-  },
-  {
-    question: "AKT yordamida o'quvchilarning mustaqil ishlashini tashkil etishda nimalardan foydalaniladi?",
-    options: [
-      "Faqat qora doska",
-      "Elektron kutubxonalar, onlayn kurslar (MOOC), virtual laboratoriyalar",
-      "Faqat darslik",
-      "Faqat yozma ish"
-    ],
-    correctAnswer: "Elektron kutubxonalar, onlayn kurslar (MOOC), virtual laboratoriyalar"
-  },
-  {
-    question: "Ta'lim sifatini oshirishda innovatsion texnologiyalar qanday yordam beradi?",
-    options: [
-      "Faqat o'qituvchiga yordam berish",
-      "Shaxsiylashtirilgan o'quv traektoriyasini yaratish va o'quv materiallarini vizuallashtirish",
-      "Faqat vaqtni kamaytirish",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "Shaxsiylashtirilgan o'quv traektoriyasini yaratish va o'quv materiallarini vizuallashtirish"
-  },
-  {
-    question: "Innovatsion ta'limda 'Keys-stadi' (vaziyatli tahlil) usuli nima?",
-    options: [
-      "Faqat ma'ruza",
-      "Haqiqiy yoki xayoliy muammoli vaziyatni tahlil qilib, yechim topishga qaratilgan amaliy metod",
-      "Faqat test",
-      "Faqat yodlash"
-    ],
-    correctAnswer: "Haqiqiy yoki xayoliy muammoli vaziyatni tahlil qilib, yechim topishga qaratilgan amaliy metod"
-  },
-  {
-    question: "AKT vositalari ta'limda nimani rivojlantiradi?",
-    options: [
-      "Faqat yozish qobiliyatini",
-      "Axborotni izlash, tanqidiy fikrlash, tahlil qilish va kommunikatsiya ko'nikmalarini",
-      "Faqat yugurish qobiliyatini",
-      "Faqat jismoniy kuchni"
-    ],
-    correctAnswer: "Axborotni izlash, tanqidiy fikrlash, tahlil qilish va kommunikatsiya ko'nikmalarini"
-  },
-  {
-    question: "Innovatsion texnologiyalarni qo'llashda o'qituvchidan talab qilinadigan asosiy kompetensiya?",
-    options: [
-      "Faqat ma'ruza qilish",
-      "Axborot savodxonligi, media kompetensiya, texnologik va didaktik kompetensiyalar",
-      "Faqat sport bilan shug'ullanish",
-      "Faqat uyda o'tirish"
-    ],
-    correctAnswer: "Axborot savodxonligi, media kompetensiya, texnologik va didaktik kompetensiyalar"
-  },
-  {
-    question: "Ta'limda 'Flipped Classroom' (o'girilgan sinf) modeli nimani anglatadi?",
-    options: [
-      "Faqat uy vazifasi berish",
-      "Nazariyani uyda mustaqil o'rganish, sinfda esa amaliyot va muammolarni muhokama qilish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test ishlash"
-    ],
-    correctAnswer: "Nazariyani uyda mustaqil o'rganish, sinfda esa amaliyot va muammolarni muhokama qilish"
-  },
-  {
-    question: "AR (Augmented Reality - to'ldirilgan reallik) ta'limda qanday qo'llaniladi?",
-    options: [
-      "Faqat kompyuter o'yinlari",
-      "Real muhitga virtual ob'ektlar, ma'lumotlar va animatsiyalarni qo'shish (masalan, telefon kamerasi orqali)",
-      "Faqat yozish",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "Real muhitga virtual ob'ektlar, ma'lumotlar va animatsiyalarni qo'shish (masalan, telefon kamerasi orqali)"
-  },
-  {
-    question: "Innovatsion ta'limning pedagogik maqsadi nima?",
-    options: [
-      "Faqat baho qo'yish",
-      "O'quvchilarning kreativlik, mustaqil fikrlash va ijtimoiy ko'nikmalarini rivojlantirish",
-      "Faqat darslikni yodlash",
-      "Faqat nazorat"
-    ],
-    correctAnswer: "O'quvchilarning kreativlik, mustaqil fikrlash va ijtimoiy ko'nikmalarini rivojlantirish"
-  },
-  {
-    question: "Elektron darsliklarning afzalligi nima?",
-    options: [
-      "Faqat qimmatligi",
-      "Interaktivlik, yangilanish imkoniyati, multimedia materiallari bilan boyitilganligi",
-      "Faqat og'irligi",
-      "Faqat yozma matn"
-    ],
-    correctAnswer: "Interaktivlik, yangilanish imkoniyati, multimedia materiallari bilan boyitilganligi"
-  },
-  {
-    question: "Masofaviy ta'limning asosiy talabi?",
-    options: [
-      "Faqat sinfda o'tirish",
-      "O'quvchidan yuqori darajadagi o'z-o'zini boshqarish va motivatsiya talab etilishi",
-      "Faqat yozma imtihon",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "O'quvchidan yuqori darajadagi o'z-o'zini boshqarish va motivatsiya talab etilishi"
-  },
-  {
-    question: "Ta'limdagi innovatsion yondashuv nimani o'zgartiradi?",
-    options: [
-      "Faqat o'qituvchini",
-      "O'qitish metodlari, o'quv materiallari mazmuni va ta'lim muhitini",
-      "Faqat maktab binosini",
-      "Faqat o'quvchilar sonini"
-    ],
-    correctAnswer: "O'qitish metodlari, o'quv materiallari mazmuni va ta'lim muhitini"
-  },
-  {
-    question: "Innovatsion ta'limda simulyatsiya (o'xshatish) nima uchun kerak?",
-    options: [
-      "Faqat dam olish",
-      "Murakkab jarayonlarni, operatsiyalarni va amaliy ko'nikmalarni xavfsiz o'rganish uchun",
-      "Faqat yozish",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "Murakkab jarayonlarni, operatsiyalarni va amaliy ko'nikmalarni xavfsiz o'rganish uchun"
-  },
-  {
-    question: "Ta'limda 'Mantiqiy yondashuv' deganda nimani tushunasiz?",
-    options: [
-      "Faqat yodlash",
-      "Axborotni mantiqiy, tizimli ravishda tahlil qilish va xulosa chiqarishga o'rgatish",
-      "Faqat o'ynash",
-      "Faqat harakat"
-    ],
-    correctAnswer: "Axborotni mantiqiy, tizimli ravishda tahlil qilish va xulosa chiqarishga o'rgatish"
-  },
-  {
-    question: "O'qitish jarayonida 'Brainstorming' (aqliy hujum) usuli nimani rivojlantiradi?",
-    options: [
-      "Faqat jismoniy kuchni",
-      "Kreativlikni, muammo yechish qobiliyatini va guruhda ishlashni",
-      "Faqat yozishni",
-      "Faqat yodlashni"
-    ],
-    correctAnswer: "Kreativlikni, muammo yechish qobiliyatini va guruhda ishlashni"
-  },
-  {
-    question: "AKT yordamida **Differensiallashtirilgan yondashuv** qanday amalga oshiriladi?",
-    options: [
-      "Faqat bir xil dars berish",
-      "Har bir o'quvchiga uning bilim darajasi va ehtiyojiga mos materiallar va topshiriqlar berish",
-      "Faqat test ishlash",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "Har bir o'quvchiga uning bilim darajasi va ehtiyojiga mos materiallar va topshiriqlar berish"
-  },
-  {
-    question: "O'quv jarayonida **Kollaborativ filtratsiya** nima?",
-    options: [
-      "Faqat o'qituvchi tanlovi",
-      "O'quvchilarning avvalgi tanlovlari asosida ularga mos keladigan yangi materiallarni taklif qilish",
-      "Faqat tasodifiy tanlash",
-      "Faqat kitob o'qish"
-    ],
-    correctAnswer: "O'quvchilarning avvalgi tanlovlari asosida ularga mos keladigan yangi materiallarni taklif qilish"
-  },
-  {
-    question: "Zamonaviy ta'limdagi **Intellektual Agentlar (AI)** qanday yordam beradi?",
-    options: [
-      "Faqat jazolash",
-      "O'quvchilarning savollariga javob berish, avtomatik baholash va individual yordam berish",
-      "Faqat ma'ruza",
-      "Faqat yozish"
-    ],
-    correctAnswer: "O'quvchilarning savollariga javob berish, avtomatik baholash va individual yordam berish"
-  },
-  {
-    question: "**Kritik fikrlash (Critical Thinking)** ta'limda nima uchun muhim?",
-    options: [
-      "Faqat yodlash uchun",
-      "Axborotni baholash, xulosalarni mantiqan asoslash va muammolarni samarali yechish qobiliyatini shakllantirish",
-      "Faqat eshitish uchun",
-      "Faqat ko'rish uchun"
-    ],
-    correctAnswer: "Axborotni baholash, xulosalarni mantiqan asoslash va muammolarni samarali yechish qobiliyatini shakllantirish"
-  },
-  {
-    question: "Innovatsion ta'limning asosiy **vazifasi** nima?",
-    options: [
-      "Faqat darslik yaratish",
-      "O'quvchilarning shaxsiy va professional rivojlanishi uchun zarur bo'lgan kompetensiyalarni shakllantirish",
-      "Faqat vaqtni tejash",
-      "Faqat test ishlash"
-    ],
-    correctAnswer: "O'quvchilarning shaxsiy va professional rivojlanishi uchun zarur bo'lgan kompetensiyalarni shakllantirish"
-  },
-  {
-    question: "Ta'limda **Portfolio usuli** qanday baholash turi?",
-    options: [
-      "Faqat yozma imtihon",
-      "O'quvchining uzoq muddat davomidagi ish namunalari, yutuqlari va o'sishini aks ettiruvchi to'plam orqali baholash",
-      "Faqat test",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "O'quvchining uzoq muddat davomidagi ish namunalari, yutuqlari va o'sishini aks ettiruvchi to'plam orqali baholash"
-  },
-  {
-    question: "Innovatsion ta'lim texnologiyalarida **Axborot xavfsizligi** masalasi nima uchun muhim?",
-    options: [
-      "Faqat kompyuterni himoyalash",
-      "O'quvchilarning shaxsiy ma'lumotlari, o'quv materiallari va tizimga ruxsatsiz kirishdan himoyalash",
-      "Faqat elektr energiyasini tejash",
-      "Faqat yozish"
-    ],
-    correctAnswer: "O'quvchilarning shaxsiy ma'lumotlari, o'quv materiallari va tizimga ruxsatsiz kirishdan himoyalash"
-  },
-  {
-    question: "**Kollaborativ (hamkorlikdagi) o'rganish** nimani anglatadi?",
-    options: [
-      "Faqat individual ish",
-      "O'quvchilarning kichik guruhlarda birgalikda ishlash, fikr almashish va umumiy maqsadga erishish",
-      "Faqat o'qituvchi bilan ishlash",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "O'quvchilarning kichik guruhlarda birgalikda ishlash, fikr almashish va umumiy maqsadga erishish"
-  },
-  {
-    question: "Ta'limda **Onlayn forumlar va chatlar**ning asosiy funksiyasi nima?",
-    options: [
-      "Faqat dam olish",
-      "O'quv materiallarini muhokama qilish, savollar berish va doimiy qayta aloqani ta'minlash",
-      "Faqat rasm chizish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "O'quv materiallarini muhokama qilish, savollar berish va doimiy qayta aloqani ta'minlash"
-  },
-  {
-    question: "Ta'limda **Modellashtirish usuli** nima?",
-    options: [
-      "Faqat darslik o'qish",
-      "O'rganilayotgan obyekt yoki jarayonning soddalashtirilgan modelini yaratish va uni tadqiq qilish",
-      "Faqat ma'ruza",
-      "Faqat test"
-    ],
-    correctAnswer: "O'rganilayotgan obyekt yoki jarayonning soddalashtirilgan modelini yaratish va uni tadqiq qilish"
-  },
-  {
-    question: "Innovatsion texnologiyalarning **didaktik** funksiyasi nima?",
-    options: [
-      "Faqat baho qo'yish",
-      "O'quv materiallarini taqdim etish, bilim va ko'nikmalarni shakllantirish, nazorat qilish",
-      "Faqat tarbiya berish",
-      "Faqat dam olish"
-    ],
-    correctAnswer: "O'quv materiallarini taqdim etish, bilim va ko'nikmalarni shakllantirish, nazorat qilish"
-  },
-  {
-    question: "Innovatsion ta'limda **O'z-o'zini baholash (Self-assessment)** qanday o'rin tutadi?",
-    options: [
-      "Faqat jazolash",
-      "O'quvchining o'z o'rganish jarayoni va natijalarini mustaqil tahlil qilib, xulosalar chiqarishi",
-      "Faqat o'qituvchini baholash",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "O'quvchining o'z o'rganish jarayoni va natijalarini mustaqil tahlil qilib, xulosalar chiqarishi"
-  },
-  {
-    question: "**Interfaol usullar**ning asosiy afzalligi?",
-    options: [
-      "Faqat yodlash",
-      "O'quvchilarni faol ishtirok etishga, muloqotga va muammoli vaziyatlarni hal qilishga undash",
-      "Faqat eshitish",
-      "Faqat ko'rish"
-    ],
-    correctAnswer: "O'quvchilarni faol ishtirok etishga, muloqotga va muammoli vaziyatlarni hal qilishga undash"
-  },
-  {
-    question: "Ta'limda **Mobil texnologiyalar**dan foydalanishning **salbiy tomoni** nima?",
-    options: [
-      "Faqat qulayligi",
-      "Diqqatni chalg'itish, texnik nosozliklar va axborot xavfsizligi xavfi",
-      "Faqat arzonligi",
-      "Faqat tezligi"
-    ],
-    correctAnswer: "Diqqatni chalg'itish, texnik nosozliklar va axborot xavfsizligi xavfi"
-  },
-  {
-    question: "Innovatsion ta'lim texnologiyalarini joriy etishda **asosiy qadam** nima?",
-    options: [
-      "Faqat bino qurish",
-      "O'qituvchilarni ushbu texnologiyalardan foydalanishga o'qitish va ularning kasbiy mahoratini oshirish",
-      "Faqat darslik sotib olish",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "O'qituvchilarni ushbu texnologiyalardan foydalanishga o'qitish va ularning kasbiy mahoratini oshirish"
-  },
-  {
-    question: "**Psixika** deganda nimani tushunasiz?",
-    options: [
-      "Faqat tana harakatlari",
-      "Miyaning olamni aks ettiruvchi, borliqqa nisbatan faol munosabatini ifodalovchi xususiyati",
-      "Faqat xotira",
-      "Faqat tashqi muhit"
-    ],
-    correctAnswer: "Miyaning olamni aks ettiruvchi, borliqqa nisbatan faol munosabatini ifodalovchi xususiyati"
-  },
-  {
-    question: "Psixologiya fanining **asosiy predmeti** nima?",
-    options: [
-      "Faqat insonning tanasi",
-      "Inson va hayvonlarning psixikasi, psixik faoliyatining qonuniyatlari",
-      "Faqat darsliklar",
-      "Faqat tabiiy hodisalar"
-    ],
-    correctAnswer: "Inson va hayvonlarning psixikasi, psixik faoliyatining qonuniyatlari"
-  },
-  {
-    question: "Psixik hodisalar tarkibiga kiruvchi **shaxsning individual ruhiy xususiyatlari** qaysi qatorda ko�rsatilgan?",
-    options: [
-      "Sezgi, idrok, xotira, tafakkur",
-      "Temperament, xarakter, qobiliyat",
+      "Sezgi, idrok, xotira, tafakkur va xayol",
       "Hissiyot, iroda",
+      "Temperament, xarakter, qobiliyat",
+      "Diqqat, nutq, faoliyat"
+    ],
+    correctAnswer: "Sezgi, idrok, xotira, tafakkur va xayol"
+  },
+  {
+    question: "Inson miyasining o'rtacha og'irligi qaysi jawobda to'g'ri ko'rsatilgan?",
+    options: [
+      "2110–2000 g",
+      "1150–1650 g",
+      "1350–1550 g",
+      "1350–1400 g"
+    ],
+    correctAnswer: "1350–1400 g"
+  },
+  {
+    question: "Ikki yoki undan ortiq inson o'rtasida axborot almashish, ta'sir va o'zaro tushunishni ifodalovchi jarayon bu...",
+    options: [
+      "Afaziya",
+      "Muloqot",
+      "Refleksiya",
+      "Stereotiplashtirish"
+    ],
+    correctAnswer: "Muloqot"
+  },
+  {
+    question: "Psixik faktlar tarkibidagi bilish jarayonlari to'g'ri ko'rsatilgan qatorni toping",
+    options: [
+      "Sezgi, idrok, xotira, tafakkur, xayol, diqqat, nutq, faoliyat",
+      "Hissiyot, iroda",
+      "Temperament, xarakter, qobiliyat",
+      "Diqqat, nutq, faoliyat"
+    ],
+    correctAnswer: "Sezgi, idrok, xotira, tafakkur, xayol, diqqat, nutq, faoliyat"
+  },
+  {
+    question: "Hayvonlarning tug'ma tarzda ehtiyojlarini qondirish uchun bajaradigan murakkab harakatlari nima deb ataladi?",
+    options: [
+      "Seskanuvchanlik",
+      "Perseptiv harakat",
+      "Tropizm",
+      "Instinkt"
+    ],
+    correctAnswer: "Instinkt"
+  },
+  {
+    question: "Psixologiya fani nimanı o'rganadi?",
+    options: [
+      "Idrok shakilarini o'rganadi",
+      "Jon va ruh haqidagi ta'limot",
+      "Ruhiy jarayonlar, bilish faoliyati hamda individual psixologik belgilarni",
+      "Psixik hodisalar, ularning mexanizmlari va qonuniyatlarini o'rganuvchi fan"
+    ],
+    correctAnswer: "Psixik hodisalar, ularning mexanizmlari va qonuniyatlarini o'rganuvchi fan"
+  },
+  {
+    question: "Psixologiya fanining fanlar tizimidagi o'rni qayerda ko'rsatilgan?",
+    options: [
+      "Tabiiy fanlar guruhida",
+      "Gumanitar fanlar tarkibida",
+      "Falsafiy fanlar tarkibida",
+      "Aniq fanlar qatorida"
+    ],
+    correctAnswer: "Tabiiy fanlar guruhida"
+  },
+  {
+    question: "Qaysi qatorda 'faoliyat' tushunchasiga to'liq ta'rif berilgan?",
+    options: [
+      "Bajarilishi odatga aylangan harakat yoki xulq-atvorning bir qismi",
+      "Mashq qilish orqali malaka hasil qilish jarayoni",
+      "Har qanday tirik mavjudotning o'z ehtiyojini qondirishga yo'naltirilgan faolligi",
+      "Shaxsning ehtiyojlarini bajarish uchun amalga oshiradigan jismoniy va ruhiy faolligi"
+    ],
+    correctAnswer: "Shaxsning ehtiyojlarini bajarish uchun amalga oshiradigan jismoniy va ruhiy faolligi"
+  },
+  {
+    question: "Kishini faoliyatga undaydigan va unga ma'no beradigan ichki kuch bu — ………..",
+    options: [
+      "Odat",
+      "Motiv",
+      "Ish-harakat",
+      "Maqsad"
+    ],
+    correctAnswer: "Motiv"
+  },
+  {
+    question: "……… deb oldindan belgilangan maqsad asosida diqqatni muayyan narsa yoki hodisaga ongli ravishda qaratish jarayoniga aytiladi",
+    options: [
+      "Ixtiyoriy diqqat",
+      "Ixtiyorsiz diqqat",
+      "Ixtiyoriydan keyingi diqqat",
+      "Bo'linuvchan diqqat"
+    ],
+    correctAnswer: "Ixtiyoriy diqqat"
+  },
+  {
+    question: "……… bajarilishi ehtiyojga aylangan, avtomatik tarzda kechuvchi xatti-harakat",
+    options: [
+      "Odat",
+      "Motiv",
+      "Ish-harakat",
+      "Maqsad"
+    ],
+    correctAnswer: "Odat"
+  },
+  {
+    question: "Psixik faktlar tarkibidagi shaxsning hissiy va irodaviy sohasi qaysi qatorda berilgan?",
+    options: [
+      "Sezgi, idrok, xotira, tafakkur va xayol, diqqat, nutq, faoliyat",
+      "Hissiyot, iroda",
+      "Temperament, xarakter, qobiliyat",
+      "Diqqat, nutq, faoliyat"
+    ],
+    correctAnswer: "Hissiyot, iroda"
+  },
+  {
+    question: "……… deb insonning diqqatini biror narsa yoki hodisaga uzoq vaqt davomida barqaror saqlay olishiga aytiladi",
+    options: [
+      "Diqqat hajmi",
+      "Diqqatning bo'linuvchanligi",
+      "Diqqatning kontsentratsiyasi",
+      "Diqqatning kuchi va barqarorligi"
+    ],
+    correctAnswer: "Diqqatning kuchi va barqarorligi"
+  },
+  {
+    question: "Qaysi qatorda shaxsning o'ziga bo'lgan munosabatini aks ettiruvchi sifatlar berilgan?",
+    options: [
+      "Yaxshilik, mehribonlik, talabchanlik, takabburlik",
+      "Mehnatsevarlik, yalqovlik, vijdonlilik, mas'uliyatlilik yoki mas'uliyatsizlik",
+      "Ozodalik yoki ifloslik, narsalarga e'tiborli yoki beparvo bo'lish",
+      "Izzat-nafs, shuhratparastlik, mag'rurlik, kamtarlik"
+    ],
+    correctAnswer: "Izzat-nafs, shuhratparastlik, mag'rurlik, kamtarlik"
+  },
+  {
+    question: "Psixik faktlar tarkibidagi shaxsning individual ruhiy xususiyatlari qaysi qatorda berilgan?",
+    options: [
+      "Sezgi, idrok, xotira, tafakkur, xayol, diqqat, nutq, faoliyat",
+      "Hissiyot, iroda",
+      "Temperament, xarakter, qobiliyat",
       "Diqqat, nutq, faoliyat"
     ],
     correctAnswer: "Temperament, xarakter, qobiliyat"
   },
   {
-    question: "**Diqqatning kontsentratsiyasi** nima?",
+    question: "Kim birinchi bo'lib 'jon va tana ajralmasdir' degan fikrni bildirgan?",
     options: [
-      "Faqat joyni o'zgartirish",
-      "Insonning o�z diqqatini ma�lum obyektga uzoq vaqt davomida barqaror qaratib tura olishi",
-      "Faqat eslab qolish tezligi",
-      "Faqat yozish"
+      "Geraklit",
+      "Demokrit",
+      "Aristotel",
+      "Platon"
     ],
-    correctAnswer: "Insonning o�z diqqatini ma�lum obyektga uzoq vaqt davomida barqaror qaratib tura olishi"
+    correctAnswer: "Demokrit"
   },
   {
-    question: "**Sezgi** qanday psixik jarayon?",
+    question: "'Aql-idrok, jasorat va orzu-istak qismlaridan iborat bo'lib, ular bosh, ko'krak va qorin sohalariga joylashgan' degan fikr muallifi kim?",
     options: [
-      "Faqat fikrlash",
-      "Tashqi va ichki muhitdagi alohida xususiyatlarning (rang, hid, harorat) bevosita miyada aks etishi",
-      "Faqat xayol",
-      "Faqat harakat"
+      "Aflotun",
+      "Demokrit",
+      "Geraklit",
+      "Arastu"
     ],
-    correctAnswer: "Tashqi va ichki muhitdagi alohida xususiyatlarning (rang, hid, harorat) bevosita miyada aks etishi"
+    correctAnswer: "Aflotun"
   },
   {
-    question: "**Idrok** (Vospriyatiye) nima?",
+    question: "Psixologiya fanining qaysi metodida tadqiqotchi jarayonni boshqarib, o'zgarishlar kiritish orqali natijalarni standart shaklda oladi?",
     options: [
-      "Faqat bir xususiyatni aks ettirish",
-      "Ob�ektlarni (narsalarni) butun holda, uning barcha xususiyatlari majmuida aks ettirish",
-      "Faqat yozish",
-      "Faqat xotira"
+      "Eksperiment",
+      "Kuzatish",
+      "Anketa",
+      "Test"
     ],
-    correctAnswer: "Ob�ektlarni (narsalarni) butun holda, uning barcha xususiyatlari majmuida aks ettirish"
+    correctAnswer: "Eksperiment"
   },
   {
-    question: "**Tafakkur**ning asosiy funksiyasi?",
+    question: "Shaxsning psixologik xususiyatlarini oldindan uzulgan savollar orqali o'rganish qanday metod bilan amalga oshiriladi?",
     options: [
-      "Faqat sezish",
-      "Borliqning shaxsga bevosita berilmagan tomonlarini umumlashtirish va bilvosita (tushuncha, mulohaza, xulosa orqali) aks ettirish",
-      "Faqat ko'rish",
-      "Faqat eslab qolish"
+      "Eksperiment",
+      "Anketa",
+      "Test",
+      "Kuzatish"
     ],
-    correctAnswer: "Borliqning shaxsga bevosita berilmagan tomonlarini umumlashtirish va bilvosita (tushuncha, mulohaza, xulosa orqali) aks ettirish"
+    correctAnswer: "Anketa"
   },
   {
-    question: "**Xotira**ning asosiy jarayonlari qaysilar?",
+    question: "Insonning aqliy rivojlanish darajasini aniqlash uchun qo'llaniladigan testlar qanday ataladi?",
     options: [
-      "Faqat gapirish",
-      "Eslab qolish (saqlash), esda saqlash, esga tushirish (tanib olish va qayta tiklash)",
-      "Faqat harakat",
-      "Faqat ko'rish"
+      "Intellekt testlari",
+      "Shaxs kuzatuv testlari",
+      "Rasmli testlar",
+      "Provektiv testlar"
     ],
-    correctAnswer: "Eslab qolish (saqlash), esda saqlash, esga tushirish (tanib olish va qayta tiklash)"
+    correctAnswer: "Intellekt testlari"
   },
   {
-    question: "**Xayol** (Fantaziya) qanday psixik jarayon?",
+    question: "Psixologiyada test metodini kimlar ishlab chiqqan?",
     options: [
-      "Faqat yodlash",
-      "Yangi obrazlar, tasavvurlar va g'oyalarni yaratishga qaratilgan aqliy jarayon",
-      "Faqat jazolash",
-      "Faqat tana harakati"
+      "V. Shtern",
+      "A. Bine va A. Simon",
+      "A.N. Gvozdev, V. Shtern",
+      "I.A. Menchinskaya"
     ],
-    correctAnswer: "Yangi obrazlar, tasavvurlar va g'oyalarni yaratishga qaratilgan aqliy jarayon"
+    correctAnswer: "A. Bine va A. Simon"
   },
   {
-    question: "Tafakkur turlari qaysi qatorda to'g'ri ko'rsatilgan?",
+    question: "Inson psixikasini keng ko'lamli so'rov orqali o'rganish qaysi metodga xos?",
     options: [
-      "Faqat ko'rgazmali",
-      "Ko'rgazmali-harakatli, ko'rgazmali-obrazli, so'z-mantiqiy",
-      "Faqat eslab qolish",
-      "Faqat sezish"
+      "Eksperiment",
+      "Kompleks",
+      "Test",
+      "Anketa"
     ],
-    correctAnswer: "Ko'rgazmali-harakatli, ko'rgazmali-obrazli, so'z-mantiqiy"
+    correctAnswer: "Anketa"
   },
   {
-    question: "**Temperament** nima?",
+    question: "Pedagogik psixologiyada qo'llaniladigan metodlarni tashkiliy, empirik, tahliliy va natijaviy guruhlarga ajratgan olim kim?",
     options: [
-      "Faqat bilim",
-      "Shaxsning psixik faoliyatining dinamik tomonini (tezligi, kuchi, ritmi) belgilovchi tug'ma xususiyati",
-      "Faqat xarakter",
-      "Faqat qobiliyat"
+      "Ananyev B.",
+      "Toshimov R.",
+      "G'oziyev E.",
+      "Z. Freyd"
     ],
-    correctAnswer: "Shaxsning psixik faoliyatining dinamik tomonini (tezligi, kuchi, ritmi) belgilovchi tug'ma xususiyati"
+    correctAnswer: "Ananyev B."
   },
   {
-    question: "Galen bo'yicha **temperamentning asosiy turlari** qaysilar?",
+    question: "Determinizm prinsipi mazmuni nimadan iborat?",
     options: [
-      "Faqat tez va sekin",
-      "Xolerik, Sangvinik, Flegmatik, Melanxolik",
-      "Faqat quvnoq va xafa",
-      "Faqat kuchli va kuchsiz"
+      "Sababiy bog'lanish",
+      "Psixika yashash sharotitga bog'liq bo'lib, sharotit o'zgarsa, u ham o'zgaradi",
+      "Psixika ichki omillar bilan belgilanadi",
+      "Psixika mexanik tarzda sodir bo'ladi"
     ],
-    correctAnswer: "Xolerik, Sangvinik, Flegmatik, Melanxolik"
+    correctAnswer: "Sababiy bog'lanish"
   },
   {
-    question: "**Xarakter** nima?",
+    question: "Sotsiometriya metodini kim yaratgan?",
     options: [
-      "Faqat tug'ma",
-      "Shaxsning ijtimoiy munosabatlarda shakllanadigan, uning xatti-harakatlarida namoyon bo'ladigan barqaror individual xususiyatlari majmui",
-      "Faqat eslab qolish",
-      "Faqat sezish"
+      "Z. Freyd",
+      "I. Pavlov",
+      "J. Moreno",
+      "A. Peron"
     ],
-    correctAnswer: "Shaxsning ijtimoiy munosabatlarda shakllanadigan, uning xatti-harakatlarida namoyon bo'ladigan barqaror individual xususiyatlari majmui"
+    correctAnswer: "J. Moreno"
   },
   {
-    question: "**Qobiliyat** nima?",
+    question: "Psixologiyada qo'llaniladigan asosiy metodlar qaysilar?",
     options: [
-      "Faqat harakat",
-      "Muayyan faoliyatni muvaffaqiyatli bajarish uchun zarur bo'lgan individual-psixologik xususiyatlar",
-      "Faqat xarakter",
-      "Faqat temperament"
+      "Kuzatish, eksperiment, sotsiometriya, test, anketa, suhbat, faoliyat mahsullarini o'rganish",
+      "Kuzatish, matematik tahlil, taxminlar va faktlarni izolhash",
+      "Psixika haqidagi ma'lumotlarni yig'ish",
+      "Odam va hayvon psixikasini o'rganish usullari"
     ],
-    correctAnswer: "Muayyan faoliyatni muvaffaqiyatli bajarish uchun zarur bo'lgan individual-psixologik xususiyatlar"
+    correctAnswer: "Kuzatish, eksperiment, sotsiometriya, test, anketa, suhbat, faoliyat mahsullarini o'rganish"
   },
   {
-    question: "Qobiliyatning eng yuqori darajasi nima?",
+    question: "Psixologik testlar bu —",
     options: [
-      "Ko'nikma",
-      "Iste'dod (Talant) va zakovat (Aql-idrok)",
-      "Malaka",
-      "Xotira"
+      "Inson psixikasining xususiyatlari, qobiliyatlari va rivojlanish darajasini aniqlovchi standart topshiriqlar to'plami",
+      "Shaxsning masala yechish jarayonini kuzatish",
+      "Psixik hodisalarni tahlil qiluvchi usullar majmuasi",
+      "Odam psixikasini o'rganishga old topshiriqlar to'plami"
     ],
-    correctAnswer: "Iste'dod (Talant) va zakovat (Aql-idrok)"
+    correctAnswer: "Inson psixikasining xususiyatlari, qobiliyatlari va rivojlanish darajasini aniqlovchi standart topshiriqlar to'plami"
   },
   {
-    question: "Psixik hodisalar tarkibiga kiruvchi **psixik holatlar** qaysilar?",
+    question: "Qaysi metod orqali sun'iy tushuncha shakllanishi, nutq rivoji, hissiyot, xarakter va shaxs tipologik xususiyatlari o'rganiladi?",
     options: [
-      "Temperament, xarakter",
-      "Eslab qolish, unutish",
-      "Hissiyot, stress, kayfiyat, ishtiyoq (affekt)",
-      "Nutq, faoliyat"
+      "Tajriba (eksperimental) metod",
+      "Suhbat metodi",
+      "Test metodi",
+      "Sotsiometriya metodi"
     ],
-    correctAnswer: "Hissiyot, stress, kayfiyat, ishtiyoq (affekt)"
+    correctAnswer: "Tajriba (eksperimental) metod"
   },
   {
-    question: "**Hissiyot** (Emotsiya) nima?",
+    question: "Psixik jarayonlarni tabiiy yoki maxsus yaratilgan sharotida o'rganishga asoslangan metod qanday nomlanadi?",
     options: [
-      "Faqat fikrlash",
-      "Borliq hodisalariga nisbatan shaxsning subyektiv (ichki) baholovchi munosabatini ifodalovchi psixik jarayon",
-      "Faqat yurish",
-      "Faqat ko'rish"
+      "Eksperiment",
+      "Test",
+      "Longityud",
+      "Anketa"
     ],
-    correctAnswer: "Borliq hodisalariga nisbatan shaxsning subyektiv (ichki) baholovchi munosabatini ifodalovchi psixik jarayon"
+    correctAnswer: "Eksperiment"
   },
   {
-    question: "**Affekt** (Ishtiyoq) qanday hissiy holat?",
+    question: "Refleks nima?",
     options: [
-      "Uzoq davom etadigan, sust kayfiyat",
-      "Qisqa muddatli, kuchli, shiddatli va keskin bo'ladigan hissiy portlash holati",
-      "Faqat xotira",
-      "Faqat fikr"
+      "Organizmning ichki yoki tashqi ta'sirlarga asab tizimi orqali bergan javob reaksiyasi",
+      "Organizmning javob harakati",
+      "Inson psixikasiga xos aks ettirish usuli",
+      "Aks ettirish"
     ],
-    correctAnswer: "Qisqa muddatli, kuchli, shiddatli va keskin bo'ladigan hissiy portlash holati"
+    correctAnswer: "Organizmning ichki yoki tashqi ta'sirlarga asab tizimi orqali bergan javob reaksiyasi"
   },
   {
-    question: "**Iroda** (Volya) nima?",
+    question: "Jon olovga o'xshash zarrachalardan iborat degan qarash kimga tegishli?",
     options: [
-      "Faqat orzu",
-      "Shaxsning o�z xatti-harakatlari, fikrlari va hissiyotlarini ongli ravishda boshqarish qobiliyati",
-      "Faqat tana kuchi",
-      "Faqat temperament"
+      "Epikur",
+      "Demokrit",
+      "Galen",
+      "Geraklit"
     ],
-    correctAnswer: "Shaxsning o�z xatti-harakatlari, fikrlari va hissiyotlarini ongli ravishda boshqarish qobiliyati"
+    correctAnswer: "Demokrit"
   },
   {
-    question: "Irodaviy harakatning asosiy bosqichlari?",
+    question: "Psixologiyaning tadqiqot sohasi inson xulq-atvori bo'lishi lozim, degan g'oya qaysi yo'nalishga mansub?",
     options: [
-      "Faqat harakat",
-      "Maqsadni belgilash, harakat sabablarini kurashishi, qaror qabul qilish, uni amalga oshirish",
-      "Faqat gapirish",
-      "Faqat o'ylash"
+      "Bixeviorizm",
+      "Geshtalt psixologiya",
+      "Freydizm",
+      "Assotsiativ psixologiya"
     ],
-    correctAnswer: "Maqsadni belgilash, harakat sabablarini kurashishi, qaror qabul qilish, uni amalga oshirish"
+    correctAnswer: "Bixeviorizm"
   },
   {
-    question: "O'ziga bo'lgan **munosabatni ifodalovchi sifatlar** qaysi qatorda ko�rsatilgan?",
+    question: "O'quvchini o'rganishda maktub, kundalik, sinf jurnali va tavsifnomalardan foydalanish qaysi metodga kiradi?",
     options: [
-      "Yaxshilik, mehribonlik",
-      "G�ururlilik, shuhratparastlik, mag�rurlik, o�zini ulug�lash, kamtarlik",
-      "Mehnatsevarlik, dangasalik",
-      "Tozalik yoki ifloslik"
+      "Suhbat",
+      "Kuzatish",
+      "Tajriba",
+      "Blografiya"
     ],
-    correctAnswer: "G�ururlilik, shuhratparastlik, mag�rurlik, o�zini ulug�lash, kamtarlik"
+    correctAnswer: "Blografiya"
   },
   {
-    question: "**Interes** (Qiziqish) qanday psixik hodisa?",
+    question: "Hayvonlarda hissiyotning qaysi turi mavjud bo'ladi?",
     options: [
-      "Faqat zerikish",
-      "Shaxsning ma'lum faoliyatga, bilim olishga yo'nalganligi va uning ahamiyatini anglash",
-      "Faqat tashqi muhit",
-      "Faqat ovqatlanish"
+      "Emotsiya",
+      "Stress",
+      "Kayfiyat",
+      "Affekt"
     ],
-    correctAnswer: "Shaxsning ma'lum faoliyatga, bilim olishga yo'nalganligi va uning ahamiyatini anglash"
+    correctAnswer: "Emotsiya"
   },
   {
-    question: "**Ehtiyoj** (Nujda) nima?",
+    question: "O'qitish, metodika, dasturlashtirilgan ta'lim va aqliy harakatlarni shakllantirishning psixologik poydevorini qaysi tarmoq o'rganadi?",
     options: [
-      "Faqat xohish",
-      "Shaxsning yashashi va rivojlanishi uchun zarur bo'lgan narsalar yetishmasligini anglash holati, faoliyatning manbai",
-      "Faqat bilim",
-      "Faqat temperament"
+      "Tarbiya psixologiyasi",
+      "Ta'lim psixologiyasi",
+      "Yosh psixologiyasi",
+      "Mehnat psixologiyasi"
     ],
-    correctAnswer: "Shaxsning yashashi va rivojlanishi uchun zarur bo'lgan narsalar yetishmasligini anglash holati, faoliyatning manbai"
+    correctAnswer: "Ta'lim psixologiyasi"
   },
   {
-    question: "A. Maslou bo'yicha ehtiyojlar piramidasining **eng quyi pog'onasi** nima?",
+    question: "Quyidagi fikrlardan qaysi biri tabiiy eksperiment usuliga tegishli?",
     options: [
-      "Boshqalarni hurmat qilish ehtiyoji",
-      "Fiziologik ehtiyojlar (ovqat, uyqu, nafas olish)",
-      "Xavfsizlik ehtiyoji",
-      "O'zini namoyon qilish ehtiyoji"
+      "Zarur vaziyat maxsus ravishda yaratiladi",
+      "O'rganilishi lozim holat tabiiy ravishda sodir bo'lishi kutuladi",
+      "Tadqiqot faqat laboratoriyada o'tkaziladi",
+      "O'rganish tarixiy manbalarga asoslanadi"
     ],
-    correctAnswer: "Fiziologik ehtiyojlar (ovqat, uyqu, nafas olish)"
+    correctAnswer: "O'rganilishi lozim holat tabiiy ravishda sodir bo'lishi kutuladi"
   },
   {
-    question: "**Shaxs** (Lichnost) nima?",
+    question: "Asalari va chumollilarning murakkab harakatlari qanday nomlanadi?",
     options: [
-      "Faqat tug'ma xususiyatlar",
-      "Ijtimoiy munosabatlar jarayonida shakllangan, o'ziga xos ongga ega bo'lgan subyekt",
-      "Faqat tana",
-      "Faqat miya"
+      "Ko'nikmalar",
+      "Intellektual harakatlar",
+      "Instinktlar",
+      "Mehnat"
     ],
-    correctAnswer: "Ijtimoiy munosabatlar jarayonida shakllangan, o'ziga xos ongga ega bo'lgan subyekt"
+    correctAnswer: "Instinktlar"
   },
   {
-    question: "**Individ** (Individual) tushunchasi nimani anglatadi?",
+    question: "Shisha idishda bo'lgan o'rgimchak och bo'lishiga qaramay, pashshani tutmaydi, baik to'r yasab, unga ilingan pashshani yeydi. Bu holat psixika taraqqiyotining qaysi bosqichiga to'g'ri keladi?",
     options: [
-      "Faqat ijtimoiy xususiyatlar",
-      "Inson turining alohida vakili, uning tug'ma, biologik xususiyatlari majmui",
-      "Faqat xarakter",
-      "Faqat bilim"
+      "Sezgi (sensor)",
+      "Aql (intellekt)",
+      "Idrok (perseptiv)",
+      "Ong"
     ],
-    correctAnswer: "Inson turining alohida vakili, uning tug'ma, biologik xususiyatlari majmui"
+    correctAnswer: "Sezgi (sensor)"
   },
   {
-    question: "**Individual yondashuv** (Psixologiyada) nimani anglatadi?",
+    question: "Inson bosh miyasining o'rtacha og'irligi qancha?",
     options: [
-      "Faqat guruh bilan ishlash",
-      "Ta'lim-tarbiya jarayonida har bir o'quvchining individual-psixologik xususiyatlarini (temperament, xarakter, qobiliyat) hisobga olish",
-      "Faqat bir xil dars berish",
-      "Faqat baho qo'yish"
+      "1400 gr",
+      "1000 gr",
+      "1200 gr",
+      "1100 gr"
     ],
-    correctAnswer: "Ta'lim-tarbiya jarayonida har bir o'quvchining individual-psixologik xususiyatlarini (temperament, xarakter, qobiliyat) hisobga olish"
+    correctAnswer: "1400 gr"
   },
   {
-    question: "**Intellekt** (Aql-idrok) nima?",
+    question: "Bolalarning ruhiy rivojlanish qonuniyatlarini psixologiyaning qaysi yo'nalishi o'rganadi?",
     options: [
-      "Faqat xotira",
-      "Yangi sharoitga moslasha olish, bilim olish, muammolarni yechish va mavhum fikrlash qobiliyati",
-      "Faqat jismoniy kuch",
-      "Faqat temperament"
+      "Mehnat psixologiyasi",
+      "Yosh psixologiyasi",
+      "Ijtimoiy psixologiya",
+      "Pedagogik psixologiya"
     ],
-    correctAnswer: "Yangi sharoitga moslasha olish, bilim olish, muammolarni yechish va mavhum fikrlash qobiliyati"
+    correctAnswer: "Yosh psixologiyasi"
   },
   {
-    question: "Psixologiyada **faoliyat** nima?",
+    question: "Shaxsning bilim darajasini aniqlashda qaysi metod qo'llaniladi?",
     options: [
-      "Faqat yurish",
-      "Shaxsning ehtiyojlarini qondirishga, maqsadga erishishga qaratilgan harakatlari majmui",
-      "Faqat yozish",
-      "Faqat ko'rish"
+      "So'rovnoma",
+      "Test metodi",
+      "Kuzatish",
+      "Intervyu"
     ],
-    correctAnswer: "Shaxsning ehtiyojlarini qondirishga, maqsadga erishishga qaratilgan harakatlari majmui"
+    correctAnswer: "Test metodi"
   },
   {
-    question: "Faoliyatning asosiy turlari qaysilar?",
+    question: "Sinaps nerv hujayrasining qanday qismi hisoblanadi?",
     options: [
-      "Faqat o'ynash",
-      "O'yin, o'qish (o'rganish), mehnat",
-      "Faqat yozish, gapirish",
-      "Faqat ko'rish, eshitish"
+      "Qo'zg'alishni o'tkazuvchi",
+      "Qo'zg'alish o'tishi kerak bo'lgan to'siq",
+      "Nerv hujayrasining bir bo'lagi",
+      "Nerv tolasi"
     ],
-    correctAnswer: "O'yin, o'qish (o'rganish), mehnat"
+    correctAnswer: "Qo'zg'alish o'tishi kerak bo'lgan to'siq"
   },
   {
-    question: "Shaxsning **motivatsiyasi** nima?",
+    question: "Qaysi ehtiyoj uzoq vaqt qondirilmasa, inson nobud bo'ladi yoki avlod qoldirish imkonidan mahrum bo'ladi?",
     options: [
-      "Faqat qoidalar",
-      "Shaxsni faoliyatga undaydigan, uning maqsad va ehtiyojlari bilan bog'liq bo'lgan ichki kuchlar tizimi",
-      "Faqat temperament",
-      "Faqat malaka"
+      "Tabiiy ehtiyoj",
+      "Ma'naviy ehtiyoj",
+      "Moddiy ehtiyoj",
+      "Madaniy ehtiyoj"
     ],
-    correctAnswer: "Shaxsni faoliyatga undaydigan, uning maqsad va ehtiyojlari bilan bog'liq bo'lgan ichki kuchlar tizimi"
+    correctAnswer: "Tabiiy ehtiyoj"
   },
   {
-    question: "**Krizis** (Inqiroz) yosh davrlari psixologiyasida nimani anglatadi?",
+    question: "Quyidagi javoblarning qaysi birida determinizm tamoyilining mazmuni ifodalangan?",
     options: [
-      "Faqat kasallik",
-      "Bolaning psixik rivojlanishida yangi sifat bosqichiga o'tish bilan bog'liq bo'lgan qisqa, keskin o'zgarishlar davri",
-      "Faqat dam olish",
-      "Faqat o'ynash"
+      "Psixika yashash muhitiga bog'liq, muhit o'zgarsa, psixika ham o'zgaradi",
+      "Sababiy aloqadorlik",
+      "Psixika ichki omillarga tayanadi",
+      "Psixika mexanik tarzda namoyon bo'ladi"
     ],
-    correctAnswer: "Bolaning psixik rivojlanishida yangi sifat bosqichiga o'tish bilan bog'liq bo'lgan qisqa, keskin o'zgarishlar davri"
+    correctAnswer: "Sababiy aloqadorlik"
   },
   {
-    question: "**O'smirlik davri** (11-15 yosh) psixologik xususiyatlari?",
+    question: "Ongli va ongsiz harakatlarning kelib chiqishi reflekslarga tayanadi degan fikr kimga tegishli?",
     options: [
-      "Faqat o'yin",
-      "Tana o'zgarishlari, o'zlikni anglashning kuchayishi, yetakchilikka intilish, mustaqillikka ehtiyoj",
-      "Faqat ota-onaga bo'ysunish",
-      "Faqat maktabga borish"
+      "A. Luriya",
+      "I. Sechenov",
+      "N. Bernshteyn",
+      "I. Pavlov"
     ],
-    correctAnswer: "Tana o'zgarishlari, o'zlikni anglashning kuchayishi, yetakchilikka intilish, mustaqillikka ehtiyoj"
+    correctAnswer: "I. Sechenov"
   },
   {
-    question: "Bolaning rivojlanishida **o'yin faoliyati**ning asosiy o'rni nima?",
+    question: "Diqqatning qaysi turi o'quv materialini o'zlashtirishda eng foydali hisoblanadi?",
     options: [
-      "Faqat vaqt o'tkazish",
-      "Ijtimoiy munosabatlarni, muloqotni, irodani va rolli xatti-harakatlarni o'rganish",
-      "Faqat ovqatlanish",
-      "Faqat yozish"
+      "Ixtiyoriydan keyingi",
+      "Ixtiyoriy",
+      "Ixtiyorsiz",
+      "Ichki"
     ],
-    correctAnswer: "Ijtimoiy munosabatlarni, muloqotni, irodani va rolli xatti-harakatlarni o'rganish"
+    correctAnswer: "Ixtiyoriy"
   },
   {
-    question: "**Kommunikatsiya** (Muloqot) nima?",
+    question: "Ongsizlik deganda nimani tushuniladi?",
     options: [
-      "Faqat fikrlash",
-      "Odamlar o'rtasida axborot, tajriba, bilim va hissiyotlarni almashish jarayoni",
-      "Faqat yurish",
-      "Faqat ko'rish"
+      "Hayvonlarga xos aks ettirish shakli",
+      "Inson ruhiy jarayonlari majmui",
+      "O'z xatti-harakatlarini anglay olmaslik",
+      "Psixikaning quyi bosqichi"
     ],
-    correctAnswer: "Odamlar o'rtasida axborot, tajriba, bilim va hissiyotlarni almashish jarayoni"
+    correctAnswer: "Inson ruhiy jarayonlari majmui"
   },
   {
-    question: "Muloqotning **verbal** (og'zaki) vositalariga nimalar kiradi?",
+    question: "Maqsad deganda nimani tushunamiz?",
     options: [
-      "Mimika, jestlar",
-      "Nutq, so'z, ovoz ohangi",
-      "Kiyim, soch turmagi",
-      "Yurish usuli"
+      "Faoliyat yakuniy natijasining miyadagi aksi",
+      "Ehtiyojning qondirilishi",
+      "Ehtiyojning amalga oshirilishi",
+      "Faoliyat tarkibiy bo'lagi"
     ],
-    correctAnswer: "Nutq, so'z, ovoz ohangi"
+    correctAnswer: "Faoliyat yakuniy natijasining miyadagi aksi"
   },
   {
-    question: "Muloqotning **noverbal** (og'zaki bo'lmagan) vositalariga nimalar kiradi?",
+    question: "Faoliyat nazariyasining asoschisi kim?",
     options: [
-      "So'zlar, jumlalar",
-      "Mimika, jestlar, pantomimika, intonatsiya, nigoh",
-      "Ma'ruza",
-      "Kitoblar"
+      "L.S. Vigotskiy",
+      "A.N. Leontyev",
+      "D.B. Elkonin",
+      "L.F. Obuxova"
     ],
-    correctAnswer: "Mimika, jestlar, pantomimika, intonatsiya, nigoh"
+    correctAnswer: "A.N. Leontyev"
   },
   {
-    question: "**Stress** qanday psixik holat?",
+    question: "Faoliyat nazariyasi qaysi tamoyiliga tayanadi?",
     options: [
-      "Faqat dam olish",
-      "Organizmning juda kuchli ta'sirga (xavf, xursandlik, jismoniy zo'riqish) javoban beradigan umumiy javobi (ruhiy va fiziologik keskinlik)",
-      "Faqat o'ynash",
-      "Faqat uxlash"
+      "Ong va faoliyat birligi tamoyili",
+      "Determinizm tamoyili",
+      "Tarixiylik tamoyili",
+      "Bag'rikenglik tamoyili"
     ],
-    correctAnswer: "Organizmning juda kuchli ta'sirga (xavf, xursandlik, jismoniy zo'riqish) javoban beradigan umumiy javobi (ruhiy va fiziologik keskinlik)"
+    correctAnswer: "Ong va faoliyat birligi tamoyili"
   },
   {
-    question: "**Konflikt** (Ziddiyat) nima?",
+    question: "Faoliyat bu –",
     options: [
-      "Faqat do'stlik",
-      "Odamlar, guruhlar yoki ichki shaxsiy motivlar o'rtasidagi qarama-qarshi maqsadlar, manfaatlar yoki pozitsiyalar to'qnashuvi",
-      "Faqat hamkorlik",
-      "Faqat yordam"
+      "Ongli, faol va maqsadga yo'naltirilgan jarayon",
+      "Tarixiylik tamoyili",
+      "Maqsadga undovchi omil",
+      "Fiziologik hodisa"
     ],
-    correctAnswer: "Odamlar, guruhlar yoki ichki shaxsiy motivlar o'rtasidagi qarama-qarshi maqsadlar, manfaatlar yoki pozitsiyalar to'qnashuvi"
+    correctAnswer: "Ongli, faol va maqsadga yo'naltirilgan jarayon"
   },
   {
-    question: "Psixologiyada **'Bilimlar (Kognitiv) jarayonlar'** nimalar?",
+    question: "Ehtiyoj bu –",
     options: [
-      "Faqat hissiyot",
-      "Sezgi, idrok, xotira, tafakkur, xayol va diqqat",
-      "Faqat xarakter",
-      "Faqat iroda"
+      "Individning normal hayot kechirish va rivojlanishi uchun zarur narsalarga bo'lgan ichki zarurat hissi",
+      "Fiziologik hodisa",
+      "Individual tashqaridagi voqea",
+      "Psixologik hodisa"
     ],
-    correctAnswer: "Sezgi, idrok, xotira, tafakkur, xayol va diqqat"
+    correctAnswer: "Individning normal hayot kechirish va rivojlanishi uchun zarur narsalarga bo'lgan ichki zarurat hissi"
   },
   {
-    question: "**Eidetik xotira** nima?",
+    question: "Motiv bu –",
     options: [
-      "Faqat ovozli xotira",
-      "Ob'ektni go'yo uni hali ham ko'rayotgandek, juda aniq va to'liq eslab qolish qobiliyati (fotografik xotira)",
-      "Faqat harakat xotirasi",
-      "Faqat hissiyot xotirasi"
+      "Insonni faoliyatga undovchi sabab",
+      "Psixologik holat",
+      "Sub'yektning atrof-muhit bilan o'zaro ta'siri",
+      "Tashqi omil"
     ],
-    correctAnswer: "Ob'ektni go'yo uni hali ham ko'rayotgandek, juda aniq va to'liq eslab qolish qobiliyati (fotografik xotira)"
+    correctAnswer: "Insonni faoliyatga undovchi sabab"
   },
   {
-    question: "**Analiz** (Tahlil) va **Sintez** (Tafakkurda) nima?",
+    question: "Yetakchi faoliyat bu –",
     options: [
-      "Faqat bir jarayon",
-      "Analiz - butunni qismlarga ajratish, Sintez - qismlardan butunni yaratish",
-      "Faqat eslab qolish",
-      "Faqat ko'rish"
+      "Bola shaxsida muhim psixologik o'zgarishlarga sabab bo'ladigan faoliyat",
+      "Bola shaxsining faoliyati",
+      "Ma'lum davrda ustun ahamiyatga ega faoliyat",
+      "Psixologik hodisa"
     ],
-    correctAnswer: "Analiz - butunni qismlarga ajratish, Sintez - qismlardan butunni yaratish"
+    correctAnswer: "Ma'lum davrda ustun ahamiyatga ega faoliyat"
   },
   {
-    question: "**Kreativlik** (Ijodkorlik) nima?",
+    question: "Idrokning qaysi xususiyati uning tartibli tashkil topganligiga bog'liq?",
     options: [
-      "Faqat qoidalar bo'yicha ishlash",
-      "Yangi va noyob g'oyalar, yechimlar yoki mahsulotlar yaratish qobiliyati",
-      "Faqat eslab qolish",
-      "Faqat jazolash"
+      "Yaxlitligi",
+      "Konstantligi",
+      "Anglanganligi",
+      "Predmetilligi"
     ],
-    correctAnswer: "Yangi va noyob g'oyalar, yechimlar yoki mahsulotlar yaratish qobiliyati"
+    correctAnswer: "Yaxlitligi"
   },
   {
-    question: "**Mijozlarga yo'naltirilgan terapiya** (K. Rodjers) nimani anglatadi?",
+    question: "Sotsiometriya usuli kim tomondan ishlab chiqilgan?",
     options: [
-      "Faqat maslahat berish",
-      "Terapistning mijozni qabul qilishi, unga hamdardlik (empatiya) bildirish va uni qo'llab-quvvatlash",
-      "Faqat jazolash",
-      "Faqat buyruq berish"
+      "A. Petrovskiy",
+      "D. Moreno",
+      "I. Sechenov",
+      "G. Ayzenk"
     ],
-    correctAnswer: "Terapistning mijozni qabul qilishi, unga hamdardlik (empatiya) bildirish va uni qo'llab-quvvatlash"
+    correctAnswer: "D. Moreno"
   },
   {
-    question: "A. Maslou bo'yicha ehtiyojlar piramidasining **eng yuqori pog'onasi** nima?",
+    question: "Ikki xil signal tizimi haqidagi ta'limotni ilm-fanga kim kiritgan?",
     options: [
-      "Fiziologik ehtiyojlar",
-      "Xavfsizlik ehtiyoji",
-      "O'zini namoyon qilish (aktualizatsiya) ehtiyoji",
-      "Muloqot ehtiyoji"
+      "P.K. Anoxin",
+      "I.M. Sechenov",
+      "I.P. Pavlov",
+      "A. Rorshax"
     ],
-    correctAnswer: "O'zini namoyon qilish (aktualizatsiya) ehtiyoji"
+    correctAnswer: "I.P. Pavlov"
   },
   {
-    question: "**Neyropsixologiya** nima?",
+    question: "Jon olovga o'xshash zarrachalardan tashkil topgan degan g'oya kimga tegishli?",
     options: [
-      "Faqat hayvonlar psixologiyasi",
-      "Miya tuzilishi va uning alohida qismlari bilan psixik jarayonlar o'rtasidagi bog'liqlikni o'rganadigan fan",
-      "Faqat ijtimoiy psixologiya",
-      "Faqat kasb psixologiyasi"
+      "Aristotel",
+      "Geraklit",
+      "Dekart",
+      "Demokrit"
     ],
-    correctAnswer: "Miya tuzilishi va uning alohida qismlari bilan psixik jarayonlar o'rtasidagi bog'liqlikni o'rganadigan fan"
+    correctAnswer: "Demokrit"
   },
   {
-    question: "**Persepsiya** tushunchasi psixologiyada nimani bildiradi?",
+    question: "'Animizm' atamasi qanday ma'noni anglatadi?",
     options: [
-      "Sezgi",
-      "Idrok",
-      "Xotira",
-      "Diqqat"
+      "anima – olov",
+      "anima – taqdir",
+      "anima – jon",
+      "anima – fikr"
     ],
-    correctAnswer: "Idrok"
+    correctAnswer: "anima – jon"
   },
   {
-    question: "**Flegmatik** temperamentli odamning asosiy xususiyati?",
+    question: "Psixologiya fanining nechadan ortiq yo'nalishlari mavjud?",
     options: [
-      "Haddan tashqari shoshqaloqlik va beqarorlik",
-      "Sokin, sust, hissiyotlarni kam namoyon etadigan, sekin, ammo barqaror",
-      "Haddan tashqari optimist, serharakat",
-      "Haddan tashqari xafa, tushkun"
+      "250",
+      "360",
+      "160",
+      "300"
     ],
-    correctAnswer: "Sokin, sust, hissiyotlarni kam namoyon etadigan, sekin, ammo barqaror"
+    correctAnswer: "300"
   },
   {
-    question: "**Melanxolik** temperamentli odamning asosiy xususiyati?",
+    question: "Psixologiya fanining paydo bo'lganiga taxminan qancha vaqt o'tgan?",
     options: [
-      "Serharakat, doimo o'zgaruvchan",
-      "Juda ta'sirchan, tez charchaydigan, yengil tushkunlikka tushuvchi, sust, o'ziga ishonchsiz",
-      "Kuchli, tezkor, hissiyotlarga beriluvchan",
-      "Sokin, harakatsiz, deyarli hissiyotsiz"
+      "2500 yıl",
+      "3500 yıl",
+      "1000 yıl",
+      "1500 yıl"
     ],
-    correctAnswer: "Juda ta'sirchan, tez charchaydigan, yengil tushkunlikka tushuvchi, sust, o'ziga ishonchsiz"
+    correctAnswer: "2500 yıl"
   },
   {
-    question: "**Holerik** temperamentli odamning asosiy xususiyati?",
+    question: "Psixologiyada mukammal darsliklar yaratilishiga qancha vaqt bo'tgan?",
     options: [
-      "Sokin, bosiq",
-      "Kuchli, tezkor, muvozanatsiz, tezda jahli chiqadigan, hissiyotlarga beriluvchan",
-      "Serharakat, quvnoq, barqaror",
-      "Sust, xafa"
+      "160 yıldan oshiq",
+      "120 yıldan",
+      "100 yıldan",
+      "50 yıldan ortiq"
     ],
-    correctAnswer: "Kuchli, tezkor, muvozanatsiz, tezda jahli chiqadigan, hissiyotlarga beriluvchan"
+    correctAnswer: "160 yıldan oshiq"
   },
   {
-    question: "**Sangvinik** temperamentli odamning asosiy xususiyati?",
+    question: "Psixologiya fanining asoschisi kim hisoblanadi?",
     options: [
-      "Sokin, bosiq, sust",
-      "Serharakat, quvnoq, optimist, tez moslashuvchan, hissiyotlari tez o'zgaruvchan",
-      "Muvozanatsiz, jahlga tez beriluvchan",
-      "Juda ta'sirchan, o'ziga ishonchsiz"
+      "Platon",
+      "Aristotel",
+      "Gerodot",
+      "Geraklit"
     ],
-    correctAnswer: "Serharakat, quvnoq, optimist, tez moslashuvchan, hissiyotlari tez o'zgaruvchan"
+    correctAnswer: "Aristotel"
   },
   {
-    question: "**Appersepsiya** nima?",
+    question: "Psixik hodisalar tarkibiga kiruvchi bilish faoliyatlari qaysi qatorda berilgan?",
     options: [
-      "Faqat eslab qolish",
-      "Idrokning shaxsning avvalgi tajribasi, bilimi va qiziqishlariga bog'liqligi",
-      "Faqat sezish",
-      "Faqat xayol"
-    ],
-    correctAnswer: "Idrokning shaxsning avvalgi tajribasi, bilimi va qiziqishlariga bog'liqligi"
-  },
-  {
-    question: "**Qobiliyatning rivojlanish darajalari** qaysilar?",
-    options: [
-      "Bilim, ko'nikma",
-      "Iste'dod (Talant), Zakovat (Aql-idrok), Geniallik",
-      "Malaka, harakat",
-      "Diqqat, xotira"
-    ],
-    correctAnswer: "Iste'dod (Talant), Zakovat (Aql-idrok), Geniallik"
-  },
-  {
-    question: "**Muloqotning perseptiv tomoni** nima?",
-    options: [
-      "Faqat axborot almashish",
-      "Suhbatdoshni (sherikni) idrok etish, uni tushunish va baholash jarayoni",
-      "Faqat ta'sir o'tkazish",
-      "Faqat so'zlashish"
-    ],
-    correctAnswer: "Suhbatdoshni (sherikni) idrok etish, uni tushunish va baholash jarayoni"
-  },
-  {
-    question: "**Empatiya** (Psixologiyada) nima?",
-    options: [
-      "Faqat baholash",
-      "Boshqa odamning hissiyotlarini, holatini ichki tomondan tushuna olish va hamdardlik bildirish qobiliyati",
-      "Faqat jazolash",
-      "Faqat o'ylash"
-    ],
-    correctAnswer: "Boshqa odamning hissiyotlarini, holatini ichki tomondan tushuna olish va hamdardlik bildirish qobiliyati"
-  },
-  {
-    question: "**Refleksiya** (Psixologiyada) nima?",
-    options: [
-      "Faqat tashqariga qarash",
-      "Shaxsning o�z ichki ruhiy holati, fikrlari, xatti-harakatlari va o'zgarishlarini o'zi tahlil qilishi",
-      "Faqat yugurish",
-      "Faqat tinglash"
-    ],
-    correctAnswer: "Shaxsning o�z ichki ruhiy holati, fikrlari, xatti-harakatlari va o'zgarishlarini o'zi tahlil qilishi"
-  },
-  {
-    question: "**Diqqatning barqarorligi** nima?",
-    options: [
-      "Faqat tez o'tish",
-      "Diqqatning ma'lum obyektdan chalg'imasdan, uzoq vaqt davomida saqlana olish qobiliyati",
-      "Faqat tez charchash",
-      "Faqat bo'linish"
-    ],
-    correctAnswer: "Diqqatning ma'lum obyektdan chalg'imasdan, uzoq vaqt davomida saqlana olish qobiliyati"
-  },
-  {
-    question: "**O'qish faoliyati** (Psixologiyada) qanday faoliyat turi?",
-    options: [
-      "Faqat o'yin",
-      "Nazariy bilimlar, ko'nikmalar va malakalarni o'zlashtirishga qaratilgan faoliyat",
-      "Faqat mehnat",
-      "Faqat dam olish"
-    ],
-    correctAnswer: "Nazariy bilimlar, ko'nikmalar va malakalarni o'zlashtirishga qaratilgan faoliyat"
-  },
-  {
-    question: "Tafakkur jarayonida **generallashuv** (umumlashtirish) nima?",
-    options: [
-      "Faqat ajratish",
-      "Ob'ektlar va hodisalarning muhim va umumiy xususiyatlarini ajratib olish va ularni tushuncha ostida birlashtirish",
-      "Faqat taqqoslash",
-      "Faqat analiz"
-    ],
-    correctAnswer: "Ob'ektlar va hodisalarning muhim va umumiy xususiyatlarini ajratib olish va ularni tushuncha ostida birlashtirish"
-  },
-  {
-    question: "**Vizual xotira** nima?",
-    options: [
-      "Faqat eshitish orqali eslab qolish",
-      "Ko'rish orqali idrok qilingan obrazlar va ma'lumotlarni eslab qolish va qayta tiklash",
-      "Faqat harakat orqali eslab qolish",
-      "Faqat hissiyot orqali eslab qolish"
-    ],
-    correctAnswer: "Ko'rish orqali idrok qilingan obrazlar va ma'lumotlarni eslab qolish va qayta tiklash"
-  },
-  {
-    question: "**Ijtimoiy idrok** (Sotsialnaya persepsiya) nima?",
-    options: [
-      "Faqat narsalarni idrok etish",
-      "Odamlarning bir-birini, o'zini, ijtimoiy ob'ektlar va guruhlarni idrok etish, tushunish va baholash jarayoni",
-      "Faqat tovushni eshitish",
-      "Faqat rangni ko'rish"
-    ],
-    correctAnswer: "Odamlarning bir-birini, o'zini, ijtimoiy ob'ektlar va guruhlarni idrok etish, tushunish va baholash jarayoni"
-  },
-  {
-    question: "**Kattalar yoshidagi krizislar** (masalan, 30, 40 yosh) nima bilan bog'liq?",
-    options: [
-      "Faqat jismoniy o'zgarishlar",
-      "Hayot mazmunini qayta baholash, maqsadlarni o'zgartirish, shaxsiy va professional o'zlikni izlash",
-      "Faqat temperament o'zgarishi",
-      "Faqat ovqatlanish"
-    ],
-    correctAnswer: "Hayot mazmunini qayta baholash, maqsadlarni o'zgartirish, shaxsiy va professional o'zlikni izlash"
-  },
-  {
-    question: "**Shaxsning yo'nalganligi** (Napravlennost lichnosti) nima?",
-    options: [
-      "Faqat yugurish",
-      "Ehtiyojlar, qiziqishlar, e'tiqodlar va ideallar tizimi orqali belgilanadigan, shaxsning faoliyatini boshqaruvchi motivlar majmui",
-      "Faqat o'ylash",
-      "Faqat harakat"
-    ],
-    correctAnswer: "Ehtiyojlar, qiziqishlar, e'tiqodlar va ideallar tizimi orqali belgilanadigan, shaxsning faoliyatini boshqaruvchi motivlar majmui"
-  },
-  {
-    question: "**Kichik maktab yoshi** (6-11 yosh) uchun asosiy faoliyat turi?",
-    options: [
-      "O'yin",
-      "O'qish (o'rganish)",
-      "Mehnat",
-      "Muloqot"
-    ],
-    correctAnswer: "O'qish (o'rganish)"
-  },
-  {
-    question: "**Muloqotning interaktiv tomoni** nima?",
-    options: [
-      "Faqat tushunish",
-      "Odamlarning bir-biriga ta'sir o'tkazishi, harakatlarni tashkil etish va hamkorlik qilish",
-      "Faqat axborot almashish",
-      "Faqat baholash"
-    ],
-    correctAnswer: "Odamlarning bir-biriga ta'sir o'tkazishi, harakatlarni tashkil etish va hamkorlik qilish"
-  },
-  {
-    question: "**O'z-o'zini baholash** (Samootsenka) nima?",
-    options: [
-      "Faqat boshqalarning bahosi",
-      "Shaxsning o'z qobiliyatlari, fazilatlari, yutuqlari va kamchiliklariga beradigan subyektiv bahosi",
-      "Faqat maktab bahosi",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "Shaxsning o'z qobiliyatlari, fazilatlari, yutuqlari va kamchiliklariga beradigan subyektiv bahosi"
-  },
-  {
-    question: "Innovatsion ta'lim texnologiyalarida **'Didaktik o'yinlar'**ning asosiy maqsadi nima?",
-    options: [
-      "Faqat vaqtni behuda o'tkazish",
-      "O'quv materialini o'yin orqali qiziqarli o'zlashtirish va motivatsiyani oshirish",
-      "Faqat baholash",
-      "Faqat uy vazifasi berish"
-    ],
-    correctAnswer: "O'quv materialini o'yin orqali qiziqarli o'zlashtirish va motivatsiyani oshirish"
-  },
-  {
-    question: "Ta'limda **kouching (Coaching)** qanday faoliyat turi?",
-    options: [
-      "Faqat ma'ruza o'qish",
-      "O'quvchining ichki resurslarini ochishga, maqsadlarini aniqlashga va mustaqil harakat qilishga yo'naltirish",
-      "Faqat jazolash",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'quvchining ichki resurslarini ochishga, maqsadlarini aniqlashga va mustaqil harakat qilishga yo'naltirish"
-  },
-  {
-    question: "AKT yordamida **'Blended Learning'**ning qanday afzalligi bor?",
-    options: [
-      "Faqat o'qituvchining ishini kamaytirish",
-      "An'anaviy ta'limning ijtimoiy muloqotini masofaviy ta'limning moslashuvchanligi bilan birlashtirish",
-      "Faqat narxni tushirish",
-      "Faqat qog'oz ishlarini yo'qotish"
-    ],
-    correctAnswer: "An'anaviy ta'limning ijtimoiy muloqotini masofaviy ta'limning moslashuvchanligi bilan birlashtirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Refleksiya'** nimani anglatadi?",
-    options: [
-      "Faqat yozma ish",
-      "O'quvchining o'z o'rganish jarayonini, fikrlarini va erishilgan natijalarini tahlil qilishi",
-      "Faqat darslikni o'qish",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "O'quvchining o'z o'rganish jarayonini, fikrlarini va erishilgan natijalarini tahlil qilishi"
-  },
-  {
-    question: "Pedagogik texnologiyalarining **'Tizimli yondashuv'** prinsipi nima?",
-    options: [
-      "Faqat bir qismga e'tibor berish",
-      "Ta'lim jarayonini yagona, izchil va o'zaro bog'liq komponentlar (maqsad, mazmun, metod, natija) majmui sifatida ko'rish",
-      "Faqat darslikni almashtirish",
-      "Faqat texnologiyani qo'llash"
-    ],
-    correctAnswer: "Ta'lim jarayonini yagona, izchil va o'zaro bog'liq komponentlar (maqsad, mazmun, metod, natija) majmui sifatida ko'rish"
-  },
-  {
-    question: "Ta'limda **'Keys-stadi' (Case Study)** metodi nima uchun qo'llaniladi?",
-    options: [
-      "Faqat yodlash uchun",
-      "Talabalarda muammoli vaziyatlarni tahlil qilish, tanqidiy fikrlash va qaror qabul qilish ko'nikmalarini rivojlantirish",
-      "Faqat ma'ruza o'qish uchun",
-      "Faqat test yechish uchun"
-    ],
-    correctAnswer: "Talabalarda muammoli vaziyatlarni tahlil qilish, tanqidiy fikrlash va qaror qabul qilish ko'nikmalarini rivojlantirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Interfaol metodlar'**ning ahamiyati?",
-    options: [
-      "Faqat vaqtni tejash",
-      "O'quvchilarning faolligini oshirish, bilimni passiv qabul qilishdan faol ishtirok etishga o'tishni ta'minlash",
-      "Faqat o'qituvchiga yukni kamaytirish",
-      "Faqat yozma ishlarni ko'paytirish"
-    ],
-    correctAnswer: "O'quvchilarning faolligini oshirish, bilimni passiv qabul qilishdan faol ishtirok etishga o'tishni ta'minlash"
-  },
-  {
-    question: "Masofaviy ta'limda **'LMS' (Learning Management System)** nima?",
-    options: [
-      "Faqat elektron kutubxona",
-      "O'quv materiallarini joylash, topshiriqlarni boshqarish, baholash va o'quvchilar faoliyatini kuzatish uchun platforma",
-      "Faqat videokonferensiya dasturi",
-      "Faqat test yaratish dasturi"
-    ],
-    correctAnswer: "O'quv materiallarini joylash, topshiriqlarni boshqarish, baholash va o'quvchilar faoliyatini kuzatish uchun platforma"
-  },
-  {
-    question: "Innovatsion ta'lim texnologiyalarida **'Simulyatsiya'**ning asosiy funksiyasi?",
-    options: [
-      "Faqat rasm chizish",
-      "Murakkab, xavfli yoki qimmat real jarayonlarni sun'iy muhitda (kompyuterda) modelini yaratish va amaliyot o'tkazish",
-      "Faqat ma'ruza yozish",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "Murakkab, xavfli yoki qimmat real jarayonlarni sun'iy muhitda (kompyuterda) modelini yaratish va amaliyot o'tkazish"
-  },
-  {
-    question: "Ta'limda **'Proyekt metodi'**ning asosiy bosqichlari?",
-    options: [
-      "Faqat yozish va baholash",
-      "Muammoni aniqlash, rejalashtirish, tadqiqot, loyihani amalga oshirish va taqdimot",
-      "Faqat ma'ruza o'qish va test yechish",
-      "Faqat uy vazifasi berish"
-    ],
-    correctAnswer: "Muammoni aniqlash, rejalashtirish, tadqiqot, loyihani amalga oshirish va taqdimot"
-  },
-  {
-    question: "**'Flipped Classroom' (Teskari sinf)** modelining o'ziga xosligi nima?",
-    options: [
-      "Faqat guruhlarda ishlash",
-      "Nazariy materialni (ma'ruzani) uyda o'rganish, sinfda esa amaliy mashg'ulot va muammolarni hal qilish",
-      "Faqat o'qituvchi uy vazifasi bermaydi",
-      "Faqat testlar ishlatiladi"
-    ],
-    correctAnswer: "Nazariy materialni (ma'ruzani) uyda o'rganish, sinfda esa amaliy mashg'ulot va muammolarni hal qilish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Tanqidiy fikrlash'**ni rivojlantirish uchun qanday metodlar samarali?",
-    options: [
-      "Faqat yodlash",
-      "Munozara, Sokratik savol-javob, Keys-stadi, Argumentatsiya tahlili",
-      "Faqat ma'ruza tinglash",
-      "Faqat oddiy test yechish"
-    ],
-    correctAnswer: "Munozara, Sokratik savol-javob, Keys-stadi, Argumentatsiya tahlili"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Diagnostika'** bosqichida nima aniqlanadi?",
-    options: [
-      "Faqat darsning tugashi",
-      "O'quvchilarning boshlang'ich bilim darajasi, qobiliyatlari va ehtiyojlari",
-      "Faqat baholash usuli",
-      "Faqat o'qituvchining tajribasi"
-    ],
-    correctAnswer: "O'quvchilarning boshlang'ich bilim darajasi, qobiliyatlari va ehtiyojlari"
-  },
-  {
-    question: "Ta'limda **'Vizualizatsiya'** nima uchun muhim?",
-    options: [
-      "Faqat chizish",
-      "Mavhum g'oyalar va murakkab ma'lumotlarni tushunishni osonlashtirish, eslab qolishni yaxshilash",
-      "Faqat yozishni kamaytirish",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "Mavhum g'oyalar va murakkab ma'lumotlarni tushunishni osonlashtirish, eslab qolishni yaxshilash"
-  },
-  {
-    question: "Innovatsion ta'limda **'Individuallashtirish'** nimani anglatadi?",
-    options: [
-      "Faqat tezkor o'qitish",
-      "Har bir o'quvchining o'zlashtirish tezligi, uslubi va ehtiyojiga mos ravishda ta'lim mazmuni va metodlarini moslash",
-      "Faqat sekin o'qitish",
-      "Faqat barchaga bir xil dars berish"
-    ],
-    correctAnswer: "Har bir o'quvchining o'zlashtirish tezligi, uslubi va ehtiyojiga mos ravishda ta'lim mazmuni va metodlarini moslash"
-  },
-  {
-    question: "AKT yordamida **'Virtual reallik (VR)'** qanday ta'lim imkoniyatini beradi?",
-    options: [
-      "Faqat o'yin o'ynash",
-      "Xavfsiz va nazoratli muhitda amaliy ko'nikmalarni egallash, real jarayonlarni uch o'lchamli o'rganish",
-      "Faqat ma'ruza tinglash",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Xavfsiz va nazoratli muhitda amaliy ko'nikmalarni egallash, real jarayonlarni uch o'lchamli o'rganish"
-  },
-  {
-    question: "Ta'limda **'Munozara' (Debate)** metodining foydasi nima?",
-    options: [
-      "Faqat vaqtni o'tkazish",
-      "O'quvchilarda fikrni himoya qilish, argumentatsiya, boshqalarni tinglash va muloqot madaniyatini rivojlantirish",
-      "Faqat o'qituvchini eshitish",
-      "Faqat o'qish"
-    ],
-    correctAnswer: "O'quvchilarda fikrni himoya qilish, argumentatsiya, boshqalarni tinglash va muloqot madaniyatini rivojlantirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Avtomatik baholash'** tizimining afzalligi?",
-    options: [
-      "Faqat jazolash",
-      "Baholashning obyektivligini oshirish, o'qituvchi vaqtini tejash va o'quvchiga tezkor qayta aloqa berish",
-      "Faqat ma'ruza o'qish",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "Baholashning obyektivligini oshirish, o'qituvchi vaqtini tejash va o'quvchiga tezkor qayta aloqa berish"
-  },
-  {
-    question: "Pedagogik texnologiyalarining **'Korreksiya'** bosqichida nima amalga oshiriladi?",
-    options: [
-      "Faqat maqsadni belgilash",
-      "O'quv jarayoni natijalari va samaradorligini tahlil qilib, ta'lim metodikasiga zaruriy o'zgartirishlar kiritish",
-      "Faqat test tuzish",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "O'quv jarayoni natijalari va samaradorligini tahlil qilib, ta'lim metodikasiga zaruriy o'zgartirishlar kiritish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Muammoli ta'lim'**ning asosiy tamoyili nima?",
-    options: [
-      "Faqat ma'lumot berish",
-      "O'quvchiga tayyor bilim bermasdan, uni muammoli vaziyatga solish va yechimni o'zi topishga undash",
-      "Faqat yodlash",
-      "Faqat uy vazifasi berish"
-    ],
-    correctAnswer: "O'quvchiga tayyor bilim bermasdan, uni muammoli vaziyatga solish va yechimni o'zi topishga undash"
-  },
-  {
-    question: "AKT yordamida **'Bulutli texnologiyalar'** qanday imkoniyat beradi?",
-    options: [
-      "Faqat qurilmani buzish",
-      "Ma'lumotlar va dasturlarga istalgan joydan, istalgan qurilmadan internet orqali kirish",
-      "Faqat qog'oz ishlarini ko'paytirish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Ma'lumotlar va dasturlarga istalgan joydan, istalgan qurilmadan internet orqali kirish"
-  },
-  {
-    question: "Ta'limda **'Aqliy hujum' (Brainstorming)** metodi nima uchun ishlatiladi?",
-    options: [
-      "Faqat baholash",
-      "Qisqa vaqt ichida muammoni yechish uchun maksimal darajada yangi va kreativ g'oyalarni generatsiya qilish",
-      "Faqat nazorat qilish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Qisqa vaqt ichida muammoni yechish uchun maksimal darajada yangi va kreativ g'oyalarni generatsiya qilish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Mentorlik'**ning asosiy maqsadi nima?",
-    options: [
-      "Faqat jazolash",
-      "Tajribali kishi (mentor) tomonidan yosh/tajribasiz shaxsga (menti) yo'nalish, maslahat va motivatsiya berish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Tajribali kishi (mentor) tomonidan yosh/tajribasiz shaxsga (menti) yo'nalish, maslahat va motivatsiya berish"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Nazorat' (Monitoring)** bosqichi nima?",
-    options: [
-      "Faqat darslik yaratish",
-      "Ta'lim jarayonining borishi, o'quvchilarning faoliyati va o'zlashtirish natijalarini muntazam kuzatib borish",
-      "Faqat ma'ruza o'qish",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "Ta'lim jarayonining borishi, o'quvchilarning faoliyati va o'zlashtirish natijalarini muntazam kuzatib borish"
-  },
-  {
-    question: "Ta'limda **'Portfoliyo'** qanday vazifani bajaradi?",
-    options: [
-      "Faqat darslikni saqlash",
-      "O'quvchining o'zlashtirish, ijodkorlik va rivojlanish yutuqlari namunalari to'plami",
-      "Faqat test yechish",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "O'quvchining o'zlashtirish, ijodkorlik va rivojlanish yutuqlari namunalari to'plami"
-  },
-  {
-    question: "Innovatsion ta'limda **'Empatiya'** nimani anglatadi?",
-    options: [
-      "Faqat jazolash",
-      "Boshqa insonning his-tuyg'ularini, holatini va nuqtai nazarini tushuna olish va hamdardlik bildirish",
-      "Faqat ma'ruza o'qish",
-      "Faqat bilimni o'lchash"
-    ],
-    correctAnswer: "Boshqa insonning his-tuyg'ularini, holatini va nuqtai nazarini tushuna olish va hamdardlik bildirish"
-  },
-  {
-    question: "AKT yordamida **'O'z-o'zini baholash (Self-assessment)'**ning maqsadi?",
-    options: [
-      "Faqat o'qituvchiga yukni tushirish",
-      "O'quvchining o'z kuchli va zaif tomonlarini tanqidiy baholash, javobgarlikni oshirish",
-      "Faqat ma'ruza yozish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'quvchining o'z kuchli va zaif tomonlarini tanqidiy baholash, javobgarlikni oshirish"
-  },
-  {
-    question: "Ta'limda **'Role Playing' (Rolli o'yinlar)** nima uchun kerak?",
-    options: [
-      "Faqat o'yin o'ynash",
-      "O'quvchilarda ijtimoiy, muloqot va vaziyatni tahlil qilish ko'nikmalarini rivojlantirish, nazariy bilimni amalda qo'llash",
-      "Faqat ma'ruza tinglash",
-      "Faqat yozish"
-    ],
-    correctAnswer: "O'quvchilarda ijtimoiy, muloqot va vaziyatni tahlil qilish ko'nikmalarini rivojlantirish, nazariy bilimni amalda qo'llash"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'qituvchining kompetentligi'**ga nimalar kiradi?",
-    options: [
-      "Faqat fan bilimi",
-      "Metodik, psixologik-pedagogik, ijtimoiy va axborot-kommunikatsiya (AKT) kompetentligi",
-      "Faqat darslikni yodlash",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "Metodik, psixologik-pedagogik, ijtimoiy va axborot-kommunikatsiya (AKT) kompetentligi"
-  },
-  {
-    question: "Pedagogik texnologiyada **'Loyihalash'** bosqichi nima?",
-    options: [
-      "Faqat test yechish",
-      "Ta'lim maqsadlaridan boshlab, o'quv materialini, metodlarni va baholash usullarini tizimli rejalashtirish",
-      "Faqat ma'ruza o'qish",
-      "Faqat uy vazifasi berish"
-    ],
-    correctAnswer: "Ta'lim maqsadlaridan boshlab, o'quv materialini, metodlarni va baholash usullarini tizimli rejalashtirish"
-  },
-  {
-    question: "Ta'limda **'Tadqiqot metodi'**ning asosiy maqsadi?",
-    options: [
-      "Faqat darslikni o'qish",
-      "O'quvchilarda izlanish, ma'lumotlarni yig'ish, tahlil qilish va mustaqil xulosalar chiqarish ko'nikmasini shakllantirish",
-      "Faqat ma'ruza tinglash",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "O'quvchilarda izlanish, ma'lumotlarni yig'ish, tahlil qilish va mustaqil xulosalar chiqarish ko'nikmasini shakllantirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Qayta aloqa' (Feedback)** qanday bo'lishi kerak?",
-    options: [
-      "Faqat umumiy",
-      "O'z vaqtida, konstruktiv, aniq va aniq harakatlarga yo'naltirilgan",
-      "Faqat baho",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "O'z vaqtida, konstruktiv, aniq va aniq harakatlarga yo'naltirilgan"
-  },
-  {
-    question: "AKT yordamida **'Onlayn testlash'**ning afzalligi nima?",
-    options: [
-      "Faqat yozish",
-      "Tezkor tekshirish, natijalarni avtomatik tahlil qilish, baholashning obyektivligi va vaqtni tejash",
-      "Faqat ma'ruza",
-      "Faqat rasm chizish"
-    ],
-    correctAnswer: "Tezkor tekshirish, natijalarni avtomatik tahlil qilish, baholashning obyektivligi va vaqtni tejash"
-  },
-  {
-    question: "Ta'limda **'O'qitishning differensiallashuvi'** nima?",
-    options: [
-      "Faqat qiyin vazifa berish",
-      "O'quvchilarning tayyorgarligi, qiziqishi va o'zlashtirish tezligiga qarab ularga turli darajadagi topshiriqlar berish",
-      "Faqat oson vazifa berish",
-      "Faqat bir xil dars berish"
-    ],
-    correctAnswer: "O'quvchilarning tayyorgarligi, qiziqishi va o'zlashtirish tezligiga qarab ularga turli darajadagi topshiriqlar berish"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'quv motivatsiyasi'**ni oshirishning samarali yo'llari?",
-    options: [
-      "Faqat jazolash",
-      "Qiziqarli topshiriqlar, muvaffaqiyat hissini yaratish, maqsadni aniqlash va o'yin texnologiyalaridan foydalanish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Qiziqarli topshiriqlar, muvaffaqiyat hissini yaratish, maqsadni aniqlash va o'yin texnologiyalaridan foydalanish"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Metodik ta'minot'**iga nimalar kiradi?",
-    options: [
-      "Faqat bino",
-      "Darsliklar, o'quv qo'llanmalari, didaktik materiallar, o'qitish uslubiy tavsiyalari",
-      "Faqat kompyuterlar",
-      "Faqat o'qituvchilar"
-    ],
-    correctAnswer: "Darsliklar, o'quv qo'llanmalari, didaktik materiallar, o'qitish uslubiy tavsiyalari"
-  },
-  {
-    question: "Ta'limda **'Muloqot kompetentligi'** nima?",
-    options: [
-      "Faqat yozish",
-      "Turli odamlar bilan samarali aloqa o'rnata olish, fikr almashish va hamkorlik qila olish qobiliyati",
-      "Faqat o'qish",
-      "Faqat rasm chizish"
-    ],
-    correctAnswer: "Turli odamlar bilan samarali aloqa o'rnata olish, fikr almashish va hamkorlik qila olish qobiliyati"
-  },
-  {
-    question: "Innovatsion ta'limda **'Aqlli sinf' (Smart Classroom)** nima?",
-    options: [
-      "Faqat oddiy sinf",
-      "Interfaol texnologiyalar, multimedia vositalari va internetga ulangan qurilmalar bilan jihozlangan o'quv xonasi",
-      "Faqat kitob saqlanadigan xona",
-      "Faqat sport zali"
-    ],
-    correctAnswer: "Interfaol texnologiyalar, multimedia vositalari va internetga ulangan qurilmalar bilan jihozlangan o'quv xonasi"
-  },
-  {
-    question: "AKT yordamida **'Onlayn kurslar' (MOOCs)**ning afzalligi nima?",
-    options: [
-      "Faqat qimmatligi",
-      "Katta auditoriya uchun ochiqligi, moslashuvchan jadval, turli mavzularni o'rganish imkoniyati",
-      "Faqat yozish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Katta auditoriya uchun ochiqligi, moslashuvchan jadval, turli mavzularni o'rganish imkoniyati"
-  },
-  {
-    question: "Ta'limda **'O'quv materialining tuzilishi'** qanday tamoyilga asoslanishi kerak?",
-    options: [
-      "Faqat uzunlik",
-      "Tizimlilik, mantiqiylik, izchillik va o'zlashtirishga qulaylik",
-      "Faqat qisqalik",
-      "Faqat qiyinlik"
-    ],
-    correctAnswer: "Tizimlilik, mantiqiylik, izchillik va o'zlashtirishga qulaylik"
-  },
-  {
-    question: "Innovatsion ta'limda **'Xatolardan o'rganish'** konsepsiyasi nima?",
-    options: [
-      "Faqat jazolash",
-      "Xatoni bilimlarni chuqurlashtirish va rivojlanish uchun imkoniyat deb bilish, ularni tahlil qilish",
-      "Faqat baho qo'yish",
-      "Faqat ma'ruza o'qish"
-    ],
-    correctAnswer: "Xatoni bilimlarni chuqurlashtirish va rivojlanish uchun imkoniyat deb bilish, ularni tahlil qilish"
-  },
-  {
-    question: "Pedagogik texnologiyada **'Operatsional maqsad'** nima?",
-    options: [
-      "Faqat umumiy g'oya",
-      "O'quvchida dars natijasida shakllanadigan, aniq o'lchanadigan va kuzatiladigan harakat",
-      "Faqat o'qituvchining maqsadi",
-      "Faqat darslikning nomi"
-    ],
-    correctAnswer: "O'quvchida dars natijasida shakllanadigan, aniq o'lchanadigan va kuzatiladigan harakat"
-  },
-  {
-    question: "Ta'limda **'Guruhli ishlash'**ning asosiy afzalligi nima?",
-    options: [
-      "Faqat bir kishi ishlaydi",
-      "Hamkorlik, muloqot, turli fikrlarni tinglash va bir-biridan o'rganish ko'nikmalarini rivojlantirish",
-      "Faqat o'qituvchi gapiradi",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Hamkorlik, muloqot, turli fikrlarni tinglash va bir-biridan o'rganish ko'nikmalarini rivojlantirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Kompetentlik'** deganda nimani tushunasiz?",
-    options: [
-      "Faqat bilim",
-      "Muayyan faoliyatni samarali amalga oshirish uchun bilim, ko'nikma, malaka, qadriyat va shaxsiy sifatlarning majmui",
-      "Faqat ma'lumot",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "Muayyan faoliyatni samarali amalga oshirish uchun bilim, ko'nikma, malaka, qadriyat va shaxsiy sifatlarning majmui"
-  },
-  {
-    question: "AKT yordamida **'Videokonferensiya'** nima?",
-    options: [
-      "Faqat rasm",
-      "Internet orqali real vaqt rejimida bir nechta ishtirokchi o'rtasida ovoz, video va matnli muloqotni tashkil etish",
-      "Faqat yozish",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "Internet orqali real vaqt rejimida bir nechta ishtirokchi o'rtasida ovoz, video va matnli muloqotni tashkil etish"
-  },
-  {
-    question: "Ta'limda **'Interaktiv doska'**ning asosiy o'rni?",
-    options: [
-      "Faqat qora doska",
-      "Vizualizatsiya, yozish, rasm chizish, internetga chiqish va multimedia resurslarini boshqarishni birlashtirish",
-      "Faqat o'qituvchi ma'ruzasi",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Vizualizatsiya, yozish, rasm chizish, internetga chiqish va multimedia resurslarini boshqarishni birlashtirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Adaptiv o'qitish'** nima?",
-    options: [
-      "Faqat tez o'qitish",
-      "O'qitish dasturining har bir o'quvchining joriy bilim darajasi va o'rganish tempiga avtomatik moslashuvi",
-      "Faqat sekin o'qitish",
-      "Faqat barchaga bir xil dars berish"
-    ],
-    correctAnswer: "O'qitish dasturining har bir o'quvchining joriy bilim darajasi va o'rganish tempiga avtomatik moslashuvi"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Qayta aloqa tizimi'** nima?",
-    options: [
-      "Faqat jazolash",
-      "O'quv jarayonining natijalari va o'quvchilarning xatolari haqida ularga va o'qituvchiga ma'lumot berish mexanizmi",
-      "Faqat ma'ruza o'qish",
-      "Faqat darslik yaratish"
-    ],
-    correctAnswer: "O'quv jarayonining natijalari va o'quvchilarning xatolari haqida ularga va o'qituvchiga ma'lumot berish mexanizmi"
-  },
-  {
-    question: "Ta'limda **'Loyihaviy guruhlar'** qanday tashkil etiladi?",
-    options: [
-      "Faqat o'qituvchi tanlaydi",
-      "Turli bilim, ko'nikma va qiziqishlarga ega bo'lgan o'quvchilardan, muammoni yechish uchun birlashtirish",
-      "Faqat bir xil odamlar",
-      "Faqat test yechish uchun"
-    ],
-    correctAnswer: "Turli bilim, ko'nikma va qiziqishlarga ega bo'lgan o'quvchilardan, muammoni yechish uchun birlashtirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'qituvchi-fasilitator'**ning roli nima?",
-    options: [
-      "Faqat ma'ruza o'qish",
-      "O'quvchilarga o'rganish jarayonini tashkil etishda va muammolarni yechishda yordam berish, yo'naltirish",
-      "Faqat baho qo'yish",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "O'quvchilarga o'rganish jarayonini tashkil etishda va muammolarni yechishda yordam berish, yo'naltirish"
-  },
-  {
-    question: "AKT yordamida **'Augmented Reality (AR)' (Kengaytirilgan reallik)** nima?",
-    options: [
-      "Faqat virtual dunyo",
-      "Real dunyo tasviriga kompyuter yaratgan raqamli axborotni (video, 3D modellar) qo'shish",
-      "Faqat musiqa",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Real dunyo tasviriga kompyuter yaratgan raqamli axborotni (video, 3D modellar) qo'shish"
-  },
-  {
-    question: "Ta'limda **'Kompetentlikka asoslangan ta'lim'** nimani anglatadi?",
-    options: [
-      "Faqat nazariya",
-      "Bilimlarni o'zlashtirishdan ko'ra, ularni amalda qo'llash qobiliyatiga (kompetentlikka) e'tibor berish",
-      "Faqat yodlash",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "Bilimlarni o'zlashtirishdan ko'ra, ularni amalda qo'llash qobiliyatiga (kompetentlikka) e'tibor berish"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'quv jarayonining dinamikligi'** nima?",
-    options: [
-      "Faqat bir xil dars",
-      "Ta'limning o'zgaruvchan ehtiyojlar, yangi texnologiyalar va o'quvchilarning fikrlariga mos ravishda doimiy yangilanib turishi",
-      "Faqat qoidalar",
-      "Faqat eskicha usul"
-    ],
-    correctAnswer: "Ta'limning o'zgaruvchan ehtiyojlar, yangi texnologiyalar va o'quvchilarning fikrlariga mos ravishda doimiy yangilanib turishi"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Qaytar aloqa' (Monitoring va Korreksiya)** maqsadi nima?",
-    options: [
-      "Faqat jazolash",
-      "O'quv jarayonini boshqarish, natijalarni yaxshilash va maqsadlarga erishishni ta'minlash uchun ma'lumot yig'ish va tuzatish kiritish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'quv jarayonini boshqarish, natijalarni yaxshilash va maqsadlarga erishishni ta'minlash uchun ma'lumot yig'ish va tuzatish kiritish"
-  },
-  {
-    question: "Ta'limda **'Individual ta'lim yo'nalishi'**ni yaratish nima?",
-    options: [
-      "Faqat umumiy darslik",
-      "Har bir o'quvchining maqsadlari, bilim darajasi va qiziqishiga mos ravishda uning o'rganish yo'lini belgilash",
-      "Faqat bir xil test",
-      "Faqat guruhli ishlash"
-    ],
-    correctAnswer: "Har bir o'quvchining maqsadlari, bilim darajasi va qiziqishiga mos ravishda uning o'rganish yo'lini belgilash"
-  },
-  {
-    question: "Innovatsion ta'limda **'Hamkorlik (Collaboration)'** ko'nikmasi nima uchun muhim?",
-    options: [
-      "Faqat yozish",
-      "Zamonaviy mehnat bozorida va ijtimoiy hayotda muvaffaqiyatga erishish uchun guruhda birga ishlash, fikr almashish va yechim topish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Zamonaviy mehnat bozorida va ijtimoiy hayotda muvaffaqiyatga erishish uchun guruhda birga ishlash, fikr almashish va yechim topish"
-  },
-  {
-    question: "AKT yordamida **'Mobil o'rganish (M-learning)'** nima?",
-    options: [
-      "Faqat katta kompyuterda",
-      "Mobil qurilmalar (smartfon, planshet) yordamida istalgan joyda va vaqtda ta'lim olish imkoniyati",
-      "Faqat yozish",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "Mobil qurilmalar (smartfon, planshet) yordamida istalgan joyda va vaqtda ta'lim olish imkoniyati"
-  },
-  {
-    question: "Ta'limda **'Axborot-kommunikatsiya texnologiyalari (AKT)'**ning asosiy maqsadi?",
-    options: [
-      "Faqat internetda o'tirish",
-      "Ta'lim mazmunini boyitish, o'qitish metodlarini diversifikatsiya qilish va ta'lim samaradorligini oshirish",
-      "Faqat yozish",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "Ta'lim mazmunini boyitish, o'qitish metodlarini diversifikatsiya qilish va ta'lim samaradorligini oshirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Kreativlik'**ning o'rni?",
-    options: [
-      "Faqat yodlash",
-      "Muammolarga nostandart yechimlar topish, yangi g'oyalar yaratish va ijodiy yondashuvni rivojlantirish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Muammolarga nostandart yechimlar topish, yangi g'oyalar yaratish va ijodiy yondashuvni rivojlantirish"
-  },
-  {
-    question: "Pedagogik texnologiyalarining **'Texnologik xarita'**si nima?",
-    options: [
-      "Faqat bino chizmasi",
-      "Darsni o'tish jarayonining bosqichlari, foydalaniladigan metodlar, vositalar va vaqtini aniq ko'rsatuvchi hujjat (loyiha)",
-      "Faqat baholash usuli",
-      "Faqat o'quvchilar ro'yxati"
-    ],
-    correctAnswer: "Darsni o'tish jarayonining bosqichlari, foydalaniladigan metodlar, vositalar va vaqtini aniq ko'rsatuvchi hujjat (loyiha)"
-  },
-  {
-    question: "Ta'limda **'Debat (Munozara)'** metodi qaysi ko'nikmalarni rivojlantiradi?",
-    options: [
-      "Faqat eshitish",
-      "Argumentatsiya, tanqidiy fikrlash, notiqlik, o'z fikrini asoslash va xulosalar chiqarish",
-      "Faqat yozish",
-      "Faqat rasm chizish"
-    ],
-    correctAnswer: "Argumentatsiya, tanqidiy fikrlash, notiqlik, o'z fikrini asoslash va xulosalar chiqarish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Mustaqil o'rganish ko'nikmasi'** nima?",
-    options: [
-      "Faqat uy vazifasi",
-      "O'quvchining o'z o'rganish ehtiyojlarini aniqlash, resurslarni topish va jarayonni o'zi boshqarish qobiliyati",
-      "Faqat ma'ruza tinglash",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'quvchining o'z o'rganish ehtiyojlarini aniqlash, resurslarni topish va jarayonni o'zi boshqarish qobiliyati"
-  },
-  {
-    question: "AKT yordamida **'Geymifikatsiya (Gamification)'**ning ta'limdagi maqsadi?",
-    options: [
-      "Faqat o'yin o'ynash",
-      "Ta'lim jarayoniga o'yin elementlarini (ballar, darajalar, mukofotlar) kiritish orqali motivatsiya va jalb qilishni oshirish",
-      "Faqat musiqa",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Ta'lim jarayoniga o'yin elementlarini (ballar, darajalar, mukofotlar) kiritish orqali motivatsiya va jalb qilishni oshirish"
-  },
-  {
-    question: "Ta'limda **'Ko'nikma'** nima?",
-    options: [
-      "Faqat bilim",
-      "Amaliy harakatni ongli ravishda, ammo avtomatlashmagan holda, malaka darajasiga erishish yo'lidagi bajarish qobiliyati",
-      "Faqat xarakter",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Amaliy harakatni ongli ravishda, ammo avtomatlashmagan holda, malaka darajasiga erishish yo'li"
-  },
-  {
-    question: "Innovatsion ta'limda **'Virtual ekskursiya'** nima uchun ishlatiladi?",
-    options: [
-      "Faqat dam olish",
-      "Geografik yoki tarixiy jihatdan uzoq joylarga, xavfsiz va arzon tarzda virtual sayohat qilish imkoniyatini berish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Geografik yoki tarixiy jihatdan uzoq joylarga, xavfsiz va arzon tarzda virtual sayohat qilish imkoniyatini berish"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Analiz'** bosqichi nima?",
-    options: [
-      "Faqat sintez",
-      "Ta'lim ehtiyojlarini, o'quvchilarning xususiyatlarini, muammolarni va mavjud resurslarni o'rganish",
-      "Faqat jazolash",
-      "Faqat baholash"
-    ],
-    correctAnswer: "Ta'lim ehtiyojlarini, o'quvchilarning xususiyatlarini, muammolarni va mavjud resurslarni o'rganish"
-  },
-  {
-    question: "Ta'limda **'Interfaol ma'ruza'** qanday tashkil etiladi?",
-    options: [
-      "Faqat o'qituvchi gapiradi",
-      "O'qituvchining ma'ruzasi o'quvchilar bilan doimiy savol-javob, munozara va kichik amaliy topshiriqlar bilan almashinishi",
-      "Faqat yozish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'qituvchining ma'ruzasi o'quvchilar bilan doimiy savol-javob, munozara va kichik amaliy topshiriqlar bilan almashinishi"
-  },
-  {
-    question: "Innovatsion ta'limda **'4K' ko'nikmalari** nima?",
-    options: [
-      "Faqat sport",
-      "Kreativlik (Creativity), Tanqidiy fikrlash (Critical Thinking), Hamkorlik (Collaboration), Muloqot (Communication)",
-      "Faqat yozish",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "Kreativlik (Creativity), Tanqidiy fikrlash (Critical Thinking), Hamkorlik (Collaboration), Muloqot (Communication)"
-  },
-  {
-    question: "AKT yordamida **'O'quv platformalari (LMS)'**ning asosiy vazifasi?",
-    options: [
-      "Faqat musiqa",
-      "O'quv jarayonini boshqarish, kontentni yetkazish, topshiriqlarni yig'ish va baholashni avtomatlashtirish",
-      "Faqat o'yin",
-      "Faqat rasm chizish"
-    ],
-    correctAnswer: "O'quv jarayonini boshqarish, kontentni yetkazish, topshiriqlarni yig'ish va baholashni avtomatlashtirish"
-  },
-  {
-    question: "Ta'limda **'Malaka'** nima?",
-    options: [
-      "Faqat bilim",
-      "Amaliy harakatni ongli nazoratsiz, tez va aniq bajarish (avtomatlashgan ko'nikma)",
-      "Faqat xarakter",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Amaliy harakatni ongli nazoratsiz, tez va aniq bajarish (avtomatlashgan ko'nikma)"
-  },
-  {
-    question: "Innovatsion ta'limda **'Dizayn fikrlash (Design Thinking)'** nima?",
-    options: [
-      "Faqat rasm chizish",
-      "Murakkab muammolarni inson ehtiyojlariga e'tibor bergan holda ijodiy va prototip usulida yechish metodologiyasi",
-      "Faqat ma'ruza",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Murakkab muammolarni inson ehtiyojlariga e'tibor bergan holda ijodiy va prototip usulida yechish metodologiyasi"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Qo'llash (Implementatsiya)'** bosqichi nima?",
-    options: [
-      "Faqat rejalashtirish",
-      "Yaratilgan o'quv modelini, metodlar va vositalarni amalda sinf sharoitida qo'llash",
-      "Faqat baholash",
-      "Faqat tahlil"
-    ],
-    correctAnswer: "Yaratilgan o'quv modelini, metodlar va vositalarni amalda sinf sharoitida qo'llash"
-  },
-  {
-    question: "Ta'limda **'O'z-o'zini rivojlantirish'** nima?",
-    options: [
-      "Faqat darslik o'qish",
-      "Shaxsning o'z kamchilik va ehtiyojlarini anglagan holda, bilimi, ko'nikmasi va shaxsiy sifatlarini oshirishga qaratilgan ongli harakati",
-      "Faqat jazolash",
-      "Faqat baholash"
-    ],
-    correctAnswer: "Shaxsning o'z kamchilik va ehtiyojlarini anglagan holda, bilimi, ko'nikmasi va shaxsiy sifatlarini oshirishga qaratilgan ongli harakati"
-  },
-  {
-    question: "Innovatsion ta'limda **'Masofaviy ta'lim'**ning asosiy muammosi?",
-    options: [
-      "Faqat darslik etishmasligi",
-      "Texnik ta'minotning bir xil emasligi, ijtimoiy muloqotning kamayishi, o'quvchining yuqori darajadagi mustaqillik talab qilishi",
-      "Faqat qimmatligi",
-      "Faqat uzoqlik"
-    ],
-    correctAnswer: "Texnik ta'minotning bir xil emasligi, ijtimoiy muloqotning kamayishi, o'quvchining yuqori darajadagi mustaqillik talab qilishi"
-  },
-  {
-    question: "AKT yordamida **'Crowdsourcing'**ning ta'limdagi o'rni?",
-    options: [
-      "Faqat ma'ruza",
-      "Katta guruh (ko'pincha onlayn) ishtirokchilari tomonidan ma'lumot, g'oyalar yoki vazifalarni bajarishda hissa qo'shish",
-      "Faqat test yechish",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "Katta guruh (ko'pincha onlayn) ishtirokchilari tomonidan ma'lumot, g'oyalar yoki vazifalarni bajarishda hissa qo'shish"
-  },
-  {
-    question: "Ta'limda **'Metodologiya'** nima?",
-    options: [
-      "Faqat darslik",
-      "Ta'lim jarayonini tashkil etish, amalga oshirish va baholashning umumiy tamoyillari, nazariy yondashuvlari va uslublari majmui",
-      "Faqat texnika",
-      "Faqat baho"
-    ],
-    correctAnswer: "Ta'lim jarayonini tashkil etish, amalga oshirish va baholashning umumiy tamoyillari, nazariy yondashuvlari va uslublari majmui"
-  },
-  {
-    question: "Innovatsion ta'limda **'Taqdimot (Presentation)'** texnologiyasi maqsadi?",
-    options: [
-      "Faqat gapirish",
-      "Murakkab ma'lumotni vizual va ixcham shaklda yetkazish, auditoriyaning e'tiborini jalb qilish",
-      "Faqat yozish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "Murakkab ma'lumotni vizual va ixcham shaklda yetkazish, auditoriyaning e'tiborini jalb qilish"
-  },
-  {
-    question: "Pedagogik texnologiyada **'Amaliy natija'** nima?",
-    options: [
-      "Faqat bilim",
-      "O'quvchi tomonidan o'zlashtirilgan va amalda qo'llanilishi mumkin bo'lgan aniq ko'nikma yoki mahsulot",
-      "Faqat ma'ruza",
-      "Faqat baho"
-    ],
-    correctAnswer: "O'quvchi tomonidan o'zlashtirilgan va amalda qo'llanilishi mumkin bo'lgan aniq ko'nikma yoki mahsulot"
-  },
-  {
-    question: "Ta'limda **'Ko'rgazmali qurollar'**ning asosiy funksiyasi?",
-    options: [
-      "Faqat rasm",
-      "Mavhum narsalar, jarayonlar yoki tushunchalarni vizual tasvirlash orqali tushunishni osonlashtirish",
-      "Faqat yozish",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "Mavhum narsalar, jarayonlar yoki tushunchalarni vizual tasvirlash orqali tushunishni osonlashtirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Pedagogik tashxis'** nima?",
-    options: [
-      "Faqat tibbiy",
-      "O'quvchining rivojlanish darajasi, qobiliyatlari, o'rganishdagi qiyinchiliklari va muvaffaqiyatlarini o'rganish va aniqlash",
-      "Faqat jazolash",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "O'quvchining rivojlanish darajasi, qobiliyatlari, o'rganishdagi qiyinchiliklari va muvaffaqiyatlarini o'rganish va aniqlash"
-  },
-  {
-    question: "AKT yordamida **'Bloglar va Vikilar'**ning ta'limdagi ahamiyati?",
-    options: [
-      "Faqat vaqt o'tkazish",
-      "O'quvchilarning birgalikda (kollaborativ) ma'lumot yaratishi, almashishi va bilimni kengaytirishi",
-      "Faqat musiqa",
-      "Faqat o'yin"
-    ],
-    correctAnswer: "O'quvchilarning birgalikda (kollaborativ) ma'lumot yaratishi, almashishi va bilimni kengaytirishi"
-  },
-  {
-    question: "Ta'limda **'Bilish' (Kognitiv) jarayonlar** nima?",
-    options: [
-      "Faqat yugurish",
-      "Axborotni qabul qilish, qayta ishlash, eslab qolish va undan foydalanish bilan bog'liq ruhiy jarayonlar (sezgi, idrok, xotira, tafakkur)",
-      "Faqat jazolash",
-      "Faqat ovqatlanish"
-    ],
-    correctAnswer: "Axborotni qabul qilish, qayta ishlash, eslab qolish va undan foydalanish bilan bog'liq ruhiy jarayonlar (sezgi, idrok, xotira, tafakkur)"
-  },
-  {
-    question: "Innovatsion ta'limda **'Kompleks yondashuv'** nima?",
-    options: [
-      "Faqat bir metod",
-      "Ta'lim maqsadlariga erishish uchun bir nechta turli metodlar, vositalar va shakllarni birgalikda, tizimli ravishda qo'llash",
-      "Faqat ma'ruza",
-      "Faqat test"
-    ],
-    correctAnswer: "Ta'lim maqsadlariga erishish uchun bir nechta turli metodlar, vositalar va shakllarni birgalikda, tizimli ravishda qo'llash"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Samaradorlik'** ko'rsatkichi nima?",
-    options: [
-      "Faqat baho",
-      "Belgilangan natijalarga erishish va sarflangan resurslar (vaqt, pul, mehnat) o'rtasidagi nisbat",
-      "Faqat o'qituvchi ishi",
-      "Faqat darslik"
-    ],
-    correctAnswer: "Belgilangan natijalarga erishish va sarflangan resurslar (vaqt, pul, mehnat) o'rtasidagi nisbat"
-  },
-  {
-    question: "Ta'limda **'O'qitishning o'ziga xosligi'** (Personalizatsiya) nima?",
-    options: [
-      "Faqat guruh bilan ishlash",
-      "O'qitishni har bir o'quvchining shaxsiy maqsadlari, qiziqishlari va o'rganish tezligiga to'liq moslashtirish",
-      "Faqat bir xil dars berish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'qitishni har bir o'quvchining shaxsiy maqsadlari, qiziqishlari va o'rganish tezligiga to'liq moslashtirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'quv resurslari'**ning zamonaviy turlari?",
-    options: [
-      "Faqat qog'oz kitoblar",
-      "Elektron darsliklar, MOOC, video ma'ruzalar, simulyatsiyalar, virtual labaratoriyalar",
-      "Faqat qora doska",
-      "Faqat qalam va daftar"
-    ],
-    correctAnswer: "Elektron darsliklar, MOOC, video ma'ruzalar, simulyatsiyalar, virtual labaratoriyalar"
-  },
-  {
-    question: "AKT yordamida **'Learning Analytics'** (Ta'lim tahlili) nima?",
-    options: [
-      "Faqat baho qo'yish",
-      "O'quvchilarning faoliyatidan yig'ilgan ma'lumotlarni tahlil qilish orqali o'rganish jarayonini optimallashtirish va prognoz qilish",
-      "Faqat ma'ruza",
-      "Faqat musiqa"
-    ],
-    correctAnswer: "O'quvchilarning faoliyatidan yig'ilgan ma'lumotlarni tahlil qilish orqali o'rganish jarayonini optimallashtirish va prognoz qilish"
-  },
-  {
-    question: "Ta'limda **'O'zaro baholash' (Peer-assessment)** nima?",
-    options: [
-      "Faqat o'qituvchi baholaydi",
-      "O'quvchilarning bir-birlarining ishlarini belgilangan mezonlar asosida baholashi",
-      "Faqat ma'ruza",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "O'quvchilarning bir-birlarining ishlarini belgilangan mezonlar asosida baholashi"
-  },
-  {
-    question: "Innovatsion ta'limda **'Interfaol muhit'** nima?",
-    options: [
-      "Faqat qora doska",
-      "O'quvchilarning bir-biri bilan, o'qituvchi va kontent bilan faol aloqada bo'lishi mumkin bo'lgan ta'lim sharoiti",
-      "Faqat o'qituvchi gapiradi",
-      "Faqat yozma ish"
-    ],
-    correctAnswer: "O'quvchilarning bir-biri bilan, o'qituvchi va kontent bilan faol aloqada bo'lishi mumkin bo'lgan ta'lim sharoiti"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Obyektivlik'** prinsipi nima?",
-    options: [
-      "Faqat o'qituvchi xohishi",
-      "Ta'lim natijalarini shaxsiy fikr yoki subyektivlikdan xoli, aniq mezonlar va standartlar asosida baholash",
-      "Faqat qiyin vazifa",
-      "Faqat oson vazifa"
-    ],
-    correctAnswer: "Ta'lim natijalarini shaxsiy fikr yoki subyektivlikdan xoli, aniq mezonlar va standartlar asosida baholash"
-  },
-  {
-    question: "Ta'limda **'Refleksiya ko'nikmasi'** nima uchun rivojlantiriladi?",
-    options: [
-      "Faqat jazolash",
-      "O'quvchida o'z xatti-harakatlari, fikrlari va ta'lim jarayonining sabab-natijalarini chuqur anglash qobiliyatini shakllantirish",
-      "Faqat ma'ruza o'qish",
-      "Faqat test yechish"
-    ],
-    correctAnswer: "O'quvchida o'z xatti-harakatlari, fikrlari va ta'lim jarayonining sabab-natijalarini chuqur anglash qobiliyatini shakllantirish"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'qitishning ijtimoiy jihati'** nima?",
-    options: [
-      "Faqat darslik",
-      "Guruhda ishlash, muloqot, hamkorlik, bir-biridan o'rganish va ijtimoiy ko'nikmalarni rivojlantirish",
-      "Faqat yakka ishlash",
-      "Faqat ma'ruza"
-    ],
-    correctAnswer: "Guruhda ishlash, muloqot, hamkorlik, bir-biridan o'rganish va ijtimoiy ko'nikmalarni rivojlantirish"
-  },
-  {
-    question: "AKT yordamida **'Onlayn kutubxonalar'**ning afzalligi nima?",
-    options: [
-      "Faqat qog'oz",
-      "Katta hajmdagi axborotga istalgan joydan kirish, tezkor izlash va manbalarni yangilash imkoniyati",
-      "Faqat musiqa",
-      "Faqat rasm chizish"
-    ],
-    correctAnswer: "Katta hajmdagi axborotga istalgan joydan kirish, tezkor izlash va manbalarni yangilash imkoniyati"
-  },
-  {
-    question: "Ta'limda **'Empatik tinglash'** nima?",
-    options: [
-      "Faqat eshitish",
-      "Suhbatdoshning (o'quvchining) so'zlarini shunchaki eshitmasdan, uning his-tuyg'ularini va aytilganlarning ma'nosini tushunishga harakat qilish",
-      "Faqat ma'ruza",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Suhbatdoshning (o'quvchining) so'zlarini shunchaki eshitmasdan, uning his-tuyg'ularini va aytilganlarning ma'nosini tushunishga harakat qilish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Ta'lim mazmuni'** qanday bo'lishi kerak?",
-    options: [
-      "Faqat eski",
-      "Ilmiy jihatdan asoslangan, zamonaviy talablarga javob beradigan, amaliyotga yo'naltirilgan va o'zlashtirishga qulay",
-      "Faqat qiyin",
-      "Faqat yodlashga mo'ljallangan"
-    ],
-    correctAnswer: "Ilmiy jihatdan asoslangan, zamonaviy talablarga javob beradigan, amaliyotga yo'naltirilgan va o'zlashtirishga qulay"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Reproduktiv'** o'qitish usuli nima?",
-    options: [
-      "Faqat yangi bilim yaratish",
-      "O'quvchining tayyor ma'lumotni eslab qolishi va uni o'zgartirmasdan takrorlashi",
-      "Faqat muammo yechish",
-      "Faqat tadqiqot"
-    ],
-    correctAnswer: "O'quvchining tayyor ma'lumotni eslab qolishi va uni o'zgartirmasdan takrorlashi"
-  },
-  {
-    question: "Ta'limda **'Muammoli topshiriq'** nima?",
-    options: [
-      "Faqat oddiy savol",
-      "O'quvchidan oldingi bilimlarini qayta ishlab, yangi yechim yoki xulosa talab qiladigan, javobi tayyor bo'lmagan vaziyat",
-      "Faqat yozish",
-      "Faqat test"
-    ],
-    correctAnswer: "O'quvchidan oldingi bilimlarini qayta ishlab, yangi yechim yoki xulosa talab qiladigan, javobi tayyor bo'lmagan vaziyat"
-  },
-  {
-    question: "Innovatsion ta'limda **'Ta'limning insonparvarlashuvi'** nima?",
-    options: [
-      "Faqat jazolash",
-      "O'quvchining shaxsiga, uning ehtiyojlari, qiziqishlari va qobiliyatlariga e'tibor berish, hurmat qilish va rivojlanishiga yordam berish",
-      "Faqat ma'ruza",
-      "Faqat test"
-    ],
-    correctAnswer: "O'quvchining shaxsiga, uning ehtiyojlari, qiziqishlari va qobiliyatlariga e'tibor berish, hurmat qilish va rivojlanishiga yordam berish"
-  },
-  {
-    question: "AKT yordamida **'Videoleksiya'**ning afzalligi nima?",
-    options: [
-      "Faqat musiqa",
-      "Ma'ruzani istalgan vaqtda ko'rish, kerakli joyini takrorlash va vizual materiallar bilan boyitish imkoniyati",
-      "Faqat rasm chizish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Ma'ruzani istalgan vaqtda ko'rish, kerakli joyini takrorlash va vizual materiallar bilan boyitish imkoniyati"
-  },
-  {
-    question: "Ta'limda **'Bilim ko'nikmasiga ega bo'lish'** nima?",
-    options: [
-      "Faqat yodlash",
-      "O'rganilgan nazariy bilimlarni amaliy vaziyatlarda qo'llay olish",
-      "Faqat ma'ruza",
-      "Faqat baho"
-    ],
-    correctAnswer: "O'rganilgan nazariy bilimlarni amaliy vaziyatlarda qo'llay olish"
-  },
-  {
-    question: "Innovatsion ta'limda **'Muammoga yo'naltirilgan ta'lim (PBL)'** nima?",
-    options: [
-      "Faqat ma'ruza",
-      "O'quvchilarga avval muammoni berish va bilimni uni yechish jarayonida o'zlari mustaqil egallashini ta'minlash",
-      "Faqat test yechish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "O'quvchilarga avval muammoni berish va bilimni uni yechish jarayonida o'zlari mustaqil egallashini ta'minlash"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Integratsiya'** prinsipi nima?",
-    options: [
-      "Faqat bo'lish",
-      "Ta'limning turli sohalari, fanlar, metodlar va texnologiyalarini o'zaro birlashtirish",
-      "Faqat ajratish",
-      "Faqat darslik"
-    ],
-    correctAnswer: "Ta'limning turli sohalari, fanlar, metodlar va texnologiyalarini o'zaro birlashtirish"
-  },
-  {
-    question: "Ta'limda **'Kompyuterli testlash'**ning obyektivligi qanday ta'minlanadi?",
-    options: [
-      "Faqat o'qituvchi xohishi",
-      "Baholashning oldindan belgilangan aniq algoritmlar asosida, inson omilisiz amalga oshirilishi",
-      "Faqat yozma ish",
-      "Faqat og'zaki javob"
-    ],
-    correctAnswer: "Baholashning oldindan belgilangan aniq algoritmlar asosida, inson omilisiz amalga oshirilishi"
-  },
-  {
-    question: "Innovatsion ta'limda **'Ijodiy muhit'** nima?",
-    options: [
-      "Faqat qoidalar",
-      "O'quvchilarning yangi g'oyalar, savollar va xavf-xatarlardan qo'rqmasdan erkin fikrlash, o'rganish va tajriba o'tkazishga undaydigan sharoit",
-      "Faqat ma'ruza",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "O'quvchilarning yangi g'oyalar, savollar va xavf-xatarlardan qo'rqmasdan erkin fikrlash, o'rganish va tajriba o'tkazishga undaydigan sharoit"
-  },
-  {
-    question: "AKT yordamida **'Shaxsiylashtirilgan ta'lim'**ni amalga oshirish qanday ta'minlanadi?",
-    options: [
-      "Faqat bir xil dars",
-      "Adaptiv ta'lim tizimlari, o'quv faoliyatini tahlil qilish (Learning Analytics) va individual o'quv rejalari",
-      "Faqat ma'ruza",
-      "Faqat test"
-    ],
-    correctAnswer: "Adaptiv ta'lim tizimlari, o'quv faoliyatini tahlil qilish (Learning Analytics) va individual o'quv rejalari"
-  },
-  {
-    question: "Ta'limda **'O'qituvchi-motivator'**ning roli nima?",
-    options: [
-      "Faqat jazolash",
-      "O'quvchilarni o'rganishga rag'batlantirish, ularga o'ziga ishonch bag'ishlash va qiziqish uyg'otish",
-      "Faqat baho qo'yish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "O'quvchilarni o'rganishga rag'batlantirish, ularga o'ziga ishonch bag'ishlash va qiziqish uyg'otish"
-  },
-  {
-    question: "Innovatsion ta'limda **'O'quv jarayonining natijasi'**ga nimalar kiradi?",
-    options: [
-      "Faqat baho",
-      "O'quvchining bilim, ko'nikma, malakasi, kompetentligi va shaxsiy rivojlanishi",
-      "Faqat test natijasi",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "O'quvchining bilim, ko'nikma, malakasi, kompetentligi va shaxsiy rivojlanishi"
-  },
-  {
-    question: "Pedagogik texnologiyaning **'Tizimlilik'** prinsipi nima?",
-    options: [
-      "Faqat tasodif",
-      "Ta'lim maqsadlari, mazmuni, metodlari va natijalarining o'zaro bog'liq holda bir butun tizimni tashkil etishi",
-      "Faqat chalkashlik",
-      "Faqat yodlash"
-    ],
-    correctAnswer: "Ta'lim maqsadlari, mazmuni, metodlari va natijalarining o'zaro bog'liq holda bir butun tizimni tashkil etishi"
-  },
-  {
-    question: "Psixika deganda nimani tushunasiz?",
-    options: [
-      "Faqat tana harakatlari",
-      "Miyaning olamni aks ettiruvchi, borliqqa nisbatan faol munosabatini ifodalovchi xususiyati",
-      "Faqat xotira",
-      "Faqat tashqi muhit"
-    ],
-    correctAnswer: "Miyaning olamni aks ettiruvchi, borliqqa nisbatan faol munosabatini ifodalovchi xususiyati"
-  },
-  {
-    question: "Psixologiya fanining asosiy predmeti nima?",
-    options: [
-      "Faqat insonning tanasi",
-      "Inson va hayvonlarning psixikasi, psixik faoliyatining qonuniyatlari",
-      "Faqat darsliklar",
-      "Faqat tabiiy hodisalar"
-    ],
-    correctAnswer: "Inson va hayvonlarning psixikasi, psixik faoliyatining qonuniyatlari"
-  },
-  {
-    question: "Psixik hodisalar tarkibiga kiruvchi **shaxsning individual ruhiy xususiyatlari** qaysi qatorda ko�rsatilgan?",
-    options: [
-      "Sezgi, idrok, xotira, tafakkur",
-      "Temperament, xarakter, qobiliyat",
+      "Sezgi, idrok, xotira, tafakkur va xayol",
       "Hissiyot, iroda",
+      "Temperament, xarakter, qobiliyat",
       "Diqqat, nutq, faoliyat"
     ],
-    correctAnswer: "Temperament, xarakter, qobiliyat"
+    correctAnswer: "Sezgi, idrok, xotira, tafakkur va xayol"
   },
   {
-    question: "Diqqatning asosiy funksiyasi nima?",
+    question: "Inson bosh miyasining og'irligi to'g'ri ko'rsatilgan jawobni toping",
     options: [
-      "Faqat eslab qolish",
-      "Shaxsning ongini ma�lum obyektga yo�naltirish va uzoq vaqt davomida barqaror qaratib tura olish",
-      "Faqat gapirish",
-      "Faqat yurish"
+      "2100–2000 g",
+      "1150–1650 g",
+      "1350–1550 g",
+      "1350–1400 g"
     ],
-    correctAnswer: "Shaxsning ongini ma�lum obyektga yo�naltirish va uzoq vaqt davomida barqaror qaratib tura olish"
+    correctAnswer: "1350–1400 g"
   },
   {
-    question: "Diqqatning **'kontsentratsiyasi'** nima?",
+    question: "Ikki yoki undan ortiq shaxslar o'rtasida axborot almashish, o'zaro ta'sir va tushunish jarayoni bu ………..",
     options: [
-      "Faqat joyni o'zgartirish",
-      "Insonning o�z diqqatini ma�lum obyektga uzoq vaqt davomida barqaror qaratib tura olishi",
-      "Faqat eslab qolish tezligi",
-      "Faqat yozish"
+      "Afaziya",
+      "Muloqot",
+      "Refleksiya",
+      "Stereotiplash"
     ],
-    correctAnswer: "Insonning o�z diqqatini ma�lum obyektga uzoq vaqt davomida barqaror qaratib tura olishi"
+    correctAnswer: "Muloqot"
   },
   {
-    question: "**Sezgi** qanday psixik jarayon?",
+    question: "Psixik hodisalar tarkibiga kiruvchi bilish jarayonlari qaysi qatorda ko'rsatilgan?",
     options: [
-      "Faqat fikrlash",
-      "Tashqi va ichki muhitdagi alohida xususiyatlarning (rang, hid, harorat) bevosita miyada aks etishi",
-      "Faqat xayol",
-      "Faqat harakat"
+      "Sezgi, idrok, xotira, tafakkur, xayol, diqqat, nutq, faoliyat",
+      "Hissiyot, iroda",
+      "Temperament, xarakter, qobiliyat",
+      "Diqqat, nutq, faoliyat"
     ],
-    correctAnswer: "Tashqi va ichki muhitdagi alohida xususiyatlarning (rang, hid, harorat) bevosita miyada aks etishi"
+    correctAnswer: "Sezgi, idrok, xotira, tafakkur, xayol, diqqat, nutq, faoliyat"
   },
   {
-    question: "**Idrok** (Vospriyatiye) nima?",
+    question: "Hayvonlarning tug'ma ravishda ehtiyojlarini qondirish uchun bajaradigan murakkab harakatlari nima deb ataladi?",
     options: [
-      "Faqat bir xususiyatni aks ettirish",
-      "Ob�ektlarni (narsalarni) butun holda, uning barcha xususiyatlari majmuida aks ettirish",
-      "Faqat yozish",
-      "Faqat xotira"
+      "Seskanuvchanlik",
+      "Perseptiv",
+      "Tropizm",
+      "Instinkt"
     ],
-    correctAnswer: "Ob�ektlarni (narsalarni) butun holda, uning barcha xususiyatlari majmuida aks ettirish"
+    correctAnswer: "Instinkt"
   },
   {
-    question: "**Tafakkur**ning asosiy funksiyasi?",
-    options: [
-      "Faqat sezish",
-      "Borliqning shaxsga bevosita berilmagan tomonlarini umumlashtirish va bilvosita (tushuncha, mulohaza, xulosa orqali) aks ettirish",
-      "Faqat ko'rish",
-      "Faqat eslab qolish"
-    ],
-    correctAnswer: "Borliqning shaxsga bevosita berilmagan tomonlarini umumlashtirish va bilvosita (tushuncha, mulohaza, xulosa orqali) aks ettirish"
-  },
-  {
-    question: "**Xotira**ning asosiy jarayonlari qaysilar?",
-    options: [
-      "Faqat gapirish",
-      "Eslab qolish (saqlash), esda saqlash, esga tushirish (tanib olish va qayta tiklash)",
-      "Faqat harakat",
-      "Faqat ko'rish"
-    ],
-    correctAnswer: "Eslab qolish (saqlash), esda saqlash, esga tushirish (tanib olish va qayta tiklash)"
-  },
-  {
-    question: "Xayol (Fantaziya) qanday psixik jarayon?",
-    options: [
-      "Faqat yodlash",
-      "Yangi obrazlar, tasavvurlar va g'oyalarni yaratishga qaratilgan aqliy jarayon",
-      "Faqat jazolash",
-      "Faqat tana harakati"
-    ],
-    correctAnswer: "Yangi obrazlar, tasavvurlar va g'oyalarni yaratishga qaratilgan aqliy jarayon"
-  },
-  {
-    question: "Tafakkur turlari qaysi qatorda to'g'ri ko'rsatilgan?",
-    options: [
-      "Faqat ko'rgazmali",
-      "Ko'rgazmali-harakatli, ko'rgazmali-obrazli, so'z-mantiqiy",
-      "Faqat eslab qolish",
-      "Faqat sezish"
-    ],
-    correctAnswer: "Ko'rgazmali-harakatli, ko'rgazmali-obrazli, so'z-mantiqiy"
-  },
-  {
-    question: "**Temperament** nima?",
-    options: [
-      "Faqat bilim",
-      "Shaxsning psixik faoliyatining dinamik tomonini (tezligi, kuchi, ritmi) belgilovchi tug'ma xususiyati",
-      "Faqat xarakter",
-      "Faqat qobiliyat"
-    ],
-    correctAnswer: "Shaxsning psixik faoliyatining dinamik tomonini (tezligi, kuchi, ritmi) belgilovchi tug'ma xususiyati"
-  },
-  {
-    question: "Galen bo'yicha **temperamentning asosiy turlari** qaysilar?",
-    options: [
-      "Faqat tez va sekin",
-      "Xolerik, Sangvinik, Flegmatik, Melanxolik",
-      "Faqat quvnoq va xafa",
-      "Faqat kuchli va kuchsiz"
-    ],
-    correctAnswer: "Xolerik, Sangvinik, Flegmatik, Melanxolik"
-  },
-  {
-    question: "**Xarakter** nima?",
-    options: [
-      "Faqat tug'ma",
-      "Shaxsning ijtimoiy munosabatlarda shakllanadigan, uning xatti-harakatlarida namoyon bo'ladigan barqaror individual xususiyatlari majmui",
-      "Faqat eslab qolish",
-      "Faqat sezish"
-    ],
-    correctAnswer: "Shaxsning ijtimoiy munosabatlarda shakllanadigan, uning xatti-harakatlarida namoyon bo'ladigan barqaror individual xususiyatlari majmui"
-  },
-  {
-    question: "**Qobiliyat** nima?",
-    options: [
-      "Faqat harakat",
-      "Muayyan faoliyatni muvaffaqiyatli bajarish uchun zarur bo'lgan individual-psixologik xususiyatlar",
-      "Faqat xarakter",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Muayyan faoliyatni muvaffaqiyatli bajarish uchun zarur bo'lgan individual-psixologik xususiyatlar"
-  },
-  {
-    question: "Qobiliyatning eng yuqori darajasi nima?",
-    options: [
-      "Ko'nikma",
-      "Iste'dod (Talant) va zakovat (Aql-idrok)",
-      "Malaka",
-      "Xotira"
-    ],
-    correctAnswer: "Iste'dod (Talant) va zakovat (Aql-idrok)"
-  },
-  {
-    question: "Psixik hodisalar tarkibiga kiruvchi **psixik holatlar** qaysilar?",
-    options: [
-      "Temperament, xarakter",
-      "Eslab qolish, unutish",
-      "Hissiyot, stress, kayfiyat, ishtiyoq (affekt)",
-      "Nutq, faoliyat"
-    ],
-    correctAnswer: "Hissiyot, stress, kayfiyat, ishtiyoq (affekt)"
-  },
-  {
-    question: "Hissiyot (Emotsiya) nima?",
-    options: [
-      "Faqat fikrlash",
-      "Borliq hodisalariga nisbatan shaxsning subyektiv (ichki) baholovchi munosabatini ifodalovchi psixik jarayon",
-      "Faqat yurish",
-      "Faqat ko'rish"
-    ],
-    correctAnswer: "Borliq hodisalariga nisbatan shaxsning subyektiv (ichki) baholovchi munosabatini ifodalovchi psixik jarayon"
-  },
-  {
-    question: "**Affekt** (Ishtiyoq) qanday hissiy holat?",
-    options: [
-      "Uzoq davom etadigan, sust kayfiyat",
-      "Qisqa muddatli, kuchli, shiddatli va keskin bo'ladigan hissiy portlash holati",
-      "Faqat xotira",
-      "Faqat fikr"
-    ],
-    correctAnswer: "Qisqa muddatli, kuchli, shiddatli va keskin bo'ladigan hissiy portlash holati"
-  },
-  {
-    question: "Iroda (Volya) nima?",
-    options: [
-      "Faqat orzu",
-      "Shaxsning o�z xatti-harakatlari, fikrlari va hissiyotlarini ongli ravishda boshqarish qobiliyati",
-      "Faqat tana kuchi",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Shaxsning o�z xatti-harakatlari, fikrlari va hissiyotlarini ongli ravishda boshqarish qobiliyati"
-  },
-  {
-    question: "Irodaviy harakatning asosiy bosqichlari?",
-    options: [
-      "Faqat harakat",
-      "Maqsadni belgilash, harakat sabablarini kurashishi, qaror qabul qilish, uni amalga oshirish",
-      "Faqat gapirish",
-      "Faqat o'ylash"
-    ],
-    correctAnswer: "Maqsadni belgilash, harakat sabablarini kurashishi, qaror qabul qilish, uni amalga oshirish"
-  },
-  {
-    question: "O'ziga bo'lgan **munosabatni ifodalovchi sifatlar** qaysi qatorda ko�rsatilgan?",
-    options: [
-      "Yaxshilik, mehribonlik",
-      "G�ururlilik, shuhratparastlik, mag�rurlik, o�zini ulug�lash, kamtarlik",
-      "Mehnatsevarlik, dangasalik",
-      "Tozalik yoki ifloslik"
-    ],
-    correctAnswer: "G�ururlilik, shuhratparastlik, mag�rurlik, o�zini ulug�lash, kamtarlik"
-  },
-  {
-    question: "**Interes (Qiziqish)** qanday psixik hodisa?",
-    options: [
-      "Faqat zerikish",
-      "Shaxsning ma'lum faoliyatga, bilim olishga yo'nalganligi va uning ahamiyatini anglash",
-      "Faqat tashqi muhit",
-      "Faqat ovqatlanish"
-    ],
-    correctAnswer: "Shaxsning ma'lum faoliyatga, bilim olishga yo'nalganligi va uning ahamiyatini anglash"
-  },
-  {
-    question: "**Ehtiyoj (Nujda)** nima?",
-    options: [
-      "Faqat xohish",
-      "Shaxsning yashashi va rivojlanishi uchun zarur bo'lgan narsalar yetishmasligini anglash holati, faoliyatning manbai",
-      "Faqat bilim",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Shaxsning yashashi va rivojlanishi uchun zarur bo'lgan narsalar yetishmasligini anglash holati, faoliyatning manbai"
-  },
-  {
-    question: "A. Maslou bo'yicha ehtiyojlar piramidasining **eng quyi pog'onasi** nima?",
-    options: [
-      "Boshqalarni hurmat qilish ehtiyoji",
-      "Fiziologik ehtiyojlar (ovqat, uyqu, nafas olish)",
-      "Xavfsizlik ehtiyoji",
-      "O'zini namoyon qilish ehtiyoji"
-    ],
-    correctAnswer: "Fiziologik ehtiyojlar (ovqat, uyqu, nafas olish)"
-  },
-  {
-    question: "**Shaxs** (Lichnost) nima?",
-    options: [
-      "Faqat tug'ma xususiyatlar",
-      "Ijtimoiy munosabatlar jarayonida shakllangan, o'ziga xos ongga ega bo'lgan subyekt",
-      "Faqat tana",
-      "Faqat miya"
-    ],
-    correctAnswer: "Ijtimoiy munosabatlar jarayonida shakllangan, o'ziga xos ongga ega bo'lgan subyekt"
-  },
-  {
-    question: "**Individ** (Individual) tushunchasi nimani anglatadi?",
-    options: [
-      "Faqat ijtimoiy xususiyatlar",
-      "Inson turining alohida vakili, uning tug'ma, biologik xususiyatlari majmui",
-      "Faqat xarakter",
-      "Faqat bilim"
-    ],
-    correctAnswer: "Inson turining alohida vakili, uning tug'ma, biologik xususiyatlari majmui"
-  },
-  {
-    question: "**Individual yondashuv** (Psixologiyada) nimani anglatadi?",
-    options: [
-      "Faqat guruh bilan ishlash",
-      "Ta'lim-tarbiya jarayonida har bir o'quvchining individual-psixologik xususiyatlarini (temperament, xarakter, qobiliyat) hisobga olish",
-      "Faqat bir xil dars berish",
-      "Faqat baho qo'yish"
-    ],
-    correctAnswer: "Ta'lim-tarbiya jarayonida har bir o'quvchining individual-psixologik xususiyatlarini (temperament, xarakter, qobiliyat) hisobga olish"
-  },
-  {
-    question: "**Intellekt** (Aql-idrok) nima?",
-    options: [
-      "Faqat xotira",
-      "Yangi sharoitga moslasha olish, bilim olish, muammolarni yechish va mavhum fikrlash qobiliyati",
-      "Faqat jismoniy kuch",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Yangi sharoitga moslasha olish, bilim olish, muammolarni yechish va mavhum fikrlash qobiliyati"
-  },
-  {
-    question: "Psixologiyada **faoliyat** nima?",
-    options: [
-      "Faqat yurish",
-      "Shaxsning ehtiyojlarini qondirishga, maqsadga erishishga qaratilgan harakatlari majmui",
-      "Faqat yozish",
-      "Faqat ko'rish"
-    ],
-    correctAnswer: "Shaxsning ehtiyojlarini qondirishga, maqsadga erishishga qaratilgan harakatlari majmui"
-  },
-  {
-    question: "Faoliyatning asosiy turlari qaysilar?",
-    options: [
-      "Faqat o'ynash",
-      "O'yin, o'qish (o'rganish), mehnat",
-      "Faqat yozish, gapirish",
-      "Faqat ko'rish, eshitish"
-    ],
-    correctAnswer: "O'yin, o'qish (o'rganish), mehnat"
-  },
-  {
-    question: "Shaxsning **motivatsiyasi** nima?",
-    options: [
-      "Faqat qoidalar",
-      "Shaxsni faoliyatga undaydigan, uning maqsad va ehtiyojlari bilan bog'liq bo'lgan ichki kuchlar tizimi",
-      "Faqat temperament",
-      "Faqat malaka"
-    ],
-    correctAnswer: "Shaxsni faoliyatga undaydigan, uning maqsad va ehtiyojlari bilan bog'liq bo'lgan ichki kuchlar tizimi"
-  },
-  {
-    question: "**Krizis (Inqiroz)** yosh davrlari psixologiyasida nimani anglatadi?",
-    options: [
-      "Faqat kasallik",
-      "Bolaning psixik rivojlanishida yangi sifat bosqichiga o'tish bilan bog'liq bo'lgan qisqa, keskin o'zgarishlar davri",
-      "Faqat dam olish",
-      "Faqat o'ynash"
-    ],
-    correctAnswer: "Bolaning psixik rivojlanishida yangi sifat bosqichiga o'tish bilan bog'liq bo'lgan qisqa, keskin o'zgarishlar davri"
-  },
-  {
-    question: "**O'smirlik davri**ning (11-15 yosh) psixologik xususiyatlari?",
-    options: [
-      "Faqat o'yin",
-      "Tana o'zgarishlari, o'zlikni anglashning kuchayishi, yetakchilikka intilish, mustaqillikka ehtiyoj",
-      "Faqat ota-onaga bo'ysunish",
-      "Faqat maktabga borish"
-    ],
-    correctAnswer: "Tana o'zgarishlari, o'zlikni anglashning kuchayishi, yetakchilikka intilish, mustaqillikka ehtiyoj"
-  },
-  {
-    question: "Bolaning rivojlanishida **o'yin faoliyati**ning asosiy o'rni nima?",
-    options: [
-      "Faqat vaqt o'tkazish",
-      "Ijtimoiy munosabatlarni, muloqotni, irodani va rolli xatti-harakatlarni o'rganish",
-      "Faqat ovqatlanish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Ijtimoiy munosabatlarni, muloqotni, irodani va rolli xatti-harakatlarni o'rganish"
-  },
-  {
-    question: "**Kommunikatsiya** (Muloqot) nima?",
-    options: [
-      "Faqat fikrlash",
-      "Odamlar o'rtasida axborot, tajriba, bilim va hissiyotlarni almashish jarayoni",
-      "Faqat yurish",
-      "Faqat ko'rish"
-    ],
-    correctAnswer: "Odamlar o'rtasida axborot, tajriba, bilim va hissiyotlarni almashish jarayoni"
-  },
-  {
-    question: "Muloqotning **verbal** (og'zaki) vositalariga nimalar kiradi?",
-    options: [
-      "Mimika, jestlar",
-      "Nutq, so'z, ovoz ohangi",
-      "Kiyim, soch turmagi",
-      "Yurish usuli"
-    ],
-    correctAnswer: "Nutq, so'z, ovoz ohangi"
-  },
-  {
-    question: "Muloqotning **noverbal** (og'zaki bo'lmagan) vositalariga nimalar kiradi?",
-    options: [
-      "So'zlar, jumlalar",
-      "Mimika, jestlar, pantomimika, intonatsiya, nigoh",
-      "Ma'ruza",
-      "Kitoblar"
-    ],
-    correctAnswer: "Mimika, jestlar, pantomimika, intonatsiya, nigoh"
-  },
-  {
-    question: "**Stress** qanday psixik holat?",
-    options: [
-      "Faqat dam olish",
-      "Organizmning juda kuchli ta'sirga (xavf, xursandlik, jismoniy zo'riqish) javoban beradigan umumiy javobi (ruhiy va fiziologik keskinlik)",
-      "Faqat o'ynash",
-      "Faqat uxlash"
-    ],
-    correctAnswer: "Organizmning juda kuchli ta'sirga (xavf, xursandlik, jismoniy zo'riqish) javoban beradigan umumiy javobi (ruhiy va fiziologik keskinlik)"
-  },
-  {
-    question: "**Konflikt (Ziddiyat)** nima?",
-    options: [
-      "Faqat do'stlik",
-      "Odamlar, guruhlar yoki ichki shaxsiy motivlar o'rtasidagi qarama-qarshi maqsadlar, manfaatlar yoki pozitsiyalar to'qnashuvi",
-      "Faqat hamkorlik",
-      "Faqat yordam"
-    ],
-    correctAnswer: "Odamlar, guruhlar yoki ichki shaxsiy motivlar o'rtasidagi qarama-qarshi maqsadlar, manfaatlar yoki pozitsiyalar to'qnashuvi"
-  },
-  {
-    question: "Psixologiyada **'Bilimlar (Kognitiv) jarayonlar'** nimalar?",
-    options: [
-      "Faqat hissiyot",
-      "Sezgi, idrok, xotira, tafakkur, xayol va diqqat",
-      "Faqat xarakter",
-      "Faqat iroda"
-    ],
-    correctAnswer: "Sezgi, idrok, xotira, tafakkur, xayol va diqqat"
-  },
-  {
-    question: "**Eidetik xotira** nima?",
-    options: [
-      "Faqat ovozli xotira",
-      "Ob'ektni go'yo uni hali ham ko'rayotgandek, juda aniq va to'liq eslab qolish qobiliyati (fotografik xotira)",
-      "Faqat harakat xotirasi",
-      "Faqat hissiyot xotirasi"
-    ],
-    correctAnswer: "Ob'ektni go'yo uni hali ham ko'rayotgandek, juda aniq va to'liq eslab qolish qobiliyati (fotografik xotira)"
-  },
-  {
-    question: "**Analiz (Tahlil)** va **Sintez** (Tafakkurda) nima?",
-    options: [
-      "Faqat bir jarayon",
-      "Analiz - butunni qismlarga ajratish, Sintez - qismlardan butunni yaratish",
-      "Faqat eslab qolish",
-      "Faqat ko'rish"
-    ],
-    correctAnswer: "Analiz - butunni qismlarga ajratish, Sintez - qismlardan butunni yaratish"
-  },
-  {
-    question: "**Kreativlik** (Ijodkorlik) nima?",
-    options: [
-      "Faqat qoidalar bo'yicha ishlash",
-      "Yangi va noyob g'oyalar, yechimlar yoki mahsulotlar yaratish qobiliyati",
-      "Faqat eslab qolish",
-      "Faqat jazolash"
-    ],
-    correctAnswer: "Yangi va noyob g'oyalar, yechimlar yoki mahsulotlar yaratish qobiliyati"
-  },
-  {
-    question: "**Mijozlarga yo'naltirilgan terapiya** (K. Rodjers) nimani anglatadi?",
-    options: [
-      "Faqat maslahat berish",
-      "Terapistning mijozni qabul qilishi, unga hamdardlik (empatiya) bildirish va uni qo'llab-quvvatlash",
-      "Faqat jazolash",
-      "Faqat buyruq berish"
-    ],
-    correctAnswer: "Terapistning mijozni qabul qilishi, unga hamdardlik (empatiya) bildirish va uni qo'llab-quvvatlash"
-  },
-  {
-    question: "A. Maslou bo'yicha ehtiyojlar piramidasining **eng yuqori pog'onasi** nima?",
-    options: [
-      "Fiziologik ehtiyojlar",
-      "Xavfsizlik ehtiyoji",
-      "O'zini namoyon qilish (aktualizatsiya) ehtiyoji",
-      "Muloqot ehtiyoji"
-    ],
-    correctAnswer: "O'zini namoyon qilish (aktualizatsiya) ehtiyoji"
-  },
-  {
-    question: "**Neyropsixologiya** nima?",
-    options: [
-      "Faqat hayvonlar psixologiyasi",
-      "Miya tuzilishi va uning alohida qismlari bilan psixik jarayonlar o'rtasidagi bog'liqlikni o'rganadigan fan",
-      "Faqat ijtimoiy psixologiya",
-      "Faqat kasb psixologiyasi"
-    ],
-    correctAnswer: "Miya tuzilishi va uning alohida qismlari bilan psixik jarayonlar o'rtasidagi bog'liqlikni o'rganadigan fan"
-  },
-  {
-    question: "**Persepsiya** tushunchasi psixologiyada nimani bildiradi?",
-    options: [
-      "Sezgi",
-      "Idrok",
-      "Xotira",
-      "Diqqat"
-    ],
-    correctAnswer: "Idrok"
-  },
-  {
-    question: "**Flegmatik** temperamentli odamning asosiy xususiyati?",
-    options: [
-      "Haddan tashqari shoshqaloqlik va beqarorlik",
-      "Sokin, sust, hissiyotlarni kam namoyon etadigan, sekin, ammo barqaror",
-      "Haddan tashqari optimist, serharakat",
-      "Haddan tashqari xafa, tushkun"
-    ],
-    correctAnswer: "Sokin, sust, hissiyotlarni kam namoyon etadigan, sekin, ammo barqaror"
-  },
-  {
-    question: "**Melanxolik** temperamentli odamning asosiy xususiyati?",
-    options: [
-      "Serharakat, doimo o'zgaruvchan",
-      "Juda ta'sirchan, tez charchaydigan, yengil tushkunlikka tushuvchi, sust, o'ziga ishonchsiz",
-      "Kuchli, tezkor, hissiyotlarga beriluvchan",
-      "Sokin, harakatsiz, deyarli hissiyotsiz"
-    ],
-    correctAnswer: "Juda ta'sirchan, tez charchaydigan, yengil tushkunlikka tushuvchi, sust, o'ziga ishonchsiz"
-  },
-  {
-    question: "**Holerik** temperamentli odamning asosiy xususiyati?",
-    options: [
-      "Sokin, bosiq",
-      "Kuchli, tezkor, muvozanatsiz, tezda jahli chiqadigan, hissiyotlarga beriluvchan",
-      "Serharakat, quvnoq, barqaror",
-      "Sust, xafa"
-    ],
-    correctAnswer: "Kuchli, tezkor, muvozanatsiz, tezda jahli chiqadigan, hissiyotlarga beriluvchan"
-  },
-  {
-    question: "**Sangvinik** temperamentli odamning asosiy xususiyati?",
-    options: [
-      "Sokin, bosiq, sust",
-      "Serharakat, quvnoq, optimist, tez moslashuvchan, hissiyotlari tez o'zgaruvchan",
-      "Muvozanatsiz, jahlga tez beriluvchan",
-      "Juda ta'sirchan, o'ziga ishonchsiz"
-    ],
-    correctAnswer: "Serharakat, quvnoq, optimist, tez moslashuvchan, hissiyotlari tez o'zgaruvchan"
-  },
-  {
-    question: "**Appersepsiya** nima?",
-    options: [
-      "Faqat eslab qolish",
-      "Idrokning shaxsning avvalgi tajribasi, bilimi va qiziqishlariga bog'liqligi",
-      "Faqat sezish",
-      "Faqat xayol"
-    ],
-    correctAnswer: "Idrokning shaxsning avvalgi tajribasi, bilimi va qiziqishlariga bog'liqligi"
-  },
-  {
-    question: "**Qobiliyatning rivojlanish darajalari** qaysilar?",
-    options: [
-      "Bilim, ko'nikma",
-      "Iste'dod (Talant), Zakovat (Aql-idrok), Geniallik",
-      "Malaka, harakat",
-      "Diqqat, xotira"
-    ],
-    correctAnswer: "Iste'dod (Talant), Zakovat (Aql-idrok), Geniallik"
-  },
-  {
-    question: "**Muloqotning perseptiv tomoni** nima?",
-    options: [
-      "Faqat axborot almashish",
-      "Suhbatdoshni (sherikni) idrok etish, uni tushunish va baholash jarayoni",
-      "Faqat ta'sir o'tkazish",
-      "Faqat so'zlashish"
-    ],
-    correctAnswer: "Suhbatdoshni (sherikni) idrok etish, uni tushunish va baholash jarayoni"
-  },
-  {
-    question: "**Empatiya** (Psixologiyada) nima?",
-    options: [
-      "Faqat baholash",
-      "Boshqa odamning hissiyotlarini, holatini ichki tomondan tushuna olish va hamdardlik bildirish qobiliyati",
-      "Faqat jazolash",
-      "Faqat o'ylash"
-    ],
-    correctAnswer: "Boshqa odamning hissiyotlarini, holatini ichki tomondan tushuna olish va hamdardlik bildirish qobiliyati"
-  },
-  {
-    question: "**Refleksiya** (Psixologiyada) nima?",
-    options: [
-      "Faqat tashqariga qarash",
-      "Shaxsning o�z ichki ruhiy holati, fikrlari, xatti-harakatlari va o'zgarishlarini o'zi tahlil qilishi",
-      "Faqat yugurish",
-      "Faqat tinglash"
-    ],
-    correctAnswer: "Shaxsning o�z ichki ruhiy holati, fikrlari, xatti-harakatlari va o'zgarishlarini o'zi tahlil qilishi"
-  },
-  {
-    question: "**Diqqatning barqarorligi** nima?",
-    options: [
-      "Faqat tez o'tish",
-      "Diqqatning ma'lum obyektdan chalg'imasdan, uzoq vaqt davomida saqlana olish qobiliyati",
-      "Faqat tez charchash",
-      "Faqat bo'linish"
-    ],
-    correctAnswer: "Diqqatning ma'lum obyektdan chalg'imasdan, uzoq vaqt davomida saqlana olish qobiliyati"
-  },
-  {
-    question: "**O'qish faoliyati** (Psixologiyada) qanday faoliyat turi?",
-    options: [
-      "Faqat o'yin",
-      "Nazariy bilimlar, ko'nikmalar va malakalarni o'zlashtirishga qaratilgan faoliyat",
-      "Faqat mehnat",
-      "Faqat dam olish"
-    ],
-    correctAnswer: "Nazariy bilimlar, ko'nikmalar va malakalarni o'zlashtirishga qaratilgan faoliyat"
-  },
-  {
-    question: "Tafakkur jarayonida **generallashuv (umumlashtirish)** nima?",
-    options: [
-      "Faqat ajratish",
-      "Ob'ektlar va hodisalarning muhim va umumiy xususiyatlarini ajratib olish va ularni tushuncha ostida birlashtirish",
-      "Faqat taqqoslash",
-      "Faqat analiz"
-    ],
-    correctAnswer: "Ob'ektlar va hodisalarning muhim va umumiy xususiyatlarini ajratib olish va ularni tushuncha ostida birlashtirish"
-  },
-  {
-    question: "**Vizual xotira** nima?",
-    options: [
-      "Faqat eshitish orqali eslab qolish",
-      "Ko'rish orqali idrok qilingan obrazlar va ma'lumotlarni eslab qolish va qayta tiklash",
-      "Faqat harakat orqali eslab qolish",
-      "Faqat hissiyot orqali eslab qolish"
-    ],
-    correctAnswer: "Ko'rish orqali idrok qilingan obrazlar va ma'lumotlarni eslab qolish va qayta tiklash"
-  },
-  {
-    question: "**Ijtimoiy idrok** (Sotsialnaya persepsiya) nima?",
-    options: [
-      "Faqat narsalarni idrok etish",
-      "Odamlarning bir-birini, o'zini, ijtimoiy ob'ektlar va guruhlarni idrok etish, tushunish va baholash jarayoni",
-      "Faqat tovushni eshitish",
-      "Faqat rangni ko'rish"
-    ],
-    correctAnswer: "Odamlarning bir-birini, o'zini, ijtimoiy ob'ektlar va guruhlarni idrok etish, tushunish va baholash jarayoni"
-  },
-  {
-    question: "**Kattalar yoshidagi krizislar** (masalan, 30, 40 yosh) nima bilan bog'liq?",
-    options: [
-      "Faqat jismoniy o'zgarishlar",
-      "Hayot mazmunini qayta baholash, maqsadlarni o'zgartirish, shaxsiy va professional o'zlikni izlash",
-      "Faqat temperament o'zgarishi",
-      "Faqat ovqatlanish"
-    ],
-    correctAnswer: "Hayot mazmunini qayta baholash, maqsadlarni o'zgartirish, shaxsiy va professional o'zlikni izlash"
-  },
-  {
-    question: "**Shaxsning yo'nalganligi** (Napravlennost lichnosti) nima?",
-    options: [
-      "Faqat yugurish",
-      "Ehtiyojlar, qiziqishlar, e'tiqodlar va ideallar tizimi orqali belgilanadigan, shaxsning faoliyatini boshqaruvchi motivlar majmui",
-      "Faqat o'ylash",
-      "Faqat harakat"
-    ],
-    correctAnswer: "Ehtiyojlar, qiziqishlar, e'tiqodlar va ideallar tizimi orqali belgilanadigan, shaxsning faoliyatini boshqaruvchi motivlar majmui"
-  },
-  {
-    question: "**Kichik maktab yoshi** (6-11 yosh) uchun asosiy faoliyat turi?",
-    options: [
-      "O'yin",
-      "O'qish (o'rganish)",
-      "Mehnat",
-      "Muloqot"
-    ],
-    correctAnswer: "O'qish (o'rganish)"
-  },
-  {
-    question: "**Muloqotning interaktiv tomoni** nima?",
-    options: [
-      "Faqat tushunish",
-      "Odamlarning bir-biriga ta'sir o'tkazishi, harakatlarni tashkil etish va hamkorlik qilish",
-      "Faqat axborot almashish",
-      "Faqat baholash"
-    ],
-    correctAnswer: "Odamlarning bir-biriga ta'sir o'tkazishi, harakatlarni tashkil etish va hamkorlik qilish"
-  },
-  {
-    question: "**O'z-o'zini baholash (Samootsenka)** nima?",
-    options: [
-      "Faqat boshqalarning bahosi",
-      "Shaxsning o'z qobiliyatlari, fazilatlari, yutuqlari va kamchiliklariga beradigan subyektiv bahosi",
-      "Faqat maktab bahosi",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "Shaxsning o'z qobiliyatlari, fazilatlari, yutuqlari va kamchiliklariga beradigan subyektiv bahosi"
-  },
-  {
-    question: "Maxsus pedagogika fani qanday fan?",
-    options: [
-      "Faqat sog'lom bolalar ta'limi bilan shug'ullanadigan fan",
-      "Jismoniy va ruhiy rivojlanishda nuqsoni bo`lgan bolalar ta'lim tarbiyasi bilan shug'ullanadigan fan",
-      "Faqat oliy ta'limni o'rganadigan fan",
-      "Faqat ijtimoiy munosabatlarni o'rganadigan fan"
-    ],
-    correctAnswer: "Jismoniy va ruhiy rivojlanishda nuqsoni bo`lgan bolalar ta'lim tarbiyasi bilan shug'ullanadigan fan"
-  },
-  {
-    question: "Maxsus pedagogika fanining asosiy vazifalaridan biri nima?",
-    options: [
-      "Faqat sog'lom bolalarni o'qitish",
-      "Maxsus yordamga muxtoj bolalarning ijtimoiy adabtatsiya, reabilitatsiya, kompensatsiyasini amalga oshirish",
-      "Faqat darslik yaratish",
-      "Faqat sport bilan shug'ullanish"
-    ],
-    correctAnswer: "Maxsus yordamga muxtoj bolalarning ijtimoiy adabtatsiya, reabilitatsiya, kompensatsiyasini amalga oshirish"
-  },
-  {
-    question: "Maxsus pedagogika fanining mustaqil tarmoqlari qaysilar?",
-    options: [
-      "Oligofrenopedagogika, oftalmologiya, dermotologiya, logopediya",
-      "Surdopedagogika, stomatologiya, fiziologiya, patologiya",
-      "Tiflopedagogika, ottorinoloringologiya, rinoplastika, surdologiya",
-      "Logopediya, Surdopedagogika, Tiflopedagogika, Oligofrenopedagogika"
-    ],
-    correctAnswer: "Logopediya, Surdopedagogika, Tiflopedagogika, Oligofrenopedagogika"
-  },
-  {
-    question: "**Surdopedagogika** qanday bolalar ta'limi bilan shug'ullanadi?",
-    options: [
-      "Ko'rishida nuqsoni bo'lgan bolalar",
-      "Eshitishida nuqsoni bo'lgan bolalar (kar, zaif eshituvchi)",
-      "Aqli zaif bolalar",
-      "Nutqida nuqsoni bo'lgan bolalar"
-    ],
-    correctAnswer: "Eshitishida nuqsoni bo'lgan bolalar (kar, zaif eshituvchi)"
-  },
-  {
-    question: "**Tiflopedagogika** qanday bolalar ta'limi bilan shug'ullanadi?",
-    options: [
-      "Eshitishida nuqsoni bo'lgan bolalar",
-      "Ko'rishida nuqsoni bo'lgan bolalar (ko'r, zaif ko'ruvchi)",
-      "Aqli zaif bolalar",
-      "Nutqida nuqsoni bo'lgan bolalar"
-    ],
-    correctAnswer: "Ko'rishida nuqsoni bo'lgan bolalar (ko'r, zaif ko'ruvchi)"
-  },
-  {
-    question: "**Oligofrenopedagogika** qanday bolalar ta'limi bilan shug'ullanadi?",
-    options: [
-      "Eshitishida nuqsoni bo'lgan bolalar",
-      "Aqliy rivojlanishida nuqsoni (aqli zaif) bo'lgan bolalar",
-      "Ko'rishida nuqsoni bo'lgan bolalar",
-      "Nutqida nuqsoni bo'lgan bolalar"
-    ],
-    correctAnswer: "Aqliy rivojlanishida nuqsoni (aqli zaif) bo'lgan bolalar"
-  },
-  {
-    question: "**Logopediya** fani nimani o'rganadi?",
-    options: [
-      "Eshitish nuqsonlarini",
-      "Nutq nuqsonlarining sabablari, mexanizmlari, belgilari, oldini olish va tuzatish usullarini",
-      "Ko'rish nuqsonlarini",
-      "Tayanch-harakat a'zolari nuqsonlarini"
-    ],
-    correctAnswer: "Nutq nuqsonlarining sabablari, mexanizmlari, belgilari, oldini olish va tuzatish usullarini"
-  },
-  {
-    question: "**Disleksiya** nutq nuqsoni nimada namoyon bo'ladi?",
-    options: [
-      "Yozuvda nuqson",
-      "O'qish jarayonini buzilishi (o'qishdagi qiyinchilik)",
-      "Nutq tovushlarini talaffuz qilishdagi nuqson",
-      "Yozishdagi qiyinchilik"
-    ],
-    correctAnswer: "O'qish jarayonini buzilishi (o'qishdagi qiyinchilik)"
-  },
-  {
-    question: "**Inklyuziv ta�lim** deganda nimani tushunasiz?",
-    options: [
-      "Faqat maxsus maktabda o'qitish",
-      "Imkoniyati cheklangan bolalarning sog�lom tengdoshlari bilan birga umumiy ta�lim maktablarida o�qitilishi",
-      "Faqat uyda o'qitish",
-      "Faqat alohida o'qitish"
-    ],
-    correctAnswer: "Imkoniyati cheklangan bolalarning sog�lom tengdoshlari bilan birga umumiy ta�lim maktablarida o�qitilishi"
-  },
-  {
-    question: "Inklyuziv ta�limning asosiy maqsadi nima?",
-    options: [
-      "Faqat bolalarni ajratish",
-      "Barcha bolalar uchun sifatli ta�lim olishga teng imkoniyat yaratish va ularning ijtimoiy integratsiyasini ta'minlash",
-      "Faqat alohida dars berish",
-      "Faqat ota-onalarni cheklash"
-    ],
-    correctAnswer: "Barcha bolalar uchun sifatli ta�lim olishga teng imkoniyat yaratish va ularning ijtimoiy integratsiyasini ta'minlash"
-  },
-  {
-    question: "Inklyuziv ta�limda **'individual yondashuv'** nimani anglatadi?",
-    options: [
-      "Barchani bir xil baholash",
-      "Har bir bolaga uning individual imkoniyatiga, ehtiyojiga va qobiliyatiga mos topshiriq va sharoit berish",
-      "Faqat oddiy darslikdan foydalanish",
-      "Ajratilgan o�quv dasturi"
-    ],
-    correctAnswer: "Har bir bolaga uning individual imkoniyatiga, ehtiyojiga va qobiliyatiga mos topshiriq va sharoit berish"
-  },
-  {
-    question: "Inklyuziv ta�limning asosiy tamoyillaridan biri?",
-    options: [
-      "Faqat nazorat",
-      "Hamkorlik va tenglik",
-      "Ajratish",
-      "Faqat maktab direktori qarori"
-    ],
-    correctAnswer: "Hamkorlik va tenglik"
-  },
-  {
-    question: "Imkoniyati cheklangan bolalarni jalb qilishda qanday **texnologiyalar** muhim?",
-    options: [
-      "Oddiy daftar",
-      "Moslashtirilgan kompyuter va texnik vositalar (yirik shriftli, sensorli, Braille displeylari)",
-      "Telefon",
-      "Qo�shni yordamida"
-    ],
-    correctAnswer: "Moslashtirilgan kompyuter va texnik vositalar (yirik shriftli, sensorli, Braille displeylari)"
-  },
-  {
-    question: "Inklyuziv ta�limda **'moslashtirilgan baholash'** nimani bildiradi?",
-    options: [
-      "Faqat imtihon natijasi",
-      "Bolaning individual imkoniyatiga, uning o'quv dasturidagi o'zgarishlarga qarab baholash",
-      "Oddiy standart baholash",
-      "Faqat yozma topshiriqlar"
-    ],
-    correctAnswer: "Bolaning individual imkoniyatiga, uning o'quv dasturidagi o'zgarishlarga qarab baholash"
-  },
-  {
-    question: "**Integratsiyalashgan ta�lim**da sog�lom bolalar uchun qanday afzallik bor?",
-    options: [
-      "Faqat bilim olish",
-      "Mehr-shafqat, tolerantlik (bag'rikenglik) va boshqalar ehtiyojlarini tushunishni o�rganish",
-      "Faqat o'yin",
-      "Faqat jismoniy rivojlanish"
-    ],
-    correctAnswer: "Mehr-shafqat, tolerantlik (bag'rikenglik) va boshqalar ehtiyojlarini tushunishni o�rganish"
-  },
-  {
-    question: "**Kompleks yondashuv** (maxsus pedagogikada) nima?",
-    options: [
-      "Faqat o'qituvchi",
-      "Ta'lim-tarbiya, tibbiy yordam, psixologik qo'llab-quvvatlash va ijtimoiy yordamni birgalikda qo'llash",
-      "Faqat ota-ona",
-      "Faqat maktab"
-    ],
-    correctAnswer: "Ta'lim-tarbiya, tibbiy yordam, psixologik qo'llab-quvvatlash va ijtimoiy yordamni birgalikda qo'llash"
-  },
-  {
-    question: "**Kompensatsiya** (maxsus pedagogikada) nima?",
-    options: [
-      "Faqat bilim berish",
-      "Biror nuqson tufayli buzilgan funksiyalarni boshqa organlar yoki funksiyalar yordamida qoplash",
-      "Faqat jazolash",
-      "Faqat o'yin"
-    ],
-    correctAnswer: "Biror nuqson tufayli buzilgan funksiyalarni boshqa organlar yoki funksiyalar yordamida qoplash"
-  },
-  {
-    question: "**Korreksiya** (Tuzatish) nimani anglatadi?",
-    options: [
-      "Faqat baholash",
-      "Rivojlanishdagi nuqsonlarni bartaraf etish yoki yumshatishga qaratilgan pedagogik harakatlar",
-      "Faqat ma'ruza",
-      "Faqat o'yin"
-    ],
-    correctAnswer: "Rivojlanishdagi nuqsonlarni bartaraf etish yoki yumshatishga qaratilgan pedagogik harakatlar"
-  },
-  {
-    question: "**Reabilitatsiya** (tiklash) nima?",
-    options: [
-      "Faqat jismoniy mashq",
-      "Maxsus ehtiyojli shaxsning ijtimoiy hayotga, mehnatga va jamiyatga faol qatnashish qobiliyatini tiklash",
-      "Faqat o'qish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Maxsus ehtiyojli shaxsning ijtimoiy hayotga, mehnatga va jamiyatga faol qatnashish qobiliyatini tiklash"
-  },
-  {
-    question: "**Braille alifbosi** qaysi turdagi nuqsoni bo'lgan bolalar uchun mo'ljallangan?",
-    options: [
-      "Eshitishida nuqsoni bo'lganlar",
-      "Ko'rishida nuqsoni bo'lganlar (ko'rlar)",
-      "Aqli zaiflar",
-      "Nutqida nuqsoni bo'lganlar"
-    ],
-    correctAnswer: "Ko'rishida nuqsoni bo'lganlar (ko'rlar)"
-  },
-  {
-    question: "**Daktilologiya** (barmoq alifbosi) kimlar bilan muloqot qilishda qo'llaniladi?",
-    options: [
-      "Ko'rlar",
-      "Karlar (eshitmaydiganlar)",
-      "Aqli zaiflar",
-      "Tayanch-harakat a'zolari nuqsoni bo'lganlar"
-    ],
-    correctAnswer: "Karlar (eshitmaydiganlar)"
-  },
-  {
-    question: "**Surdoguruxlar** (Maxsus maktablarda) qanday bolalar uchun tashkil etiladi?",
-    options: [
-      "Ko'rlar",
-      "Eshitishida nuqsoni bo'lganlar",
-      "Aqli zaiflar",
-      "Nutqida nuqsoni bo'lganlar"
-    ],
-    correctAnswer: "Eshitishida nuqsoni bo'lganlar"
-  },
-  {
-    question: "**Oligofreniya** (Aqli zaiflik) sabablari?",
-    options: [
-      "Faqat yomon darslik",
-      "Irsiy omillar, homiladorlik davridagi patologiyalar, tug'ruqdagi shikastlanishlar, ilk yoshdagi kasalliklar",
-      "Faqat noto'g'ri baho",
-      "Faqat yomon o'qituvchi"
-    ],
-    correctAnswer: "Irsiy omillar, homiladorlik davridagi patologiyalar, tug'ruqdagi shikastlanishlar, ilk yoshdagi kasalliklar"
-  },
-  {
-    question: "**Maxsus maktablar**ning maqsadi?",
-    options: [
-      "Faqat sog'lom bolalarni o'qitish",
-      "Rivojlanishdagi nuqsonlarni inobatga olgan holda, chuqurlashtirilgan korreksion ta'lim-tarbiya berish",
-      "Faqat kasb o'rgatish",
-      "Faqat sport bilan shug'ullanish"
-    ],
-    correctAnswer: "Rivojlanishdagi nuqsonlarni inobatga olgan holda, chuqurlashtirilgan korreksion ta'lim-tarbiya berish"
-  },
-  {
-    question: "**Nutq terapiyasi** (Logopediya) nima uchun kerak?",
-    options: [
-      "Faqat yugurish",
-      "Nutq nuqsonlarini tuzatish, nutqni rivojlantirish va muloqot ko'nikmalarini yaxshilash",
-      "Faqat rasm chizish",
-      "Faqat uxlash"
-    ],
-    correctAnswer: "Nutq nuqsonlarini tuzatish, nutqni rivojlantirish va muloqot ko'nikmalarini yaxshilash"
-  },
-  {
-    question: "Tiflopedagogikada o'qitishda **qolgan sezgi organlari**dan qanday foydalaniladi?",
-    options: [
-      "Faqat ko'rish",
-      "Eshitish va sezish (tuyish, teri retseptorlari) sezgilarini rivojlantirish orqali kompensatsiya qilish",
-      "Faqat hid bilish",
-      "Faqat ta'm bilish"
-    ],
-    correctAnswer: "Eshitish va sezish (tuyish, teri retseptorlari) sezgilarini rivojlantirish orqali kompensatsiya qilish"
-  },
-  {
-    question: "Maxsus pedagogikada **'Tashxis' (Diagnostika)** nimani anglatadi?",
-    options: [
-      "Faqat dars berish",
-      "Bolaning rivojlanishdagi nuqson turi, darajasi va sabablarini aniqlash, korreksion ish rejasini tuzish",
-      "Faqat baholash",
-      "Faqat uy vazifasi"
-    ],
-    correctAnswer: "Bolaning rivojlanishdagi nuqson turi, darajasi va sabablarini aniqlash, korreksion ish rejasini tuzish"
-  },
-  {
-    question: "Inklyuziv ta�lim muhitida **o'qituvchi-defektolog**ning o'rni?",
-    options: [
-      "Faqat oddiy dars o'tish",
-      "Maxsus ehtiyojli bolalar uchun ta'lim jarayonini moslashtirish va korreksion yordam berish",
-      "Faqat baho qo'yish",
-      "Faqat sport mashg'ulotlari o'tish"
-    ],
-    correctAnswer: "Maxsus ehtiyojli bolalar uchun ta'lim jarayonini moslashtirish va korreksion yordam berish"
-  },
-  {
-    question: "**Aqli zaif bolalar**ga o'rgatishning asosiy prinsipi nima?",
-    options: [
-      "Faqat murakkab nazariya",
-      "Ko'rgazmalilik, amaliy faoliyatga yo'naltirish, materialni sekin, takrorlab va qismlarga bo'lib berish",
-      "Faqat tez o'qitish",
-      "Faqat yodlash"
-    ],
-    correctAnswer: "Ko'rgazmalilik, amaliy faoliyatga yo'naltirish, materialni sekin, takrorlab va qismlarga bo'lib berish"
-  },
-  {
-    question: "**Disgrafiya** nutq nuqsoni qaysi jarayon bilan bog'liq?",
-    options: [
-      "O'qish jarayoni",
-      "Nutqni talaffuz qilish",
-      "Yozma nutqni buzilishi (yozishdagi xatolar, qiyinchilik)",
-      "Eshitish"
-    ],
-    correctAnswer: "Yozma nutqni buzilishi (yozishdagi xatolar, qiyinchilik)"
-  },
-  {
-    question: "**O'yin terapiyasi** qaysi maxsus ehtiyojli bolalar bilan ishlashda samarali?",
-    options: [
-      "Faqat ko'rlar",
-      "Emotsional-irodaviy sohada buzilishi bor, autizm spektridagi yoki aqliy zaif bolalar",
-      "Faqat karlar",
-      "Faqat katta yoshlilar"
-    ],
-    correctAnswer: "Emotsional-irodaviy sohada buzilishi bor, autizm spektridagi yoki aqliy zaif bolalar"
-  },
-  {
-    question: "**Maxsus ta'limning individual dasturi (IUP)** nima uchun kerak?",
-    options: [
-      "Faqat o'qituvchiga yukni kamaytirish",
-      "Har bir maxsus ehtiyojli bolaning o'zlashtirish tezligi, maqsadlari va korreksion vazifalarini belgilash",
-      "Faqat baho qo'yish",
-      "Faqat sport bilan shug'ullanish"
-    ],
-    correctAnswer: "Har bir maxsus ehtiyojli bolaning o'zlashtirish tezligi, maqsadlari va korreksion vazifalarini belgilash"
-  },
-  {
-    question: "**Imkoniyati cheklangan bolalarning ijtimoiy integratsiyasi** nimani anglatadi?",
-    options: [
-      "Faqat alohida yashash",
-      "Ular jamiyatning teng huquqli a'zosi bo'lib, uning hayotida faol ishtirok etishlari",
-      "Faqat uyda qolish",
-      "Faqat maxsus maktabda o'qish"
-    ],
-    correctAnswer: "Ular jamiyatning teng huquqli a'zosi bo'lib, uning hayotida faol ishtirok etishlari"
-  },
-  {
-    question: "**Surdopedagogikada nutqni rivojlantirish**ning asosiy usuli?",
-    options: [
-      "Faqat o'qish",
-      "Og'zaki nutq, daktilologiya, imo-ishoralar tilini integrativ (birgalikda) qo'llash",
-      "Faqat yozish",
-      "Faqat rasm chizish"
-    ],
-    correctAnswer: "Og'zaki nutq, daktilologiya, imo-ishoralar tilini integrativ (birgalikda) qo'llash"
-  },
-  {
-    question: "**Tiflopedagogikada orientatsiya va mobillik** nima?",
-    options: [
-      "Faqat turish",
-      "Ko'r va zaif ko'ruvchi bolalarga atrof muhitda mustaqil harakat qilishni o'rgatish (oq tayoq, eshitish orqali)",
-      "Faqat o'tirish",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Ko'r va zaif ko'ruvchi bolalarga atrof muhitda mustaqil harakat qilishni o'rgatish (oq tayoq, eshitish orqali)"
-  },
-  {
-    question: "**Oligofrenopedagogikada mehnat ta'limi**ning o'rni?",
-    options: [
-      "Faqat vaqt o'tkazish",
-      "Ijtimoiy-maishiy va oddiy kasbiy ko'nikmalarni shakllantirish, mustaqil hayotga tayyorlash",
-      "Faqat yozish",
-      "Faqat o'qish"
-    ],
-    correctAnswer: "Ijtimoiy-maishiy va oddiy kasbiy ko'nikmalarni shakllantirish, mustaqil hayotga tayyorlash"
-  },
-  {
-    question: "**Tayanch-harakat a'zolari nuqsoni bo'lgan bolalar** uchun ta'limdagi asosiy sharoit?",
-    options: [
-      "Faqat yugurish maydonchasi",
-      "Panduslar, liftlar, maxsus mebellar, moslashtirilgan o'quv vositalari (qulay muhit yaratish)",
-      "Faqat qora doska",
-      "Faqat oddiy stollar"
-    ],
-    correctAnswer: "Panduslar, liftlar, maxsus mebellar, moslashtirilgan o'quv vositalari (qulay muhit yaratish)"
-  },
-  {
-    question: "**Logopediya nuqtai nazaridan nutqning buzilishi** qaysi turlarga bo'linadi?",
-    options: [
-      "Faqat o'qish va yozish",
-      "Talaffuz, ritm, ovoz, leksika-grammatika va nutqning umumiy rivojlanishidagi buzilishlar",
-      "Faqat ko'rish va eshitish",
-      "Faqat temperament"
-    ],
-    correctAnswer: "Talaffuz, ritm, ovoz, leksika-grammatika va nutqning umumiy rivojlanishidagi buzilishlar"
-  },
-  {
-    question: "**Autizm spektridagi buzilishlar (ASB)** bo'lgan bolalar bilan ishlashning asosiy xususiyati?",
-    options: [
-      "Faqat guruhli ish",
-      "Individual yondashuv, xatti-harakatlarni tahlil qilish, ijtimoiy ko'nikmalarni shakllantirish, vizual qo'llab-quvvatlash",
-      "Faqat og'zaki dars",
-      "Faqat yozish"
-    ],
-    correctAnswer: "Individual yondashuv, xatti-harakatlarni tahlil qilish, ijtimoiy ko'nikmalarni shakllantirish, vizual qo'llab-quvvatlash"
-  },
-  {
-    question: "Maxsus pedagogikada **'Erta yordam'** nima uchun muhim?",
-    options: [
-      "Faqat pul tejash",
-      "Boladagi rivojlanish nuqsonini erta aniqlash va korreksiyani boshlash orqali kompensatsiya imkoniyatlarini oshirish",
-      "Faqat kechikish",
-      "Faqat maktab yoshida boshlash"
-    ],
-    correctAnswer: "Boladagi rivojlanish nuqsonini erta aniqlash va korreksiyani boshlash orqali kompensatsiya imkoniyatlarini oshirish"
-  }
+  question: "Psixologiya fani nimadan bahs etadi?",
+  options: [
+    "Psixik hodisalar, ularning qonuniyatlari va mexanizmlarini",
+    "Ongni o'rganadigan fan",
+    "Jon haqida ta'lim beruvchi fan",
+    "Inson xulq-atvori haqidagi fan"
+  ],
+  correctAnswer: "Psixik hodisalar, ularning qonuniyatlari va mexanizmlarini"
+},
+{
+  question: "Miya faoliyatining natijasi bo'lib, voqelikni sub'yektiv aks ettiruvchi xossa bu...",
+  options: [
+    "Faoliyat",
+    "Ong",
+    "Psixika",
+    "Xulq-atvor"
+  ],
+  correctAnswer: "Psixika"
+},
+{
+  question: "Psixologiyada dualizm yo'nalishining asoschisi kim?",
+  options: [
+    "Arastu",
+    "Gippokrat",
+    "Aflotun",
+    "Suqrot"
+  ],
+  correctAnswer: "Aflotun"
+}
 ];
 
 // ===== GLOBAL O'ZGARUVCHILAR =====
@@ -3286,8 +4429,10 @@ const summaryResultsSpan = document.getElementById('summaryResults');
 const resultModal = document.getElementById('resultModal');
 const continueBtn = document.getElementById('continueBtn');
 
-let shuffledAllQuestions = [];
-let currentQuestionIndex = 0;
+// YANGI: Savollar indeksi ro'yxati
+let availableQuestionIndices = []; 
+let currentQuestionObject = null;
+
 let totalAttempts = 0;
 let correctCount = 0;
 let questionAnsweredThisTurn = false;
@@ -3295,7 +4440,6 @@ let questionAnsweredThisTurn = false;
 // 20 ta savollik blok uchun
 let blockCorrectCount = 0;
 let blockTotalCount = 0;
-let blockStartIndex = 0;
 
 // ===== YORDAMCHI FUNKSIYALAR =====
 function shuffleArray(array) {
@@ -3303,6 +4447,31 @@ function shuffleArray(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+}
+
+// ===== YANGI: SAVOLLAR HAVZASI (POOL) FUNKSIYALARI =====
+function initQuestionPool() {
+    const savedPool = localStorage.getItem(QUESTION_POOL_KEY);
+    
+    if (savedPool) {
+        availableQuestionIndices = JSON.parse(savedPool);
+    }
+
+    // Agar xotira bo'sh bo'lsa yoki savollar tugagan bo'lsa -> Yangidan to'ldiramiz
+    if (!availableQuestionIndices || availableQuestionIndices.length === 0) {
+        // Indekslar ro'yxatini tuzamiz [0, 1, 2, ... 449]
+        availableQuestionIndices = Array.from(questionsData.keys());
+        
+        // Ularni yaxshilab aralashtiramiz
+        shuffleArray(availableQuestionIndices);
+        
+        // Xotiraga saqlaymiz
+        savePoolProgress();
+    }
+}
+
+function savePoolProgress() {
+    localStorage.setItem(QUESTION_POOL_KEY, JSON.stringify(availableQuestionIndices));
 }
 
 function updateResults() {
@@ -3318,24 +4487,39 @@ function loadQuestion() {
     questionAnsweredThisTurn = false;
     nextButton.disabled = true;
 
-    if (shuffledAllQuestions.length === 0) {
-        shuffledAllQuestions = [...questionsData];
-        shuffleArray(shuffledAllQuestions);
-        currentQuestionIndex = 0;
+    // Savollar ro'yxatini tekshirish
+    if (availableQuestionIndices.length === 0) {
+        initQuestionPool(); // Tugagan bo'lsa qayta yuklaydi
     }
 
-    if (currentQuestionIndex >= shuffledAllQuestions.length) {
-        currentQuestionIndex = 0;
-        shuffleArray(shuffledAllQuestions);
+    // Navbatdagi savol indeksini olamiz (hali o'chirmaymiz)
+    const questionIndex = availableQuestionIndices[0]; 
+    
+    // Agar savollar bazasi bo'sh bo'lsa yoki xato bo'lsa
+    if (questionIndex === undefined || !questionsData[questionIndex]) {
+        quizContainer.innerHTML = '<p>Savollar yuklanmadi. Iltimos sahifani yangilang.</p>';
+        return;
     }
 
-    const q = shuffledAllQuestions[currentQuestionIndex];
+    currentQuestionObject = questionsData[questionIndex];
+    const q = currentQuestionObject;
+    
+    // Savol blokini yaratish
     const questionBlock = document.createElement('div');
     questionBlock.classList.add('question-block');
 
+    // Statistika (Nechanchi savol ekanligi)
+    const questionNumber = questionsData.length - availableQuestionIndices.length + 1;
+    const infoText = document.createElement('small');
+    infoText.style.color = '#666';
+    infoText.style.display = 'block';
+    infoText.style.marginBottom = '5px';
+    infoText.textContent = `(Umumiy baza: ${questionNumber} / ${questionsData.length})`;
+    questionBlock.appendChild(infoText);
+
     const questionText = document.createElement('p');
     questionText.classList.add('question-text');
-    questionText.textContent = `${totalAttempts + 1}. ${q.question}`;
+    questionText.textContent = `${questionNumber}-savol. ${q.question}`;
     questionBlock.appendChild(questionText);
 
     const optionsList = document.createElement('ul');
@@ -3448,8 +4632,12 @@ function showResultModal() {
 }
 
 function handleNextQuestion() {
-    currentQuestionIndex++;
-    
+    // YANGI: Ishlatilgan savolni ro'yxatdan o'chiramiz
+    if (availableQuestionIndices.length > 0) {
+        availableQuestionIndices.shift(); // Birinchi elementni olib tashlash
+        savePoolProgress(); // O'zgarishni saqlash
+    }
+
     // Har 20 ta savoldan keyin modal ko'rsatish
     if (blockTotalCount > 0 && blockTotalCount % 20 === 0) {
         showResultModal();
@@ -3465,29 +4653,26 @@ nextButton.addEventListener('click', handleNextQuestion);
 continueBtn.addEventListener('click', () => {
     resultModal.style.display = 'none';
     
-    // Blok statistikasini tiklash
+    // Blok statistikasini tiklash (lekin umumiy test davom etadi)
     blockCorrectCount = 0;
     blockTotalCount = 0;
-    blockStartIndex = currentQuestionIndex;
     
-    // Yangi savol yuklash
+    // Modal yopilgach keyingi savolga o'tamiz
     loadQuestion();
 });
 
 // ===== LOGIN TIZIMI =====
 window.addEventListener('DOMContentLoaded', function() {
-    const isAuthenticated = localStorage.getItem(AUTH_KEY);
-    
-    if (isAuthenticated === 'true') {
-        document.getElementById('loginScreen').classList.add('hidden');
-        document.body.classList.remove('login-active');
-        startTimer();
-        updateResults();
-        loadQuestion();
-    } else {
-        document.body.classList.add('login-active');
-        document.getElementById('loginScreen').style.display = 'flex';
+    // Login o'chirilgan - to'g'ridan-to'g'ri test boshlanadi
+    const loginScreen = document.getElementById('loginScreen');
+    if (loginScreen) {
+        loginScreen.style.display = 'none';
     }
+    
+    document.body.classList.remove('login-active');
+    startTimer();
+    updateResults();
+    loadQuestion();
 });
 
 document.getElementById('loginBtn').addEventListener('click', function() {
@@ -3563,6 +4748,7 @@ function showMainContent() {
 function logout() {
     if (confirm('Rostdan ham tizimdan chiqmoqchimisiz?')) {
         localStorage.removeItem(AUTH_KEY);
+        // Izoh: Savollar ketma-ketligini saqlab qolish uchun pool o'chirilmaydi
         location.reload();
     }
 }
@@ -3595,12 +4781,4 @@ function updateTimer() {
         String(seconds).padStart(2, '0');
 
     document.getElementById('timer').textContent = formattedTime;
-
 }
-
-
-
-
-
-
-
